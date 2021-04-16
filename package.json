@@ -8,6 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-react": "^7.21.5",
     "next": "10.1.3",
     "react": "17.0.2",
     "react-dom": "17.0.2"
