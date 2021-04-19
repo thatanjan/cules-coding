@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 
-interface Props {}
+interface Props {
+	searchBoxHandler: (val: boolean) => void
+}
 
-const HeaderSearch = (props: Props) => {
+const HeaderSearch = ({ searchBoxHandler }: Props) => {
 	const [searchTerm, setSearchTerm] = useState('')
 	return (
 		<div>
@@ -24,7 +26,12 @@ const HeaderSearch = (props: Props) => {
 					<input type='submit' className='header__search-submit' value='Search' />
 				</form>
 
-				<a href='#0' title='Close Search' className='header__search-close'>
+				<a
+					href='#0'
+					title='Close Search'
+					className='header__search-close'
+					onClick={() => searchBoxHandler(false)}
+				>
 					Close
 				</a>
 			</div>

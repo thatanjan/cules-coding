@@ -2569,8 +2569,6 @@ input::-moz-focus-inner {
 	text-align: center;
 	background-color: #ffffff;
 	transition: all 0.3s;
-	opacity: 0;
-	visibility: hidden;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -2664,11 +2662,6 @@ input::-moz-focus-inner {
 
 body.search-is-visible {
 	overflow: hidden;
-}
-
-.search-is-visible .header__search {
-	opacity: 1;
-	visibility: visible;
 }
 
 /* ------------------------------------------------------------------- 
