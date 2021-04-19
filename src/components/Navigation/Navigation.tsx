@@ -1,4 +1,6 @@
 import React from 'react'
+import Link from 'next/link'
+import { nanoid } from 'nanoid'
 
 import MenuHasChildren from './MenuHasChildren'
 
@@ -6,54 +8,29 @@ interface Props {}
 
 const catagoryMenuList = ['productivity', 'react', 'css', 'javascript', 'html']
 
+const CATAGORY = 'catagory'
+
+const menuNames = ['Home', CATAGORY, 'about', 'portfolio', 'youtube', 'contact']
+
 const Navigation = (props: Props) => {
 	return (
 		<nav className='header__nav-wrap'>
 			<ul className='header__nav'>
-				<li className='current'>
-					<a href='index.html' title=''>
-						Home
-					</a>
-				</li>
+				{menuNames.map(menuName => {
+					if (menuName === CATAGORY)
+						return (
+							<MenuHasChildren
+								key={nanoid()}
+								{...{ subMenuList: catagoryMenuList, menuName: 'catagory' }}
+							/>
+						)
 
-				<MenuHasChildren
-					{...{ subMenuList: catagoryMenuList, menuName: 'catagory' }}
-				/>
-
-				<li className='has-children'>
-					<a href='#0' title=''>
-						Blog Posts
-					</a>
-					<ul className='sub-menu'>
-						<li>
-							<a href='single-video.html'>Video Post</a>
+					return (
+						<li className='current' key={nanoid()}>
+							<Link href={menuName === 'home' ? '/' : `/${menuName}`}>{menuName}</Link>
 						</li>
-						<li>
-							<a href='single-audio.html'>Audio Post</a>
-						</li>
-						<li>
-							<a href='single-gallery.html'>Gallery Post</a>
-						</li>
-						<li>
-							<a href='single-standard.html'>Standard Post</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href='styles.html' title=''>
-						Styles
-					</a>
-				</li>
-				<li>
-					<a href='page-about.html' title=''>
-						About
-					</a>
-				</li>
-				<li>
-					<a href='page-contact.html' title=''>
-						Contact
-					</a>
-				</li>
+					)
+				})}
 			</ul>
 
 			<ul className='header__social'>
