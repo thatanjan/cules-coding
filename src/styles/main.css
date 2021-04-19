@@ -2323,6 +2323,10 @@ input::-moz-focus-inner {
 	color: #ffffff;
 }
 
+ul.sub-menu li.current > a {
+	color: #ffffff;
+}
+
 .header__nav li ul {
 	display: none;
 	font-weight: 300;
