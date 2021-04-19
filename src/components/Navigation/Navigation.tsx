@@ -1,33 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { nanoid } from 'nanoid'
+import clsx from 'clsx'
 
 import MenuHasChildren from './MenuHasChildren'
-
-interface Props {}
 
 const catagoryMenuList = ['productivity', 'react', 'css', 'javascript', 'html']
 
 const CATAGORY = 'catagory'
 
-const menuNames = ['Home', CATAGORY, 'about', 'portfolio', 'youtube', 'contact']
+const menuNames = ['home', CATAGORY, 'about', 'portfolio', 'youtube', 'contact']
 
-const Navigation = (props: Props) => {
+const Navigation = () => {
+	const [focusedMenuIndex, setFocusedMenuIndex] = useState<null | number>(null)
+
 	return (
 		<nav className='header__nav-wrap'>
 			<ul className='header__nav'>
-				{menuNames.map(menuName => {
+				{menuNames.map((menuName, index) => {
 					if (menuName === CATAGORY)
 						return (
 							<MenuHasChildren
 								key={nanoid()}
+								classes={[focusedMenuIndex === index ? 'current' : '']}
 								{...{ subMenuList: catagoryMenuList, menuName: 'catagory' }}
+								focusClick={() => setFocusedMenuIndex(index)}
 							/>
 						)
 
 					return (
-						<li className='current' key={nanoid()}>
-							<Link href={menuName === 'home' ? '/' : `/${menuName}`}>{menuName}</Link>
+						<li
+							className={clsx(focusedMenuIndex === index && 'current')}
+							key={nanoid()}
+						>
+							<Link href={menuName === 'home' ? '/' : `/${menuName}`}>
+								<a onClick={() => setFocusedMenuIndex(index)}>{menuName}</a>
+							</Link>
 						</li>
 					)
 				})}
