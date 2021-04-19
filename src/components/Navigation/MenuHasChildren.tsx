@@ -33,6 +33,15 @@ const MenuHasChildren = ({
 					{menuName}
 				</a>
 			</Link>
+
+			<div
+				className={clsx(isSubMenuOpen && 'expanded', 'submenu__expander')}
+				onClick={() => {
+					setIsSubMenuOpen(!isSubMenuOpen)
+					console.log(122323)
+				}}
+			/>
+
 			{isSubMenuOpen && <SubMenu {...{ menuName, subMenuList }} />}
 		</li>
 	)

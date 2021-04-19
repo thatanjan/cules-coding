@@ -2281,32 +2281,32 @@ input::-moz-focus-inner {
 }
 
 .header__nav li.has-children {
-	padding-right: 3.3rem;
+	display: grid;
+	grid-template-columns: 80% 20%;
 }
 
-.header__nav li.has-children > a::after {
+.header__nav li.has-children > .submenu__expander {
 	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 	border-right: 1px solid rgba(255, 255, 255, 0.4);
-	content: '';
-	display: block;
+	display: grid;
 	height: 5px;
 	width: 5px;
-	margin-top: -4px;
-	pointer-events: none;
-	position: absolute;
-	right: 1.8rem;
-	top: 21px;
+	margin: auto;
 	-webkit-transform-origin: 66% 66%;
 	-ms-transform-origin: 66% 66%;
 	transform-origin: 66% 66%;
 	-webkit-transform: rotate(45deg);
-	transform: rotate(45deg);
+	transform: rotate(45deg) scale(1.5);
 	transition: all 0.5s;
 }
 
-.header__nav li.has-children > a.sub-menu-is-open::after {
-	-webkit-transform: rotate(225deg);
-	transform: rotate(225deg);
+.header__nav li.has-children > .submenu__expander:hover {
+	cursor: pointer;
+}
+
+.header__nav li.has-children > .expanded {
+	-webkit-transform: rotate(225deg) scale(1.5);
+	transform: rotate(225deg) scale(1.5);
 }
 
 .header__nav li:hover > a,
