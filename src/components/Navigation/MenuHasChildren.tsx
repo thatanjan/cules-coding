@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
+import clsx from 'clsx'
 
 const SubMenu = dynamic(() => import('./SubMenu'))
 
@@ -13,7 +14,12 @@ const MenuHasChildren = ({ menuName, subMenuList }: Props) => {
 
 	return (
 		<li className='has-children'>
-			<a href='#0' title='' onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}>
+			<a
+				href='#0'
+				title=''
+				className={clsx(isSubMenuOpen && 'sub-menu-is-open')}
+				onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
+			>
 				{menuName}
 			</a>
 
