@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import dynamic from 'next/dynamic'
 
 import Navigation from 'components/Navigation/Navigation'
 
-import HeaderSearch from './HeaderSearch'
+const HeaderSearch = dynamic(() => import('./HeaderSearch'))
 
 interface Props {}
 
