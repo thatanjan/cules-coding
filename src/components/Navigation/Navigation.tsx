@@ -1,6 +1,10 @@
 import React from 'react'
 
+import MenuHasChildren from './MenuHasChildren'
+
 interface Props {}
+
+const catagoryMenuList = ['productivity', 'react', 'css', 'javascript', 'html']
 
 const Navigation = (props: Props) => {
 	return (
@@ -11,31 +15,11 @@ const Navigation = (props: Props) => {
 						Home
 					</a>
 				</li>
-				<li className='has-children'>
-					<a href='#0' title=''>
-						Categories
-					</a>
-					<ul className='sub-menu'>
-						<li>
-							<a href='category.html'>Lifestyle</a>
-						</li>
-						<li>
-							<a href='category.html'>Health</a>
-						</li>
-						<li>
-							<a href='category.html'>Family</a>
-						</li>
-						<li>
-							<a href='category.html'>Management</a>
-						</li>
-						<li>
-							<a href='category.html'>Travel</a>
-						</li>
-						<li>
-							<a href='category.html'>Work</a>
-						</li>
-					</ul>
-				</li>
+
+				<MenuHasChildren
+					{...{ subMenuList: catagoryMenuList, menuName: 'catagory' }}
+				/>
+
 				<li className='has-children'>
 					<a href='#0' title=''>
 						Blog Posts
