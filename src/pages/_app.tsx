@@ -1,5 +1,6 @@
 import PageLayout from 'components/Layout/PageLayout'
 
+import 'styles/masonry.css'
 import 'styles/globals.css'
 import 'styles/main.css'
 
