@@ -1716,12 +1716,6 @@ input::-moz-focus-inner {
 	clear: both;
 }
 
-.masonry .grid-sizer,
-.masonry__brick {
-	float: left;
-	width: 25%;
-}
-
 .masonry__brick {
 	padding: 0 20px;
 }
@@ -2022,17 +2016,8 @@ input::-moz-focus-inner {
  * common and reusable styles
  * ------------------------------------------------------------------- */
 @media screen and (max-width: 1800px) {
-	.masonry-wrap {
-		max-width: 1260px;
-	}
-
 	.listing-header {
 		padding: 0 1.6vw 2.4rem;
-	}
-
-	.masonry .grid-sizer,
-	.masonry__brick {
-		width: 33.33333%;
 	}
 
 	.masonry__brick {
@@ -2069,17 +2054,8 @@ input::-moz-focus-inner {
 }
 
 @media screen and (max-width: 1500px) {
-	.masonry-wrap {
-		max-width: 900px;
-	}
-
 	.listing-header {
 		padding: 0 1.8vw 2.4rem;
-	}
-
-	.masonry .grid-sizer,
-	.masonry__brick {
-		width: 50%;
 	}
 
 	.masonry__brick {
@@ -2117,12 +2093,6 @@ input::-moz-focus-inner {
 
 	.listing-header {
 		text-align: center;
-	}
-
-	.masonry .grid-sizer,
-	.masonry__brick {
-		width: 100%;
-		float: none;
 	}
 
 	.masonry__brick {
