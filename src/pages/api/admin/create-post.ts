@@ -1,37 +1,11 @@
-import { Schema, model, connect } from 'mongoose'
+import connectDB from 'mongoose/connectDB'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import BlogModel from 'mongoose/Blog'
 
-const schema = new Schema({
-	title: {
-		type: String,
-		required: true,
-	},
-	description: {
-		type: String,
-		required: true,
-	},
-	slug: {
-		type: String,
-		required: true,
-	},
-	createdAt: {
-		type: Date,
-		default: Date.now,
-	},
-	lastEditedAt: {
-		type: Date,
-	},
-	content: {
-		type: String,
-		required: true,
-	},
-	tags: {
-		type: [String],
-	},
-})
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+	await connectDB()
 
-const BlogModel = model('blog', schema)
-
-export default function handler(req, res) {
-	console.log(BlogModel)
 	res.status(200).json({ name: 'John Doe' })
 }
+
+export default handler
