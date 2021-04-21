@@ -1,6 +1,6 @@
 import Masonry from 'react-masonry-css'
 
-import SinglePost from 'components/Post/SinglePost'
+import SingleBlog from 'components/Blog/SingleBlog'
 
 const Home = () => {
 	const breakpointColumnsObj = {
@@ -22,7 +22,7 @@ const Home = () => {
 							{Array(20)
 								.fill(3)
 								.map((_, index) => {
-									return <SinglePost key={index} />
+									return <SingleBlog key={index} />
 								})}
 						</Masonry>
 					</div>
