@@ -1,8 +1,11 @@
 import React from 'react'
+import { GetStaticProps, GetStaticPaths } from 'next'
 
 import BlogHeaderMedia from 'components/Blog/BlogHeaderMedia'
 import BlogHeader from 'components/Blog/BlogHeader'
 import BlogNavigation from 'components/Blog/BlogNavigation'
+
+import getFiles from 'utils/getFiles'
 
 interface Props {}
 
@@ -24,6 +27,39 @@ const Blog = (props: Props) => {
 			</main>
 		</div>
 	)
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+	const catagories = getFiles('')
+
+	let allFileNames: String[] = []
+
+	catagories.forEach(catagory => {
+		const files = getFiles(catagory)
+
+		allFileNames = allFileNames.concat(files)
+	})
+
+	let fileNamesWithOutExtention = allFileNames.map(fileName =>
+		fileName.replace('.mdx', '')
+	)
+
+	const paths = fileNamesWithOutExtention.map(file => {
+		return {
+			params: { slug: file },
+		}
+	})
+
+	return {
+		paths,
+		fallback: false,
+	}
+}
+
+export const getStaticProps: GetStaticProps = async ctx => {
+	return {
+		props: {},
+	}
 }
 
 export default Blog
