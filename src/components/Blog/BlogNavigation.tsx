@@ -15,7 +15,7 @@ const BlogNavigation = ({ prevPost, nextPost }: Props) => {
 						<Link href={`/blog/${prevPost.replace(' ', '-')}`}>
 							<a>
 								<span>Previous Post</span>
-								Tips on Minimalist Design
+								{prevPost}
 							</a>
 						</Link>
 					</div>
@@ -23,10 +23,10 @@ const BlogNavigation = ({ prevPost, nextPost }: Props) => {
 
 				{nextPost && (
 					<div className='entry__next'>
-						<Link href={`/blog/${prevPost.replace(' ', '-')}`}>
+						<Link href={`/blog/${nextPost.replace(' ', '-')}`}>
 							<a>
 								<span>Next Post</span>
-								Less Is More
+								{nextPost}
 							</a>
 						</Link>
 					</div>
