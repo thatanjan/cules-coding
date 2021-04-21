@@ -1,9 +1,12 @@
 import React from 'react'
 import NextImage from 'next/image'
 
-interface Props {}
+interface Props {
+	imagePath: string
+	altText: string
+}
 
-const BlogHeaderMedia = (props: Props) => {
+const BlogHeaderMedia = ({ imagePath, altText }: Props) => {
 	return (
 		<div className='media-wrap entry__media'>
 			<div className='entry__post-thumb'>
@@ -11,8 +14,8 @@ const BlogHeaderMedia = (props: Props) => {
 					layout='responsive'
 					height={720}
 					width={1280}
-					src='/ts.jpg'
-					alt='Blog Image'
+					src={imagePath}
+					alt={altText}
 				/>
 			</div>
 		</div>
