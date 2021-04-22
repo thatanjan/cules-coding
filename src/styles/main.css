@@ -546,7 +546,6 @@ fieldset {
 input,
 textarea,
 select,
-pre,
 blockquote,
 figure,
 table,
@@ -556,7 +555,8 @@ ol,
 dl,
 form,
 .video-container,
-.ss-custom-select {
+.ss-custom-select,
+.prism-code {
 	margin-bottom: 3.2rem;
 }
 
