@@ -1,27 +1,50 @@
 import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import readFilesBySlug from 'utils/readFilesBySlug'
+import renderToString from 'next-mdx-remote/render-to-string'
+import hydrate from 'next-mdx-remote/hydrate'
+import { MdxRemote } from 'next-mdx-remote/types'
+import matter from 'gray-matter'
 
+import readFilesBySlug from 'utils/readFilesBySlug'
 import BlogHeaderMedia from 'components/Blog/BlogHeaderMedia'
 import BlogHeader from 'components/Blog/BlogHeader'
 import BlogNavigation from 'components/Blog/BlogNavigation'
+import MDXComponents from 'components/Blog/MDXComponents'
 
 import getFiles from 'utils/getFiles'
 
-interface Props {}
+import MatterData from 'interfaces/MatterData'
 
-const Blog = (props: Props) => {
+interface Props {
+	mdxSource: MdxRemote.Source
+	metaData: MatterData
+}
+
+const Blog = ({
+	mdxSource,
+	metaData: { description, banner, altText },
+}: Props) => {
+	const content = hydrate(mdxSource, {
+		components: {
+			...MDXComponents,
+		},
+	})
+
 	return (
 		<div className='s-content content'>
 			<main className='row content__page'>
 				<article className='column large-full entry format-standard'>
-					<BlogHeaderMedia imagePath='/ts.jpg' altText='taylor swift' />
+					<BlogHeaderMedia imagePath={banner} altText={altText} />
 
 					<BlogHeader
 						title='why react'
 						date={new Date().toDateString()}
 						catagory='react'
 					/>
+
+					<p className='lead'>{description}</p>
+
+					{content}
 
 					<BlogNavigation prevPost='yes react' />
 				</article>
@@ -70,10 +93,16 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
 	const slugCatagory = catagories[slugCatagoryIndex]
 
-	const readFile = readFilesBySlug(slugCatagory, slug as string)
+	const fileContent = readFilesBySlug(slugCatagory, slug as string)
+
+	const { data: metaData, content } = matter(fileContent)
+
+	const mdxSource = await renderToString(content, {
+		components: MDXComponents,
+	})
 
 	return {
-		props: {},
+		props: { mdxSource, metaData },
 	}
 }
 
