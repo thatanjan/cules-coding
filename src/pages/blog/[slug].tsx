@@ -24,6 +24,7 @@ interface Props {
 	metaData: MatterData
 	title: string
 	catagory: string
+	createdAt: string
 }
 
 const Blog = ({
@@ -31,6 +32,7 @@ const Blog = ({
 	metaData: { description, banner, altText },
 	title,
 	catagory,
+	createdAt,
 }: Props) => {
 	const content = hydrate(mdxSource, {
 		components: {
@@ -44,7 +46,7 @@ const Blog = ({
 				<article className='column large-full entry format-standard'>
 					<BlogHeaderMedia imagePath={banner} altText={altText} />
 
-					<BlogHeader {...{ title, date: new Date().toDateString(), catagory }} />
+					<BlogHeader {...{ title, createdAt, catagory }} />
 
 					<p className='lead'>{description}</p>
 
@@ -121,14 +123,25 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 		catagory: slugCatagory,
 	}
 
-	await BlogModel.updateOne(
+	const { createdAt } = await BlogModel.findOneAndUpdate(
 		{ title },
 		{ $set: updateData },
-		{ upsert: true, setDefaultsOnInsert: true }
+		{
+			new: true,
+			upsert: true,
+			setDefaultsOnInsert: true,
+			projection: 'createdAt',
+		}
 	)
 
 	return {
-		props: { mdxSource, metaData, title, catagory: slugCatagory },
+		props: {
+			mdxSource,
+			metaData,
+			title,
+			catagory: slugCatagory,
+			createdAt: createdAt.toDateString(),
+		},
 	}
 }
 
