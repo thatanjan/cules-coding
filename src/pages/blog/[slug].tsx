@@ -95,11 +95,22 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
 	let slugCatagoryIndex = catagories.findIndex(catagory => {
 		const catagoryFiles = getFiles(catagory)
-
 		return catagoryFiles.includes(slugFileName)
 	})
 
 	const slugCatagory = catagories[slugCatagoryIndex]
+
+	const slugCatagoryFiles = getFiles(slugCatagory)
+
+	const slugFileIndex = slugCatagoryFiles.findIndex(
+		value => value === slugFileName
+	)
+
+	const slugPreviousFile: string | undefined =
+		slugCatagoryFiles[slugFileIndex - 1]
+	const slugNextFile: string | undefined = slugCatagoryFiles[slugFileIndex + 1]
+
+	console.table([slugNextFile, slugPreviousFile])
 
 	const fileContent = readFilesBySlug(slugCatagory, theSlug)
 
