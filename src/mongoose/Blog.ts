@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from 'mongoose'
+import mongoose, { Schema, model } from 'mongoose'
 
 const schema = new Schema({
 	title: {
@@ -24,10 +24,8 @@ const schema = new Schema({
 		type: String,
 		required: true,
 	},
-	tags: {
-		type: [String],
-	},
 	totalViews: { type: Number, default: 0 },
+	catagory: { type: String, required: true },
 })
 
 export default mongoose.models.blog || model('blog', schema)
