@@ -10,6 +10,7 @@
 	"dependencies": {
 		"axios": "^0.21.1",
 		"clsx": "^1.1.1",
+		"gray-matter": "^4.0.2",
 		"mongoose": "^5.12.5",
 		"nanoid": "^3.1.22",
 		"next": "10.1.3",
