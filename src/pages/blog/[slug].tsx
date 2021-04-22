@@ -1,5 +1,6 @@
 import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import readFilesBySlug from 'utils/readFilesBySlug'
 
 import BlogHeaderMedia from 'components/Blog/BlogHeaderMedia'
 import BlogHeader from 'components/Blog/BlogHeader'
@@ -56,7 +57,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	}
 }
 
-export const getStaticProps: GetStaticProps = async ctx => {
+export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
+	const catagories = getFiles('')
+
+	const slugFileName = `${slug}.mdx`
+
+	let slugCatagoryIndex = catagories.findIndex(catagory => {
+		const catagoryFiles = getFiles(catagory)
+
+		return catagoryFiles.includes(slugFileName)
+	})
+
+	const slugCatagory = catagories[slugCatagoryIndex]
+
+	const readFile = readFilesBySlug(slugCatagory, slug as string)
+
 	return {
 		props: {},
 	}
