@@ -1,6 +1,4 @@
 import React from 'react'
-import { Query } from 'mongoose'
-import axios from 'axios'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
@@ -24,11 +22,15 @@ import MatterData from 'interfaces/MatterData'
 interface Props {
 	mdxSource: MdxRemote.Source
 	metaData: MatterData
+	title: string
+	catagory: string
 }
 
 const Blog = ({
 	mdxSource,
 	metaData: { description, banner, altText },
+	title,
+	catagory,
 }: Props) => {
 	const content = hydrate(mdxSource, {
 		components: {
@@ -42,11 +44,7 @@ const Blog = ({
 				<article className='column large-full entry format-standard'>
 					<BlogHeaderMedia imagePath={banner} altText={altText} />
 
-					<BlogHeader
-						title='why react'
-						date={new Date().toDateString()}
-						catagory='react'
-					/>
+					<BlogHeader {...{ title, date: new Date().toDateString(), catagory }} />
 
 					<p className='lead'>{description}</p>
 
@@ -130,7 +128,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 	)
 
 	return {
-		props: { mdxSource, metaData },
+		props: { mdxSource, metaData, title, catagory: slugCatagory },
 	}
 }
 
