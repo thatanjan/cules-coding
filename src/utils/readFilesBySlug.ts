@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import MatterData from 'interfaces/MatterData'
 
 import { getFilesByDate } from './getFiles'
 
@@ -13,6 +14,10 @@ const readFilesBySlug = (catagory: string, file: string) => {
 	)
 }
 
+interface Matter extends MatterData {
+	title: string
+}
+
 export const readAllFrontMatters = (catagory: string) => {
 	const allFiles = getFilesByDate(catagory, 'descending').map(fileName =>
 		fileName.replace('.mdx', '')
@@ -22,10 +27,10 @@ export const readAllFrontMatters = (catagory: string) => {
 		readFilesBySlug(catagory, fileName)
 	)
 
-	const allFilesFrontMatter = allFilesData
+	const allFilesFrontMatter: Matter[] = allFilesData
 		.map(fileData => matter(fileData).data)
 		.map((matter, index) => ({
-			...matter,
+			...(matter as MatterData),
 			title: allFiles[index].replace('-', ' '),
 		}))
 
