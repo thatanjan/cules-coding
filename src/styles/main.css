@@ -1828,6 +1828,8 @@ input::-moz-focus-inner {
 	text-transform: uppercase;
 	letter-spacing: 1.2px;
 	margin-bottom: 3.2rem;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .masonry .entry__meta span {
@@ -1838,7 +1840,8 @@ input::-moz-focus-inner {
 	margin-right: 0;
 }
 
-.masonry .entry__meta a {
+.masonry .entry__meta a,
+.entry__meta-blog__views {
 	color: #000000;
 }
 

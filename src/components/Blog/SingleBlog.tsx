@@ -30,8 +30,9 @@ const SinglePost = (props: Props) => {
 								<a href='category.html'>Photography</a>
 							</span>
 							<span className='entry__meta-date'>
-								<a href='single-standard.html'>Apr 29, 2019</a>
+								<a href='#'>Apr 29, 2019</a>
 							</span>
+							<span className='entry__meta-blog__views'>1000 views</span>
 						</div>
 					</div>
 					<div className='entry__excerpt'>
