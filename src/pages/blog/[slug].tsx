@@ -23,7 +23,7 @@ interface Props {
 	mdxSource: MdxRemote.Source
 	metaData: MatterData
 	title: string
-	catagory: string
+	category: string
 	createdAt: string
 	prevPost: string
 	nextPost: string
@@ -33,7 +33,7 @@ const Blog = ({
 	mdxSource,
 	metaData: { description, banner, altText },
 	title,
-	catagory,
+	category,
 	createdAt,
 	prevPost,
 	nextPost,
@@ -50,7 +50,7 @@ const Blog = ({
 				<article className='column large-full entry format-standard'>
 					<BlogHeaderMedia imagePath={banner} altText={altText} />
 
-					<BlogHeader {...{ title, createdAt, catagory }} />
+					<BlogHeader {...{ title, createdAt, category }} />
 
 					<p className='lead'>{description}</p>
 
@@ -64,12 +64,12 @@ const Blog = ({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const catagories = getFiles('')
+	const categories = getFiles('')
 
 	let allFileNames: String[] = []
 
-	catagories.forEach(catagory => {
-		const files = getFiles(catagory)
+	categories.forEach(category => {
+		const files = getFiles(category)
 
 		allFileNames = allFileNames.concat(files)
 	})
@@ -93,16 +93,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 	const theSlug: string = slug as string
 
-	const catagories = getFiles('')
+	const categories = getFiles('')
 
 	const slugFileName = `${theSlug}.mdx`
 
-	let slugCatagoryIndex = catagories.findIndex(catagory => {
-		const catagoryFiles = getFiles(catagory)
+	let slugCatagoryIndex = categories.findIndex(category => {
+		const catagoryFiles = getFiles(category)
 		return catagoryFiles.includes(slugFileName)
 	})
 
-	const slugCatagory = catagories[slugCatagoryIndex]
+	const slugCatagory = categories[slugCatagoryIndex]
 
 	const slugCatagoryFiles = getFilesByDate(slugCatagory, 'descending')
 
@@ -142,7 +142,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 		slug: theSlug as string,
 		title,
 		description,
-		catagory: slugCatagory,
+		category: slugCatagory,
 	}
 
 	const { createdAt } = await BlogModel.findOneAndUpdate(
@@ -161,7 +161,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 			mdxSource,
 			metaData,
 			title,
-			catagory: slugCatagory,
+			category: slugCatagory,
 			createdAt: createdAt.toDateString(),
 			prevPost: slugPreviousFileName,
 			nextPost: slugNextFileName,

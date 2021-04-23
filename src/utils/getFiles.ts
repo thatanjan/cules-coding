@@ -4,7 +4,7 @@ import path from 'path'
 const root = process.cwd()
 
 const getFiles = (dirPath: string) => {
-	return fs.readdirSync(path.join(root, 'src/blogs/catagories', dirPath))
+	return fs.readdirSync(path.join(root, 'src/blogs/categories', dirPath))
 }
 
 export const getFilesByDate = (
@@ -16,7 +16,7 @@ export const getFilesByDate = (
 			name: fileName,
 			time: fs
 				.statSync(
-					process.cwd() + '/src/blogs/catagories/' + dirPath + '/' + fileName
+					process.cwd() + '/src/blogs/categories/' + dirPath + '/' + fileName
 				)
 				.mtime.getTime(),
 		}))

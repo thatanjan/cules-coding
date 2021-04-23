@@ -7,9 +7,9 @@ import MenuHasChildren from './MenuHasChildren'
 
 const catagoryMenuList = ['productivity', 'react', 'css', 'javascript', 'html']
 
-const CATAGORY = 'catagory'
+const CATEGORY = 'category'
 
-const menuNames = ['home', CATAGORY, 'about', 'portfolio', 'youtube', 'contact']
+const menuNames = ['home', CATEGORY, 'about', 'portfolio', 'youtube', 'contact']
 
 const Navigation = () => {
 	const [focusedMenuIndex, setFocusedMenuIndex] = useState<null | number>(null)
@@ -18,12 +18,12 @@ const Navigation = () => {
 		<nav className='header__nav-wrap'>
 			<ul className='header__nav'>
 				{menuNames.map((menuName, index) => {
-					if (menuName === CATAGORY)
+					if (menuName === CATEGORY)
 						return (
 							<MenuHasChildren
 								key={nanoid()}
 								classes={[focusedMenuIndex === index ? 'current' : '']}
-								{...{ subMenuList: catagoryMenuList, menuName: 'catagory' }}
+								{...{ subMenuList: catagoryMenuList, menuName: 'category' }}
 								focusClick={() => setFocusedMenuIndex(index)}
 							/>
 						)

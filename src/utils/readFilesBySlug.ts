@@ -7,9 +7,9 @@ import { getFilesByDate } from './getFiles'
 
 const root = process.cwd()
 
-const readFilesBySlug = (catagory: string, file: string) => {
+const readFilesBySlug = (category: string, file: string) => {
 	return fs.readFileSync(
-		path.join(root, 'src/blogs/catagories', `${catagory}/${file}.mdx`),
+		path.join(root, 'src/blogs/categories', `${category}/${file}.mdx`),
 		'utf8'
 	)
 }
@@ -18,13 +18,13 @@ interface Matter extends MatterData {
 	title: string
 }
 
-export const readAllFrontMatters = (catagory: string) => {
-	const allFiles = getFilesByDate(catagory, 'descending').map(fileName =>
+export const readAllFrontMatters = (category: string) => {
+	const allFiles = getFilesByDate(category, 'descending').map(fileName =>
 		fileName.replace('.mdx', '')
 	)
 
 	const allFilesData = allFiles.map(fileName =>
-		readFilesBySlug(catagory, fileName)
+		readFilesBySlug(category, fileName)
 	)
 
 	const allFilesFrontMatter: Matter[] = allFilesData

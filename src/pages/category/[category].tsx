@@ -8,18 +8,18 @@ import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
 
 interface Props {
-	catagory: string
+	category: string
 }
 
-const Catagory = ({ catagory }: Props) => {
-	return <>{catagory}</>
+const category = ({ category }: Props) => {
+	return <>{category}</>
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const catagories = getFiles('')
+	const categories = getFiles('')
 
-	const paths = catagories.map(catagory => ({
-		params: { catagory },
+	const paths = categories.map(category => ({
+		params: { category },
 	}))
 
 	return {
@@ -29,9 +29,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({
-	params: { catagory },
+	params: { category },
 }) => {
-	const allMatters = readAllFrontMatters(catagory as string)
+	const allMatters = readAllFrontMatters(category as string)
 
 	await connectDB()
 
@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async ({
 			slug: title.replace(' ', '-'),
 			title,
 			description,
-			catagory,
+			category,
 		}
 
 		return BlogModel.findOneAndUpdate(
@@ -63,8 +63,8 @@ export const getStaticProps: GetStaticProps = async ({
 	}))
 
 	return {
-		props: { ...data, catagory },
+		props: { ...data, category },
 	}
 }
 
-export default Catagory
+export default category

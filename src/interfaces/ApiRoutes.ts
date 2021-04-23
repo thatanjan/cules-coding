@@ -3,5 +3,5 @@ export interface UpdateDB {
 	description: string
 	slug: string
 	content: string
-	catagory: string
+	category: string
 }
