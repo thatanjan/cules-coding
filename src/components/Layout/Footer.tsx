@@ -1,10 +1,26 @@
 import clsx from 'clsx'
+import { useState, useEffect } from 'react'
 
-interface Props {
-	showButton: boolean
-}
+const Footer = () => {
+	const [showButton, setShowButton] = useState(false)
 
-const Footer = ({ showButton }: Props) => {
+	const handleScroll = () => {
+		const scrollY = window.scrollY
+
+		if (scrollY > 300) {
+			setShowButton(true)
+		} else {
+			setShowButton(false)
+		}
+	}
+
+	useEffect(() => {
+		window.addEventListener('scroll', handleScroll)
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [])
+
 	return (
 		<footer className='s-footer footer'>
 			<div className='row'>
