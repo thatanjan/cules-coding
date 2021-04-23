@@ -21,6 +21,16 @@ const Footer = () => {
 		}
 	}, [])
 
+	function scrollToTop() {
+		let scrollAnimation: NodeJS.Timeout
+
+		const position = document.body.scrollTop || document.documentElement.scrollTop
+		if (position) {
+			window.scrollBy(0, -Math.max(1, Math.floor(position / 10)))
+			scrollAnimation = setTimeout(scrollToTop, 10)
+		} else clearTimeout(scrollAnimation)
+	}
+
 	return (
 		<footer className='s-footer footer'>
 			<div className='row'>
@@ -34,7 +44,10 @@ const Footer = () => {
 				</div>
 			</div>
 
-			<div className={clsx('go-top', showButton && 'link-is-visible')}>
+			<div
+				className={clsx('go-top', showButton && 'link-is-visible')}
+				onClick={scrollToTop}
+			>
 				<a title='Back to Top' href='#top'></a>
 			</div>
 		</footer>
