@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import NextImage from 'next/image'
 
 export interface Blog {
@@ -8,6 +9,7 @@ export interface Blog {
 	altText: string
 	createdAt: string
 	category: string
+	slug: string
 }
 
 const SinglePost = ({
@@ -17,30 +19,35 @@ const SinglePost = ({
 	createdAt,
 	category,
 	description,
+	slug,
 }: Blog) => {
+	const slugLink = `/blog/${slug}`
+
 	return (
 		<>
 			<article className='masonry__brick entry format-standard '>
 				<div className='entry__thumb'>
-					<a href='single-standard.html' className='entry__thumb-link'>
-						<NextImage
-							layout='responsive'
-							height={1080}
-							width={1080}
-							src={banner}
-							alt={altText}
-						/>
-					</a>
+					<Link href={slugLink}>
+						<a className='entry__thumb-link'>
+							<NextImage
+								layout='responsive'
+								height={1080}
+								width={1080}
+								src={banner}
+								alt={altText}
+							/>
+						</a>
+					</Link>
 				</div>
 
 				<div className='entry__text'>
 					<div className='entry__header'>
 						<h2 className='entry__title'>
-							<a href='single-standard.html'>{title}</a>
+							<Link href={slugLink}>{title}</Link>
 						</h2>
 						<div className='entry__meta'>
 							<span className='entry__meta-cat'>
-								<a href='category.html'>{category}</a>
+								<a href={`/category/${category}`}>{category}</a>
 							</span>
 							<span className='entry__meta-date'>
 								<a href='#'>{createdAt}</a>
