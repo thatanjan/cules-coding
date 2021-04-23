@@ -2,15 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import NextImage from 'next/image'
 
-export interface Blog {
-	title: string
-	description: string
-	banner: string
-	altText: string
-	createdAt: string
-	category: string
-	slug: string
-}
+import { Blog } from 'interfaces/Blog'
 
 const SinglePost = ({
 	title,
