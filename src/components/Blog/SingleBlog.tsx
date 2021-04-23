@@ -1,9 +1,23 @@
 import React from 'react'
 import NextImage from 'next/image'
 
-interface Props {}
+export interface Blog {
+	title: string
+	description: string
+	banner: string
+	altText: string
+	createdAt: string
+	category: string
+}
 
-const SinglePost = (props: Props) => {
+const SinglePost = ({
+	title,
+	banner,
+	altText,
+	createdAt,
+	category,
+	description,
+}: Blog) => {
 	return (
 		<>
 			<article className='masonry__brick entry format-standard '>
@@ -13,8 +27,8 @@ const SinglePost = (props: Props) => {
 							layout='responsive'
 							height={1080}
 							width={1080}
-							src='/ts.jpg'
-							alt='you fucking fucker'
+							src={banner}
+							alt={altText}
 						/>
 					</a>
 				</div>
@@ -22,25 +36,20 @@ const SinglePost = (props: Props) => {
 				<div className='entry__text'>
 					<div className='entry__header'>
 						<h2 className='entry__title'>
-							<a href='single-standard.html'>Just a Standard Format Post.</a>
+							<a href='single-standard.html'>{title}</a>
 						</h2>
 						<div className='entry__meta'>
 							<span className='entry__meta-cat'>
-								<a href='category.html'>Design</a>
-								<a href='category.html'>Photography</a>
+								<a href='category.html'>{category}</a>
 							</span>
 							<span className='entry__meta-date'>
-								<a href='#'>Apr 29, 2019</a>
+								<a href='#'>{createdAt}</a>
 							</span>
 							<span className='entry__meta-blog__views'>1000 views</span>
 						</div>
 					</div>
 					<div className='entry__excerpt'>
-						<p>
-							Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt
-							mollit id et sit proident dolor nulla sed commodo est ad minim elit
-							reprehenderit nisi officia aute incididunt velit sint in aliqua...
-						</p>
+						<p>{description}</p>
 					</div>
 				</div>
 			</article>
