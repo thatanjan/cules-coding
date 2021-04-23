@@ -5,7 +5,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import { MdxRemote } from 'next-mdx-remote/types'
 import matter from 'gray-matter'
 
-import getFiles from 'utils/getFiles'
+import getFiles, { getFilesByDate } from 'utils/getFiles'
 import readFilesBySlug from 'utils/readFilesBySlug'
 
 import BlogHeaderMedia from 'components/Blog/BlogHeaderMedia'
@@ -104,7 +104,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
 	const slugCatagory = catagories[slugCatagoryIndex]
 
-	const slugCatagoryFiles = getFiles(slugCatagory)
+	const slugCatagoryFiles = getFilesByDate(slugCatagory, 'descending')
 
 	const slugFileIndex = slugCatagoryFiles.findIndex(
 		value => value === slugFileName
