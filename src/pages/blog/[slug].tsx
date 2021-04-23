@@ -25,6 +25,8 @@ interface Props {
 	title: string
 	catagory: string
 	createdAt: string
+	prevPost: string
+	nextPost: string
 }
 
 const Blog = ({
@@ -33,6 +35,8 @@ const Blog = ({
 	title,
 	catagory,
 	createdAt,
+	prevPost,
+	nextPost,
 }: Props) => {
 	const content = hydrate(mdxSource, {
 		components: {
@@ -52,7 +56,7 @@ const Blog = ({
 
 					{content}
 
-					<BlogNavigation prevPost='yes react' />
+					<BlogNavigation {...{ prevPost, nextPost }} />
 				</article>
 			</main>
 		</div>
@@ -108,9 +112,16 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
 	const slugPreviousFile: string | undefined =
 		slugCatagoryFiles[slugFileIndex - 1]
+
+	const slugPreviousFileName: string = slugPreviousFile
+		? slugPreviousFile.replace('-', ' ').replace('.mdx', '')
+		: ''
+
 	const slugNextFile: string | undefined = slugCatagoryFiles[slugFileIndex + 1]
 
-	console.table([slugNextFile, slugPreviousFile])
+	const slugNextFileName: string | undefined = slugNextFile
+		? slugNextFile.replace('-', ' ').replace('.mdx', '')
+		: ''
 
 	const fileContent = readFilesBySlug(slugCatagory, theSlug)
 
@@ -152,6 +163,8 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 			title,
 			catagory: slugCatagory,
 			createdAt: createdAt.toDateString(),
+			prevPost: slugPreviousFileName,
+			nextPost: slugNextFileName,
 		},
 	}
 }
