@@ -2,13 +2,16 @@ import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 import getFiles from 'utils/getFiles'
+import { readAllFrontMatters } from 'utils/readFilesBySlug'
+
+import connectDB from 'mongoose/connectDB'
 
 interface Props {
-	catagoryName: string
+	catagory: string
 }
 
-const Catagory = ({ catagoryName }: Props) => {
-	return <>'fdf'</>
+const Catagory = ({ catagory }: Props) => {
+	return <>{catagory}</>
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -27,8 +30,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({
 	params: { catagory },
 }) => {
+	const allMatters = readAllFrontMatters(catagory as string)
+
+	await connectDB()
+
 	return {
-		props: { context: 1 },
+		props: { ...allMatters, catagory },
 	}
 }
 
