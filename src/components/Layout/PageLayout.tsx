@@ -11,8 +11,10 @@ const PageLayout = ({ children }: Props) => {
 	return (
 		<div id='top' className='s-wrap site-wrapper'>
 			<Header />
-			{children}
-			<Footer />
+			<div className='s-content content'>
+				{children}
+				<Footer />
+			</div>
 		</div>
 	)
 }

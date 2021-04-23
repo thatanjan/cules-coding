@@ -45,7 +45,6 @@ const Blog = ({
 	})
 
 	return (
-		<div className='s-content content'>
 			<main className='row content__page'>
 				<article className='column large-full entry format-standard'>
 					<BlogHeaderMedia imagePath={banner} altText={altText} />
