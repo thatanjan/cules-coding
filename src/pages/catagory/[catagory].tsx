@@ -5,6 +5,7 @@ import getFiles from 'utils/getFiles'
 import { readAllFrontMatters } from 'utils/readFilesBySlug'
 
 import connectDB from 'mongoose/connectDB'
+import BlogModel from 'mongoose/Blog'
 
 interface Props {
 	catagory: string
@@ -34,8 +35,35 @@ export const getStaticProps: GetStaticProps = async ({
 
 	await connectDB()
 
+	const updateDB = allMatters.map(({ description, title }) => {
+		const updateData = {
+			slug: title.replace(' ', '-'),
+			title,
+			description,
+			catagory,
+		}
+
+		return BlogModel.findOneAndUpdate(
+			{ title },
+			{ $set: updateData },
+			{
+				new: true,
+				upsert: true,
+				setDefaultsOnInsert: true,
+				projection: 'createdAt',
+			}
+		)
+	})
+
+	const updateDBResult = await Promise.all(updateDB)
+
+	const data = allMatters.map((matter, index) => ({
+		...matter,
+		createdAt: updateDBResult[index].createdAt.toDateString(),
+	}))
+
 	return {
-		props: { ...allMatters, catagory },
+		props: { ...data, catagory },
 	}
 }
 
