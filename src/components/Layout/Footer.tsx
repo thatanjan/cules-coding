@@ -47,8 +47,9 @@ const Footer = () => {
 			<div
 				className={clsx('go-top', showButton && 'link-is-visible')}
 				onClick={scrollToTop}
+				style={{ cursor: 'pointer' }}
 			>
-				<a title='Back to Top' href='#top'></a>
+				<a title='Back to Top'></a>
 			</div>
 		</footer>
 	)
