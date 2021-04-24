@@ -85,6 +85,14 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
 	const { category } = blog
 
+	const { _id: _, __v: __, content, createdAt, ...neededData } = blog.toObject()
+
+	const pureContent = content.replace('\n', '')
+
+	const mdxSource = await renderToString(pureContent, {
+		components: MDXComponents,
+	})
+
 	const allPostOfCategory = await BlogModel.find(
 		{ category },
 		'title slug'
@@ -99,21 +107,17 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 	const nextPost = allPostOfCategory[currentBlogIndex + 1]?.title || ''
 	const prevPost = allPostOfCategory[currentBlogIndex - 1]?.title || ''
 
-	console.log(nextPost, prevPost)
+	console.log(neededData)
 
-	return { props: {} }
-
-	/* return { */
-	/* props: { */
-	/* 	mdxSource, */
-	/* 	metaData, */
-	/* 	title, */
-	/* 	category: slugCatagory, */
-	/* 	createdAt: createdAt.toDateString(), */
-	/* 	prevPost: slugPreviousFileName, */
-	/* 	nextPost: slugNextFileName, */
-	/* }, */
-	/* } */
+	return {
+		props: {
+			...neededData,
+			mdxSource,
+			prevPost,
+			nextPost,
+			createdAt: createdAt.toDateString(),
+		},
+	}
 }
 
 export default Blog
