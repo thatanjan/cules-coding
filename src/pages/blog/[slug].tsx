@@ -62,23 +62,13 @@ const Blog = ({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const categories = getFiles('')
+	await connectDB()
 
-	let allFileNames: String[] = []
+	const slugs = await BlogModel.find({}, 'slug')
 
-	categories.forEach(category => {
-		const files = getFiles(category)
-
-		allFileNames = allFileNames.concat(files)
-	})
-
-	let fileNamesWithOutExtention = allFileNames.map(fileName =>
-		fileName.replace('.mdx', '')
-	)
-
-	const paths = fileNamesWithOutExtention.map(file => {
+	const paths = slugs.map(item => {
 		return {
-			params: { slug: file },
+			params: { slug: item.slug },
 		}
 	})
 
