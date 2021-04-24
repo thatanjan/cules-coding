@@ -9,7 +9,7 @@ const root = process.cwd()
 
 const readFilesBySlug = (category: string, file: string) => {
 	return fs.readFileSync(
-		path.join(root, 'src/blogs/categories', `${category}/${file}.mdx`),
+		path.join(root, 'src/blogs/categories', `${category}/${file}`),
 		'utf8'
 	)
 }
