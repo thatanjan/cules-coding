@@ -27,6 +27,7 @@ const SinglePost = ({
 								width={1080}
 								src={banner}
 								alt={altText}
+								objectFit='cover'
 							/>
 						</a>
 					</Link>
