@@ -79,82 +79,41 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
-	const theSlug: string = slug as string
-
-	const categories = getFiles('')
-
-	const slugFileName = `${theSlug}.mdx`
-
-	let slugCatagoryIndex = categories.findIndex(category => {
-		const catagoryFiles = getFiles(category)
-		return catagoryFiles.includes(slugFileName)
-	})
-
-	const slugCatagory = categories[slugCatagoryIndex]
-
-	const slugCatagoryFiles = getFilesByDate(slugCatagory, 'descending')
-
-	const slugFileIndex = slugCatagoryFiles.findIndex(
-		value => value === slugFileName
-	)
-
-	const slugPreviousFile: string | undefined =
-		slugCatagoryFiles[slugFileIndex - 1]
-
-	const slugPreviousFileName: string = slugPreviousFile
-		? slugPreviousFile.replace('-', ' ').replace('.mdx', '')
-		: ''
-
-	const slugNextFile: string | undefined = slugCatagoryFiles[slugFileIndex + 1]
-
-	const slugNextFileName: string | undefined = slugNextFile
-		? slugNextFile.replace('-', ' ').replace('.mdx', '')
-		: ''
-
-	const fileContent = readFilesBySlug(slugCatagory, theSlug)
-
-	const { data: metaData, content } = matter(fileContent)
-
-	const mdxSource = await renderToString(content, {
-		components: MDXComponents,
-	})
-
 	await connectDB()
 
-	const { description } = metaData
+	const blog = await BlogModel.findOne({ slug })
 
-	const title = theSlug.replace('-', ' ')
+	const { category } = blog
 
-	const updateData: UpdateDB = {
-		content,
-		slug: theSlug as string,
-		title,
-		description,
-		category: slugCatagory,
-	}
+	const allPostOfCategory = await BlogModel.find(
+		{ category },
+		'title slug'
+	).sort({
+		createdAt: -1,
+	})
 
-	const { createdAt } = await BlogModel.findOneAndUpdate(
-		{ title },
-		{ $set: updateData },
-		{
-			new: true,
-			upsert: true,
-			setDefaultsOnInsert: true,
-			projection: 'createdAt',
-		}
+	const currentBlogIndex = allPostOfCategory.findIndex(
+		post => post.slug === slug
 	)
 
-	return {
-		props: {
-			mdxSource,
-			metaData,
-			title,
-			category: slugCatagory,
-			createdAt: createdAt.toDateString(),
-			prevPost: slugPreviousFileName,
-			nextPost: slugNextFileName,
-		},
-	}
+	const nextPost = allPostOfCategory[currentBlogIndex + 1]?.title || ''
+	const prevPost = allPostOfCategory[currentBlogIndex - 1]?.title || ''
+
+	console.log(nextPost, prevPost)
+
+	return { props: {} }
+
+	/* return { */
+	/* props: { */
+	/* 	mdxSource, */
+	/* 	metaData, */
+	/* 	title, */
+	/* 	category: slugCatagory, */
+	/* 	createdAt: createdAt.toDateString(), */
+	/* 	prevPost: slugPreviousFileName, */
+	/* 	nextPost: slugNextFileName, */
+	/* }, */
+	/* } */
 }
 
 export default Blog
