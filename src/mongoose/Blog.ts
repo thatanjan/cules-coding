@@ -26,6 +26,8 @@ const schema = new Schema({
 	},
 	totalViews: { type: Number, default: 0 },
 	category: { type: String, required: true },
+	banner: { type: String, required: true },
+	altText: { type: String, required: true },
 })
 
 export default mongoose.models.blog || model('blog', schema)
