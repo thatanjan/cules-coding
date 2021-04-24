@@ -45,20 +45,19 @@ const Blog = ({
 	})
 
 	return (
-			<main className='row content__page'>
-				<article className='column large-full entry format-standard'>
-					<BlogHeaderMedia imagePath={banner} altText={altText} />
+		<main className='row content__page'>
+			<article className='column large-full entry format-standard'>
+				<BlogHeaderMedia imagePath={banner} altText={altText} />
 
-					<BlogHeader {...{ title, createdAt, category }} />
+				<BlogHeader {...{ title, createdAt, category }} />
 
-					<p className='lead'>{description}</p>
+				<p className='lead'>{description}</p>
 
-					{content}
+				{content}
 
-					<BlogNavigation {...{ prevPost, nextPost }} />
-				</article>
-			</main>
-		</div>
+				<BlogNavigation {...{ prevPost, nextPost }} />
+			</article>
+		</main>
 	)
 }
 
