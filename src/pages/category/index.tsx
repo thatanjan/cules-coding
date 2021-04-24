@@ -8,16 +8,17 @@ import MatterData from 'interfaces/MatterData'
 
 import getFiles from 'utils/getFiles'
 
-interface MatterDataWithTitle extends MatterData {
-	title: string
-}
+import MasnoryCategories, {
+	MatterDataWithTitle,
+	Props,
+} from 'components/Layout/MasnoryCategories'
 
-interface Props {
-	categories: Array<MatterDataWithTitle>
-}
-
-const Category = (props: Props) => {
-	return <>hello world</>
+const Category = ({ categories }: Props) => {
+	return (
+		<>
+			<MasnoryCategories {...{ categories }} />
+		</>
+	)
 }
 
 export const getStaticProps: GetStaticProps = async () => {
