@@ -3,10 +3,6 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
 import { MdxRemote } from 'next-mdx-remote/types'
-import matter from 'gray-matter'
-
-import getFiles, { getFilesByDate } from 'utils/getFiles'
-import readFilesBySlug from 'utils/readFilesBySlug'
 
 import BlogHeaderMedia from 'components/Blog/BlogHeaderMedia'
 import BlogHeader from 'components/Blog/BlogHeader'
@@ -16,27 +12,28 @@ import MDXComponents from 'components/Blog/MDXComponents'
 import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
 
-import { UpdateDB } from 'interfaces/ApiRoutes'
-import MatterData from 'interfaces/MatterData'
-
 interface Props {
 	mdxSource: MdxRemote.Source
-	metaData: MatterData
 	title: string
 	category: string
 	createdAt: string
 	prevPost: string
 	nextPost: string
+	description: string
+	banner: string
+	altText: string
 }
 
 const Blog = ({
 	mdxSource,
-	metaData: { description, banner, altText },
 	title,
 	category,
 	createdAt,
 	prevPost,
 	nextPost,
+	banner,
+	altText,
+	description,
 }: Props) => {
 	const content = hydrate(mdxSource, {
 		components: {
@@ -106,8 +103,6 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
 	const nextPost = allPostOfCategory[currentBlogIndex + 1]?.title || ''
 	const prevPost = allPostOfCategory[currentBlogIndex - 1]?.title || ''
-
-	console.log(neededData)
 
 	return {
 		props: {
