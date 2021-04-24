@@ -7,12 +7,21 @@ import { readAllFrontMatters } from 'utils/readFilesBySlug'
 import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
 
+import { Blog } from 'interfaces/Blog'
+
 interface Props {
 	category: string
+	blogs: Array<Blog>
 }
 
 const category = ({ category }: Props) => {
-	return <>{category}</>
+	return (
+		<>
+			<header className='listing-header'>
+				<h1 className='h2'>Category: {category}</h1>
+			</header>
+		</>
+	)
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -30,8 +39,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({
 	params: { category },
+}: {
+	params: { category: string }
 }) => {
-	const allMatters = readAllFrontMatters(category as string)
+	const allMatters = readAllFrontMatters(category)
 
 	await connectDB()
 
@@ -50,20 +61,24 @@ export const getStaticProps: GetStaticProps = async ({
 				new: true,
 				upsert: true,
 				setDefaultsOnInsert: true,
-				projection: 'createdAt',
+				projection: 'createdAt slug',
 			}
 		)
 	})
 
 	const updateDBResult = await Promise.all(updateDB)
 
-	const data = allMatters.map((matter, index) => ({
+	const blogs: Blog[] = allMatters.map((matter, index) => ({
 		...matter,
 		createdAt: updateDBResult[index].createdAt.toDateString(),
+		slug: updateDBResult[index].slug,
+		category: category,
 	}))
 
+	const props: Props = { blogs, category }
+
 	return {
-		props: { ...data, category },
+		props,
 	}
 }
 
