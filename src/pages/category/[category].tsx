@@ -9,17 +9,21 @@ import BlogModel from 'mongoose/Blog'
 
 import { Blog } from 'interfaces/Blog'
 
+import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
+
 interface Props {
 	category: string
 	blogs: Array<Blog>
 }
 
-const category = ({ category }: Props) => {
+const category = ({ category, blogs }: Props) => {
 	return (
 		<>
 			<header className='listing-header'>
 				<h1 className='h2'>Category: {category}</h1>
 			</header>
+
+			<MasonaryBlogs {...{ blogs }} />
 		</>
 	)
 }
