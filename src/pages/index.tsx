@@ -10,11 +10,16 @@ import CategoryModel from 'mongoose/Category'
 import getFiles from 'utils/getFiles'
 import readFilesBySlug from 'utils/readFilesBySlug'
 
-const Home = ({ slugs }: any) => {
+import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
+
+const Home = ({ slugs, topBlogs }: any) => {
 	return (
 		<>
-			<div className='s-content'>hello</div>
+			<header className='listing-header'>
+				<h1 className='h2'>Top posts</h1>
+			</header>
 
+			<MasonaryBlogs {...{ blogs: topBlogs }} />
 			{slugs.map((slug: any) => (
 				<h1 key={slug}>{slug}</h1>
 			))}
@@ -104,22 +109,20 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	const aggregate = BlogModel.aggregate()
 
-	const topPostsResult = await aggregate.sort('-totalViews').limit(10).project({
+	const topBlogsResult = await aggregate.sort('-totalViews').limit(10).project({
 		_id: 0,
 		__v: 0,
 		content: 0,
 	})
 
-	const topPosts = topPostsResult.map(post => {
-		post.createdAt = post.createdAt.toDateString()
+	const topBlogs = topBlogsResult.map(blog => {
+		blog.createdAt = blog.createdAt.toDateString()
 
-		return post
+		return blog
 	})
 
-	console.log(topPosts)
-
 	return {
-		props: { slugs: [], topPosts },
+		props: { slugs: [], topBlogs },
 	}
 }
 
