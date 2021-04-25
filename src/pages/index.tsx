@@ -102,8 +102,24 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	await Promise.all(promises)
 
+	const aggregate = BlogModel.aggregate()
+
+	const topPostsResult = await aggregate.sort('-totalViews').limit(10).project({
+		_id: 0,
+		__v: 0,
+		content: 0,
+	})
+
+	const topPosts = topPostsResult.map(post => {
+		post.createdAt = post.createdAt.toDateString()
+
+		return post
+	})
+
+	console.log(topPosts)
+
 	return {
-		props: { slugs: [] },
+		props: { slugs: [], topPosts },
 	}
 }
 
