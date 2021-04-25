@@ -12,17 +12,20 @@ import readFilesBySlug from 'utils/readFilesBySlug'
 
 import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
 
-const Home = ({ slugs, topBlogs }: any) => {
+const Home = ({ slugs, topBlogs, recentBlogs }: any) => {
 	return (
 		<>
 			<header className='listing-header'>
-				<h1 className='h2'>Top posts</h1>
+				<h1 className='h2'>Top Blogs</h1>
 			</header>
 
 			<MasonaryBlogs {...{ blogs: topBlogs }} />
-			{slugs.map((slug: any) => (
-				<h1 key={slug}>{slug}</h1>
-			))}
+
+			<header className='listing-header'>
+				<h1 className='h2'>Recent Blogs</h1>
+			</header>
+
+			<MasonaryBlogs {...{ blogs: recentBlogs }} />
 		</>
 	)
 }
@@ -109,11 +112,21 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	const aggregate = BlogModel.aggregate()
 
-	const topBlogsResult = await aggregate.sort('-totalViews').limit(10).project({
+	const project = {
 		_id: 0,
 		__v: 0,
 		content: 0,
-	})
+	}
+
+	const topBlogsResult = await aggregate
+		.sort('-totalViews')
+		.limit(10)
+		.project(project)
+
+	const recentBlogsResult = await aggregate
+		.sort('-createdAt')
+		.limit(20)
+		.project(project)
 
 	const topBlogs = topBlogsResult.map(blog => {
 		blog.createdAt = blog.createdAt.toDateString()
@@ -121,8 +134,14 @@ export const getStaticProps: GetStaticProps = async () => {
 		return blog
 	})
 
+	const recentBlogs = recentBlogsResult.map(blog => {
+		blog.createdAt = blog.createdAt.toDateString()
+
+		return blog
+	})
+
 	return {
-		props: { slugs: [], topBlogs },
+		props: { slugs: [], topBlogs, recentBlogs },
 	}
 }
 
