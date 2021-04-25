@@ -22,6 +22,7 @@ interface Props {
 	description: string
 	banner: string
 	altText: string
+	totalViews: number
 }
 
 const Blog = ({
@@ -34,6 +35,7 @@ const Blog = ({
 	banner,
 	altText,
 	description,
+	totalViews,
 }: Props) => {
 	const content = hydrate(mdxSource, {
 		components: {
@@ -46,7 +48,7 @@ const Blog = ({
 			<article className='column large-full entry format-standard'>
 				<BlogHeaderMedia imagePath={banner} altText={altText} />
 
-				<BlogHeader {...{ title, createdAt, category }} />
+				<BlogHeader {...{ totalViews, title, createdAt, category }} />
 
 				<p className='lead'>{description}</p>
 

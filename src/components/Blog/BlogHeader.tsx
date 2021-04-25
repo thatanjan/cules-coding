@@ -5,9 +5,10 @@ interface Props {
 	createdAt: string
 	category: string
 	title: string
+	totalViews: number
 }
 
-const BlogHeader = ({ title, createdAt, category }: Props) => {
+const BlogHeader = ({ title, createdAt, category, totalViews }: Props) => {
 	return (
 		<div className='content__page-header entry__header'>
 			<h1 className='display-1 entry__title'>{title}</h1>
@@ -19,6 +20,7 @@ const BlogHeader = ({ title, createdAt, category }: Props) => {
 				<li className='cat-links'>
 					<Link href={`/category/${category}`}>{category}</Link>
 				</li>
+				<li className='views'>{totalViews} views</li>
 			</ul>
 		</div>
 	)
