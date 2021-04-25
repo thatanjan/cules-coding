@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-const instance = axios.create({
-	baseURL: process.env.API_ROUTE_URI,
-})
+const fetcher = (method: 'GET' | 'POST') => (url: string) =>
+	method === 'GET'
+		? axios.get(`${process.env.API_ROUTE_URI}${url}`)
+		: axios.post(`${process.env.API_ROUTE_URI}${url}`)
 
-export default instance
+export default fetcher
