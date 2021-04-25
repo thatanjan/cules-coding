@@ -2,7 +2,6 @@ import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 import getFiles from 'utils/getFiles'
-import { readAllFrontMatters } from 'utils/readFilesBySlug'
 
 import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
@@ -17,14 +16,13 @@ interface Props {
 }
 
 const category = ({ category, blogs }: Props) => {
-	console.log(blogs)
 	return (
 		<>
-			{/* <header className='listing-header'> */}
-			{/* 	<h1 className='h2'>Category: {category}</h1> */}
-			{/* </header> */}
+			<header className='listing-header'>
+				<h1 className='h2'>Category: {category}</h1>
+			</header>
 
-			{/* <MasonaryBlogs {...{ blogs }} /> */}
+			<MasonaryBlogs {...{ blogs }} />
 		</>
 	)
 }

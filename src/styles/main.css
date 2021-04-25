@@ -1644,6 +1644,7 @@ input::-moz-focus-inner {
 }
 
 .listing-header h1 {
+	text-transform: capitalize;
 	margin-top: 0;
 }
 
