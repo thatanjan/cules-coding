@@ -5,7 +5,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import { MdxRemote } from 'next-mdx-remote/types'
 import useSWR from 'swr'
 
-import axios from 'utils/axios'
+import fetcher from 'utils/fetcher'
 
 import BlogHeaderMedia from 'components/Blog/BlogHeaderMedia'
 import BlogHeader from 'components/Blog/BlogHeader'
@@ -48,12 +48,21 @@ const Blog = ({
 		},
 	})
 
+	const { data } = useSWR(`/api/views/${slug}`, fetcher)
+
 	return (
 		<main className='row content__page'>
 			<article className='column large-full entry format-standard'>
 				<BlogHeaderMedia imagePath={banner} altText={altText} />
 
-				<BlogHeader {...{ totalViews, title, createdAt, category }} />
+				<BlogHeader
+					{...{
+						totalViews: data ? data.data.totalViews : totalViews,
+						title,
+						createdAt,
+						category,
+					}}
+				/>
 
 				<p className='lead'>{description}</p>
 
