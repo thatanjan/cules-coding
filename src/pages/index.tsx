@@ -1,9 +1,12 @@
 import { GetStaticProps } from 'next'
 import matter from 'gray-matter'
+import fs from 'fs'
+import path from 'path'
 
 import connectDB from 'mongoose/connectDB'
 
 import BlogModel from 'mongoose/Blog'
+import CategoryModel from 'mongoose/Category'
 import getFiles from 'utils/getFiles'
 import readFilesBySlug from 'utils/readFilesBySlug'
 
@@ -21,6 +24,38 @@ const Home = ({ slugs }: any) => {
 
 export const getStaticProps: GetStaticProps = async () => {
 	await connectDB()
+
+	// categories
+
+	const root = process.cwd()
+	const files = getFiles('../eachCategory')
+
+	const fileDatas = files.map(fileName =>
+		fs.readFileSync(path.join(root, 'src/blogs/eachCategory', fileName))
+	)
+
+	const matters = fileDatas
+		.map(fileData => matter(fileData).data)
+		.map((matter, index) => ({
+			...matter,
+			title: files[index].replace('.mdx', '').replace('-', ' '),
+			slug: '/category/' + files[index].replace('.mdx', ''),
+		}))
+
+	const updateCategories = matters.map(matter =>
+		CategoryModel.updateOne(
+			{ title: matter.title },
+			{ $set: matter },
+			{
+				upsert: true,
+				setDefaultsOnInsert: true,
+			}
+		)
+	)
+
+	await Promise.all(updateCategories)
+
+	// allFiles
 
 	const readOneCategoryFiles = (category: string) => {
 		const fileNames = getFiles(category)
