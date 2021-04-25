@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 import MenuHasChildren from './MenuHasChildren'
 
-const catagoryMenuList = ['productivity', 'react', 'css', 'javascript', 'html']
+const categoryMenuList = ['react']
 
 const CATEGORY = 'category'
 
@@ -23,7 +23,7 @@ const Navigation = () => {
 							<MenuHasChildren
 								key={nanoid()}
 								classes={[focusedMenuIndex === index ? 'current' : '']}
-								{...{ subMenuList: catagoryMenuList, menuName: 'category' }}
+								{...{ subMenuList: categoryMenuList, menuName: 'category' }}
 								focusClick={() => setFocusedMenuIndex(index)}
 							/>
 						)

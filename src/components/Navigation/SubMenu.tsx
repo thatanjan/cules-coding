@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { nanoid } from 'nanoid'
 
 interface Props {
@@ -13,7 +14,7 @@ const SubMenu = ({ menuName, subMenuList }: Props) => {
 		<ul className='sub-menu' style={{ display: 'block', gridColumn: '1/3' }}>
 			{subMenuList.map(subMenu => (
 				<li key={nanoid()}>
-					<a href={generatePath(subMenu)}>{subMenu}</a>
+					<Link href={generatePath(subMenu)}>{subMenu}</Link>
 				</li>
 			))}
 		</ul>
