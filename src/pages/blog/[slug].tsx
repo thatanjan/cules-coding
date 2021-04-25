@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
@@ -6,6 +6,7 @@ import { MdxRemote } from 'next-mdx-remote/types'
 import useSWR from 'swr'
 
 import fetcher from 'utils/fetcher'
+import axios from 'utils/axios'
 
 import BlogHeaderMedia from 'components/Blog/BlogHeaderMedia'
 import BlogHeader from 'components/Blog/BlogHeader'
@@ -48,7 +49,18 @@ const Blog = ({
 		},
 	})
 
-	const { data } = useSWR(`/api/views/${slug}`, fetcher)
+	const { data, mutate } = useSWR(`/api/views/${slug}`, fetcher)
+
+	useEffect(() => {
+		;(async () => {
+			try {
+				await axios.post(`/api/views/${slug}`)
+
+				mutate()
+			} catch (_) {}
+		})()
+		return () => {}
+	}, [])
 
 	return (
 		<main className='row content__page'>
