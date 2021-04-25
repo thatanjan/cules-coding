@@ -6,4 +6,5 @@ export interface Blog {
 	createdAt: string
 	category: string
 	slug: string
+	totalViews: string
 }
