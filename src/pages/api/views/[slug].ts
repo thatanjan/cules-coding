@@ -15,6 +15,23 @@ const handler = async (
 
 			return res.status(200).json({ totalViews })
 		}
+
+		if (method === 'POST') {
+			const update = await BlogModel.updateOne(
+				{ slug },
+				{
+					$inc: {
+						totalViews: 1 as never,
+					},
+				}
+			)
+
+			if (update.nModified > 0) {
+				return res.status(200).json({ success: true })
+			}
+
+			return res.status(400).json({ message: true })
+		}
 	} catch (_) {
 		res.end('error happended')
 	}
