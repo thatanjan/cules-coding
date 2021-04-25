@@ -1,6 +1,8 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
 
+import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
+
 import BlogModel from 'mongoose/Blog'
 import connectDB from 'mongoose/connectDB'
 
@@ -12,7 +14,17 @@ interface Props {
 }
 
 const Search = ({ blogs, searchedItem }: Props) => {
-	return <div></div>
+	return (
+		<>
+			<header className='listing-header'>
+				<h1 className='h2' style={{ textTransform: 'none' }}>
+					You have {blogs.length} search result based on "{searchedItem}"
+				</h1>
+			</header>
+
+			<MasonaryBlogs {...{ blogs }} />
+		</>
+	)
 }
 
 export default Search
@@ -43,6 +55,8 @@ export const getServerSideProps: GetServerSideProps = async ({
 
 		return blog
 	})
+
+	console.log(blogs)
 
 	return {
 		props: { blogs, searchedItem: search },
