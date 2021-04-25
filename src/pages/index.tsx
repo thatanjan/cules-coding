@@ -3,16 +3,24 @@ import matter from 'gray-matter'
 import fs from 'fs'
 import path from 'path'
 
-import connectDB from 'mongoose/connectDB'
+import { Blog } from 'interfaces/Blog'
 
+import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
 import CategoryModel from 'mongoose/Category'
+
 import getFiles from 'utils/getFiles'
 import readFilesBySlug from 'utils/readFilesBySlug'
 
 import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
 
-const Home = ({ slugs, topBlogs, recentBlogs }: any) => {
+interface Props {
+	category: string
+	topBlogs: Array<Blog>
+	recentBlogs: Array<Blog>
+}
+
+const Home = ({ topBlogs, recentBlogs }: Props) => {
 	return (
 		<>
 			<header className='listing-header'>
@@ -141,7 +149,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	})
 
 	return {
-		props: { slugs: [], topBlogs, recentBlogs },
+		props: { topBlogs, recentBlogs },
 	}
 }
 
