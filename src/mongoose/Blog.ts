@@ -4,10 +4,12 @@ const schema = new Schema({
 	title: {
 		type: String,
 		required: true,
+		text: true,
 	},
 	description: {
 		type: String,
 		required: true,
+		text: true,
 	},
 	slug: {
 		type: String,
@@ -23,11 +25,12 @@ const schema = new Schema({
 	content: {
 		type: String,
 		required: true,
+		text: true,
 	},
 	totalViews: { type: Number, default: 0 },
-	category: { type: String, required: true },
+	category: { type: String, required: true, text: true },
 	banner: { type: String, required: true },
-	altText: { type: String, required: true },
+	altText: { type: String, required: true, text: true },
 })
 
 export default mongoose.models.blog || model('blog', schema)
