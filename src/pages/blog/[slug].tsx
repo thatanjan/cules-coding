@@ -4,6 +4,7 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
 import { MdxRemote } from 'next-mdx-remote/types'
 import useSWR from 'swr'
+import mainAxios from 'axios'
 
 import fetcher from 'utils/fetcher'
 import axios from 'utils/axios'
@@ -52,14 +53,20 @@ const Blog = ({
 	const { data, mutate } = useSWR(`/api/views/${slug}`, fetcher)
 
 	useEffect(() => {
+		const cancelTokenSource = mainAxios.CancelToken.source()
+
 		;(async () => {
 			try {
-				await axios.post(`/api/views/${slug}`)
+				await axios.post(`/api/views/${slug}`, {
+					cancelToken: cancelTokenSource.token,
+				})
 
 				mutate()
 			} catch (_) {}
 		})()
-		return () => {}
+		return () => {
+			cancelTokenSource.cancel()
+		}
 	}, [])
 
 	return (
