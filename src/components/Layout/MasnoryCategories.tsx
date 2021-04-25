@@ -14,6 +14,7 @@ const breakpointColumnsObj = {
 
 export interface MatterDataWithTitle extends MatterData {
 	title: string
+	slug: string
 }
 
 export interface Props {
