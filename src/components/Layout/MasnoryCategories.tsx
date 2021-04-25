@@ -29,15 +29,14 @@ const MasnoryCategories = ({ categories }: Props) => {
 					className='my-masonry-grid'
 					columnClassName='my-masonry-grid_column'
 				>
-					{categories.map(({ title, banner, altText, description }) => {
-						const slugLink = 'category/' + title.replace(' ', '-')
+					{categories.map(({ slug, title, banner, altText, description }) => {
 						return (
 							<article
 								className='masonry__brick entry format-standard '
 								key={nanoid()}
 							>
 								<div className='entry__thumb'>
-									<Link href={slugLink}>
+									<Link href={slug}>
 										<a className='entry__thumb-link'>
 											<NextImage
 												layout='responsive'
@@ -54,7 +53,7 @@ const MasnoryCategories = ({ categories }: Props) => {
 								<div className='entry__text'>
 									<div className='entry__header'>
 										<h2 className='entry__title'>
-											<Link href={slugLink}>{title}</Link>
+											<Link href={slug}>{title}</Link>
 										</h2>
 									</div>
 									<div className='entry__excerpt'>
