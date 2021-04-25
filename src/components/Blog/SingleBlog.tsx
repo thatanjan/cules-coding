@@ -1,6 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import NextImage from 'next/image'
+import useSWR from 'swr'
+
+import fetcher from 'utils/fetcher'
 
 import { Blog } from 'interfaces/Blog'
 
@@ -12,8 +15,11 @@ const SinglePost = ({
 	category,
 	description,
 	slug,
+	totalViews,
 }: Blog) => {
 	const slugLink = `/blog/${slug}`
+
+	const { data, mutate } = useSWR(`/api/views/${slug}`, fetcher)
 
 	return (
 		<>
@@ -45,7 +51,9 @@ const SinglePost = ({
 							<span className='entry__meta-date'>
 								<a href='#'>{createdAt}</a>
 							</span>
-							<span className='entry__meta-blog__views'>1000 views</span>
+							<span className='entry__meta-blog__views'>
+								{data ? data.data.totalViews : totalViews}
+							</span>
 						</div>
 					</div>
 					<div className='entry__excerpt'>
