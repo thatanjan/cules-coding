@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
+import { useRouter } from 'next/router'
 
 interface Props {
 	searchBoxHandler: (val: boolean) => void
@@ -6,10 +7,20 @@ interface Props {
 
 const HeaderSearch = ({ searchBoxHandler }: Props) => {
 	const [searchTerm, setSearchTerm] = useState('')
+	const { push } = useRouter()
+
+	const closeSearchBox = () => searchBoxHandler(false)
+
+	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		push(`/search/${searchTerm}`)
+		closeSearchBox()
+	}
+
 	return (
 		<div>
 			<div className='header__search'>
-				<form role='search' method='get' className='header__search-form' action='#'>
+				<form className='header__search-form' onSubmit={handleSubmit}>
 					<label>
 						<span className='hide-content'>Search for:</span>
 						<input
@@ -23,14 +34,14 @@ const HeaderSearch = ({ searchBoxHandler }: Props) => {
 							onChange={e => setSearchTerm(e.target.value)}
 						/>
 					</label>
-					<input type='submit' className='header__search-submit' value='Search' />
+					<input type='submit' className='header__search-submit' />
 				</form>
 
 				<a
 					href='#0'
 					title='Close Search'
 					className='header__search-close'
-					onClick={() => searchBoxHandler(false)}
+					onClick={closeSearchBox}
 				>
 					Close
 				</a>
