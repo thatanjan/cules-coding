@@ -3,6 +3,9 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
 import { MdxRemote } from 'next-mdx-remote/types'
+import useSWR from 'swr'
+
+import axios from 'utils/axios'
 
 import BlogHeaderMedia from 'components/Blog/BlogHeaderMedia'
 import BlogHeader from 'components/Blog/BlogHeader'
@@ -23,9 +26,11 @@ interface Props {
 	banner: string
 	altText: string
 	totalViews: number
+	slug: string
 }
 
 const Blog = ({
+	slug,
 	mdxSource,
 	title,
 	category,
@@ -113,6 +118,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 			prevPost,
 			nextPost,
 			createdAt: createdAt.toDateString(),
+			slug,
 		},
 	}
 }
