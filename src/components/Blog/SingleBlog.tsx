@@ -23,7 +23,10 @@ const SinglePost = ({
 
 	return (
 		<>
-			<article className='masonry__brick entry format-standard '>
+			<article
+				className='masonry__brick entry format-standard '
+				style={{ padding: 0 }}
+			>
 				<div className='entry__thumb'>
 					<Link href={slugLink}>
 						<a className='entry__thumb-link'>

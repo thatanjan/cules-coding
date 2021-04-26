@@ -34,6 +34,7 @@ const MasnoryCategories = ({ categories }: Props) => {
 						return (
 							<article
 								className='masonry__brick entry format-standard '
+								style={{ padding: 0 }}
 								key={nanoid()}
 							>
 								<div className='entry__thumb'>
