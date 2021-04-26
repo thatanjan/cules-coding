@@ -1719,6 +1719,7 @@ input::-moz-focus-inner {
 }
 
 .masonry__brick {
+	background: #212121;
 	padding: 0 20px;
 }
 
@@ -1795,7 +1796,6 @@ input::-moz-focus-inner {
 
 .masonry .entry__text {
 	padding: 3.2rem 2.8rem 4rem;
-	background-color: #ffffff;
 }
 
 .masonry .entry__text p {
@@ -1811,7 +1811,7 @@ input::-moz-focus-inner {
 }
 
 .masonry .entry__title a {
-	color: #000000;
+	color: white;
 }
 
 .masonry .entry__title a:hover,
@@ -1822,6 +1822,7 @@ input::-moz-focus-inner {
 .masonry .entry__excerpt {
 	font-size: 1.7rem;
 	line-height: 1.882;
+	color: #b1b1b1;
 }
 
 .masonry .entry__meta {
@@ -1846,7 +1847,7 @@ input::-moz-focus-inner {
 
 .masonry .entry__meta a,
 .entry__meta-blog__views {
-	color: #000000;
+	color: #d2d2d2;
 }
 
 .masonry .entry__meta a:hover,
