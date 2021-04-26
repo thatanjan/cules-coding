@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
+import clsx from 'clsx'
 
 import Navigation from 'components/Navigation/Navigation'
 
@@ -9,11 +10,14 @@ interface Props {}
 
 const Header = (props: Props) => {
 	const [showHeaderSearch, setShowHeaderSearch] = useState(false)
+	const [headerMenuClicked, setHeaderMenuClicked] = useState(false)
 
 	const searchBoxHandler = (val: boolean) => setShowHeaderSearch(val)
 
 	return (
-		<header className='s-header'>
+		<header
+			className={clsx('s-header', headerMenuClicked && 'nav-wrap-is-visible')}
+		>
 			<div className='header__top'>
 				<div className='header__logo'>
 					<a className='site-logo' href='index.html'>
@@ -30,8 +34,8 @@ const Header = (props: Props) => {
 				></a>
 				<a
 					href='#'
-					className='header__menu-toggle'
-					onClick={() => searchBoxHandler(true)}
+					className={clsx('header__menu-toggle', headerMenuClicked && 'is-clicked')}
+					onClick={() => setHeaderMenuClicked(prev => !prev)}
 				>
 					<span>Menu</span>
 				</a>
