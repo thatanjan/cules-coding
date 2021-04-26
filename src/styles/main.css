@@ -59,6 +59,9 @@
  * # base style overrides
  *
  * ------------------------------------------------------------------- */
+
+/* header color = #e23e00 */
+
 html {
 	font-size: 10px;
 }
@@ -2171,7 +2174,7 @@ input::-moz-focus-inner {
 	-ms-flex-flow: column nowrap;
 	flex-flow: column nowrap;
 	width: 300px;
-	background-color: #151515;
+	background-color: #e23e00;
 	padding-top: 6.4rem;
 	padding-right: 3.2rem;
 	padding-left: 4.4rem;
@@ -2222,7 +2225,7 @@ input::-moz-focus-inner {
 	-ms-flex-align: stretch;
 	align-items: stretch;
 	max-width: 100%;
-	background-color: #151515;
+	background-color: #e23e00;
 	margin-top: 3.2rem;
 }
 
@@ -2901,7 +2904,9 @@ body.search-is-visible {
  * ## content
  * ------------------------------------------------------------------- */
 .s-content {
+	background: #1d1d1d;
 	padding-top: 6.4rem;
+	color: white;
 }
 
 .content__page {
