@@ -1,4 +1,10 @@
-import React, { FormEvent, useState } from 'react'
+import React, {
+	RefObject,
+	FormEvent,
+	useState,
+	createRef,
+	useEffect,
+} from 'react'
 import { useRouter } from 'next/router'
 
 interface Props {
@@ -17,6 +23,12 @@ const HeaderSearch = ({ searchBoxHandler }: Props) => {
 		closeSearchBox()
 	}
 
+	const inputRef: RefObject<HTMLInputElement> = createRef()
+
+	useEffect(() => {
+		inputRef.current.focus()
+	}, [])
+
 	return (
 		<div>
 			<div className='header__search'>
@@ -32,6 +44,7 @@ const HeaderSearch = ({ searchBoxHandler }: Props) => {
 							title='Search for:'
 							autoComplete='off'
 							onChange={e => setSearchTerm(e.target.value)}
+							ref={inputRef}
 						/>
 					</label>
 					<input type='submit' className='header__search-submit' />
