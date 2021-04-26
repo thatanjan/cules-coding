@@ -11,6 +11,7 @@ import CategoryModel from 'mongoose/Category'
 
 import getFiles from 'utils/getFiles'
 import readFilesBySlug from 'utils/readFilesBySlug'
+import { convertDashToSpace, convertSpaceToDash } from 'utils/stringConvertor'
 
 import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
 
@@ -54,7 +55,9 @@ export const getStaticProps: GetStaticProps = async () => {
 		.map(fileData => matter(fileData).data)
 		.map((matter, index) => ({
 			...matter,
-			title: files[index].replace('.mdx', '').replace('-', ' '),
+			title: convertDashToSpace(
+				files[index].replace('.mdx', '').replace('-', ' ')
+			),
 			slug: '/category/' + files[index].replace('.mdx', ''),
 		}))
 
@@ -88,7 +91,7 @@ export const getStaticProps: GetStaticProps = async () => {
 			return {
 				content,
 				...data,
-				title: slug.replace('-', ' '),
+				title: convertDashToSpace(slug),
 				category,
 				slug,
 			}
