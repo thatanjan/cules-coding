@@ -62,6 +62,21 @@
 
 /* header color = #e23e00 */
 
+::placeholder {
+	color: red;
+	opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: red;
+}
+
+::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: red;
+}
+
 html {
 	font-size: 10px;
 }
@@ -78,13 +93,12 @@ body {
 }
 
 body {
-	background: #f6f7f8;
 	font-family: 'IBM Plex Sans', sans-serif;
 	font-size: 1.9rem;
 	font-style: normal;
 	font-weight: normal;
 	line-height: 1.789;
-	color: #000000;
+	color: white;
 	margin: 0;
 	padding: 0;
 }
@@ -101,14 +115,14 @@ body.ss-bg-white {
  * ## links
  * ------------------------------------------------------------------- */
 a {
-	color: #33998a;
+	color: #e23e00;
 	transition: all 0.3s ease-in-out;
 }
 
 a:hover,
 a:focus,
 a:active {
-	color: #da5260;
+	color: #0596ff;
 }
 
 a:hover,
@@ -139,7 +153,7 @@ h6,
 	font-family: 'Heebo', sans-serif;
 	font-weight: 500;
 	font-style: normal;
-	color: #000000;
+	color: white;
 	font-variant-ligatures: common-ligatures;
 	text-rendering: optimizeLegibility;
 }
@@ -242,7 +256,6 @@ p.lead {
 	font-size: 2.4rem;
 	line-height: 1.833;
 	margin-bottom: 3.6rem;
-	color: #000000;
 }
 
 @media screen and (max-width: 1200px) {
@@ -1649,6 +1662,7 @@ input::-moz-focus-inner {
 .listing-header h1 {
 	text-transform: capitalize;
 	margin-top: 0;
+	color: white;
 }
 
 /* ------------------------------------------------------------------- 
@@ -1810,13 +1824,9 @@ input::-moz-focus-inner {
 	margin-bottom: 0.8rem;
 }
 
-.masonry .entry__title a {
-	color: white;
-}
-
 .masonry .entry__title a:hover,
 .masonry .entry__title a:focus {
-	color: #267367;
+	color: #0596ff;
 }
 
 .masonry .entry__excerpt {
@@ -2164,6 +2174,8 @@ input::-moz-focus-inner {
  * ------------------------------------------------------------------- */
 .s-wrap {
 	position: relative;
+	background: #1d1d1d;
+	min-height: 100vh;
 }
 
 .s-header {
@@ -2502,13 +2514,11 @@ ul.header__nav li a {
 .header__search-trigger {
 	z-index: 1;
 	display: block;
-	color: #000000;
 	height: 16px;
 	width: 16px;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: contain;
-	background-image: url(../assets/icons/icon-search.svg);
 	position: fixed;
 	right: 40px;
 	top: 6.4rem;
@@ -2519,7 +2529,7 @@ ul.header__nav li a {
 	display: block;
 	width: 1px;
 	height: calc(100vh - 200px);
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgb(241 241 241 / 33%);
 	position: fixed;
 	right: 48px;
 	top: auto;
@@ -2551,7 +2561,7 @@ ul.header__nav li a {
 	z-index: 400;
 	display: block;
 	text-align: center;
-	background-color: #ffffff;
+	background-color: #1d1d1d;
 	transition: all 0.3s;
 	position: fixed;
 	top: 0;
@@ -2569,7 +2579,7 @@ ul.header__nav li a {
 }
 
 .header__search-form label {
-	color: #000000;
+	color: white;
 }
 
 .header__search-form::after {
@@ -2579,12 +2589,12 @@ ul.header__nav li a {
 	font-size: 1.6rem;
 	margin-top: 3.2rem;
 	text-align: center;
-	color: rgba(0, 0, 0, 0.5);
+	color: rgb(255 255 255 / 69%);
 }
 
 .header__search-form input[type='search'] {
 	background-color: transparent;
-	color: #000000;
+	color: white;
 	height: auto;
 	width: 100%;
 	font-family: 'IBM Plex Sans', sans-serif;
@@ -2592,7 +2602,7 @@ ul.header__nav li a {
 	font-size: 6rem;
 	line-height: 1.6;
 	border: none;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+	border-bottom: 1px solid rgb(255 251 251 / 32%) !important;
 	max-width: 680px;
 	padding-top: 0.8rem !important;
 	padding-bottom: 0.8rem !important;
@@ -2673,7 +2683,7 @@ body.search-is-visible {
 	height: 20px;
 	top: 12px;
 	left: 22px;
-	background-color: #000000;
+	background-color: white;
 }
 
 .header__search-close::before {
@@ -2905,7 +2915,6 @@ body.search-is-visible {
  * ## content
  * ------------------------------------------------------------------- */
 .s-content {
-	background: #1d1d1d;
 	padding-top: 6.4rem;
 	color: white;
 }
@@ -2933,12 +2942,13 @@ body.search-is-visible {
 	padding-bottom: 8rem;
 	font-size: 1.6rem;
 	line-height: 2.4rem;
-	color: rgba(0, 0, 0, 0.5);
+	color: white;
 	text-align: center;
 }
 
-.s-footer a {
-	color: #000000;
+.s-footer a,
+.masonry .entry__title a {
+	color: #e23e00;
 }
 
 /* -------------------------------------------------------------------
@@ -3076,7 +3086,6 @@ body.search-is-visible {
 	font-weight: 300;
 	line-height: 1.778;
 	margin-left: 0;
-	color: #000000;
 }
 
 .entry__header-meta li {
@@ -3085,13 +3094,9 @@ body.search-is-visible {
 	margin: 0 0.8rem;
 }
 
-.entry__header-meta a {
-	color: rgba(0, 0, 0, 0.7);
-}
-
 .entry__header-meta a:hover,
 .entry__header-meta a:focus {
-	color: #000000;
+	/* color: #000000; */
 }
 
 .entry__header-meta .cat-links a::after {
@@ -3186,7 +3191,7 @@ body.search-is-visible {
 	font-size: 12px;
 	text-transform: uppercase;
 	letter-spacing: 2.5px;
-	color: #1a1a1a;
+	color: #e23e00;
 	margin-bottom: 1.6rem;
 	transition: all 0.3s;
 }
@@ -3196,12 +3201,12 @@ body.search-is-visible {
 	font-weight: 500;
 	font-size: 3rem;
 	line-height: 1.333;
-	color: #000000;
+	color: white;
 }
 
 .entry__nav a:hover span,
 .entry__nav a:focus span {
-	color: #33998a;
+	color: #0596ff;
 }
 
 .entry__prev,
@@ -3561,3 +3566,18 @@ body.search-is-visible {
 }
 
 /*# sourceMappingURL=main.css.map */
+
+input::placeholder {
+	color: white;
+	opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: red;
+}
+
+::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: red;
+}
