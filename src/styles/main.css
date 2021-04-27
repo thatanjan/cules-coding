@@ -375,9 +375,8 @@ code {
 	margin: 0 0.2rem;
 	padding: 0.4rem 0.8rem;
 	white-space: nowrap;
-	background: #efefef;
-	border: 1px solid #d3d3d3;
-	color: #000000;
+	background: #313131;
+	color: white;
 	border-radius: 3px;
 }
 
