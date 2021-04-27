@@ -60,6 +60,7 @@
  *
  * ------------------------------------------------------------------- */
 
+/* wrapper color #171717 */
 /* header color = #e23e00 */
 
 ::placeholder {
@@ -2174,7 +2175,7 @@ input::-moz-focus-inner {
  * ------------------------------------------------------------------- */
 .s-wrap {
 	position: relative;
-	background: #1d1d1d;
+	background: #171717;
 	min-height: 100vh;
 }
 
@@ -2569,7 +2570,7 @@ ul.header__nav li a {
 	z-index: 400;
 	display: block;
 	text-align: center;
-	background-color: #1d1d1d;
+	background-color: #171717;
 	transition: all 0.3s;
 	position: fixed;
 	top: 0;

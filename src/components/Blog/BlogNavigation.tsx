@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 
+import { convertSpaceToDash } from 'utils/stringConvertor'
+
 interface Props {
 	prevPost?: string
 	nextPost?: string
@@ -12,7 +14,7 @@ const BlogNavigation = ({ prevPost, nextPost }: Props) => {
 			<div className='entry__nav'>
 				{prevPost && (
 					<div className='entry__prev'>
-						<Link href={`/blog/${prevPost.replace(' ', '-')}`}>
+						<Link href={`/blog/${convertSpaceToDash(prevPost)}`}>
 							<a>
 								<span>Previous Post</span>
 								{prevPost}
@@ -23,7 +25,7 @@ const BlogNavigation = ({ prevPost, nextPost }: Props) => {
 
 				{nextPost && (
 					<div className='entry__next'>
-						<Link href={`/blog/${nextPost.replace(' ', '-')}`}>
+						<Link href={`/blog/${convertSpaceToDash(nextPost)}`}>
 							<a>
 								<span>Next Post</span>
 								{nextPost}
