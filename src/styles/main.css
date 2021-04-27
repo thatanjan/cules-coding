@@ -2480,6 +2480,10 @@ ul.header__nav li a {
 	position: absolute;
 }
 
+.header__social .ss-linkedin a::after {
+	background-image: url(../assets/icons/social/icon-linkedin.svg);
+}
+
 .header__social .ss-facebook a::after {
 	background-image: url(../assets/icons/social/icon-facebook.svg);
 }
@@ -2506,6 +2510,10 @@ ul.header__nav li a {
 
 .header__social .ss-rss a::after {
 	background-image: url(../assets/icons/social/icon-rss.svg);
+}
+
+.header__social .ss-email a::after {
+	background-image: url(../assets/icons/social/icon-email.svg);
 }
 
 /* -------------------------------------------------------------------

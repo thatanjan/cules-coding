@@ -61,23 +61,23 @@ const Navigation = ({ closeResponsiveNav }: Props) => {
 
 			<ul className='header__social'>
 				<li className='ss-facebook'>
-					<a href='https://facebook.com/'>
+					<a href='https://facebook.com/thatanjan'>
 						<span className='screen-reader-text'>Facebook</span>
 					</a>
 				</li>
 				<li className='ss-twitter'>
-					<a href='#0'>
+					<a href='https://twitter.com/thatanjan'>
 						<span className='screen-reader-text'>Twitter</span>
 					</a>
 				</li>
-				<li className='ss-dribbble'>
-					<a href='#0'>
-						<span className='screen-reader-text'>Dribbble</span>
+				<li className='ss-instagram'>
+					<a href='https://instagram.com/thatanjan'>
+						<span className='screen-reader-text'>Instagram</span>
 					</a>
 				</li>
-				<li className='ss-pinterest'>
-					<a href='#0'>
-						<span className='screen-reader-text'>Behance</span>
+				<li className='ss-linkedin'>
+					<a href='https://linkedin.com/in/thatanjan'>
+						<span className='screen-reader-text'>Linkedin</span>
 					</a>
 				</li>
 			</ul>
