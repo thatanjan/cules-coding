@@ -5,11 +5,11 @@ import clsx from 'clsx'
 
 import MenuHasChildren from './MenuHasChildren'
 
-const categoryMenuList = ['react']
+const categoryMenuList = ['react', , 'nodejs']
 
 const CATEGORY = 'category'
 
-const menuNames = ['home', CATEGORY, 'about', 'portfolio', 'youtube', 'contact']
+const menuNames = ['home', CATEGORY, 'portfolio', 'youtube', 'about', 'contact']
 
 interface Props {
 	closeResponsiveNav: () => void
