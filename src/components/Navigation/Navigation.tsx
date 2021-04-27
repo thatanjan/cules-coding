@@ -27,7 +27,7 @@ const Navigation = ({ closeResponsiveNav }: Props) => {
 				return '/'
 
 			default:
-				return menuName
+				return `/${menuName}`
 		}
 	}
 
