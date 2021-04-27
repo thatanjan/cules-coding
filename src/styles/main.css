@@ -2978,7 +2978,7 @@ body.search-is-visible {
  * ## go to top
  * ------------------------------------------------------------------- */
 .go-top {
-	z-index: 1;
+	z-index: 100;
 	opacity: 0;
 	visibility: hidden;
 	-webkit-transform: translate3d(0, 200%, 0);
