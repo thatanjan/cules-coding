@@ -19,7 +19,7 @@ const SinglePost = ({
 }: Blog) => {
 	const slugLink = `/blog/${slug}`
 
-	const { data, mutate } = useSWR(`/api/views/${slug}`, fetcher)
+	const { data } = useSWR(`/api/views/${slug}`, fetcher)
 
 	return (
 		<>
@@ -49,7 +49,7 @@ const SinglePost = ({
 						</h2>
 						<div className='entry__meta'>
 							<span className='entry__meta-cat'>
-								<a href={`/category/${category}`}>{category}</a>
+								<Link href={`/category/${category}`}>{category}</Link>
 							</span>
 							<span className='entry__meta-date'>
 								<a href='#'>{createdAt}</a>
