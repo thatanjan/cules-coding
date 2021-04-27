@@ -18,6 +18,19 @@ interface Props {
 const Navigation = ({ closeResponsiveNav }: Props) => {
 	const [focusedMenuIndex, setFocusedMenuIndex] = useState<null | number>(null)
 
+	const generateHref = (menuName: string) => {
+		switch (menuName) {
+			case 'portfolio':
+				return 'https://anjan.vercel.app/'
+
+			case 'home':
+				return '/'
+
+			default:
+				return menuName
+		}
+	}
+
 	return (
 		<nav className='header__nav-wrap'>
 			<ul className='header__nav'>
@@ -44,7 +57,7 @@ const Navigation = ({ closeResponsiveNav }: Props) => {
 							className={clsx(focusedMenuIndex === index && 'current')}
 							key={nanoid()}
 						>
-							<Link href={menuName === 'home' ? '/' : `/${menuName}`}>
+							<Link href={generateHref(menuName)}>
 								<a
 									onClick={() => {
 										setFocusedMenuIndex(index)
