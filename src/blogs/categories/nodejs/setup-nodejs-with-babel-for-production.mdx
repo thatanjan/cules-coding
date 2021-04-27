@@ -1,0 +1,182 @@
+---
+description: In this blog I will teach you how you can set up nodejs with babel for production
+banner: /blogs/nodejs/setup-nodejs-with-babel-for-production/banner.png
+altText: Nodejs and Babel banner
+---
+
+The features that this project will have.
+
+- Absolute import path
+- Older nodeJs version compatibility
+- Automatic restart the server after any changes on development environment.
+
+Alright enough talk let's get started.
+
+First I will create a folder called nodejs-setup. Then inside the folder I will initialize the package.json
+
+```bash
+mkdir nodejs-setup
+cd nodejs-setup
+yarn init -y
+```
+
+Now we need to install some package. Let's install our only dependency.
+
+```bash
+yarn add express
+```
+
+Let's install some devdependency.
+
+```bash
+yarn add --dev @babel/cli @babel/core @babel/node @babel/preset-env babel-plugin-module-resolver nodemon
+```
+
+Let's explore the devDependencies:
+
+- @babel/core: Babel is a transcompiler that compiles js code based on the given configuration. The babel does not do anything. Plugins does.
+- babel-plugin-module-resolver: This plugin allows us to write absolute path instead of relative path. Let's see a demo.
+
+```javascript
+// Use Absolute path:
+import MyUtilFn from 'utils/MyUtilFn'
+// Instead of Relative path:
+import MyUtilFn from '../../../../utils/MyUtilFn'
+```
+
+- @babel/preset-env: Preset is a combination of bunch of plugins. This preset will allow us to use next generation javascript code. Then it will be compiled down to browser and nodejs compatible code. It also add many features.
+
+- nodemon: nodemon is tool to restart server automatically whenver we change out source code so that we don't have to manually do it.
+
+let's write some code.
+I will create a `src` folder where I will store all of my source file. Inside src create a file called `index.js`
+
+```bash
+mkdir src
+touch index.js
+```
+
+Let's create a simple express server.
+
+```javascript
+//index.js
+
+import express from 'express'
+
+const app = express()
+
+app.get('/hello', (req, res) => res.send('hello world from cules coding'))
+
+const port = process.env.PORT || 8000
+
+app.listen(port, () => console.log(`Server is running on ${port}`))
+```
+
+Let's write some scripts in our package.json file.
+
+```json
+// package.json
+
+{
+	"name": "nodejs-setup",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"dependencies": {
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.13.0",
+		"@babel/core": "^7.13.8",
+		"@babel/node": "^7.13.0",
+		"@babel/preset-env": "^7.13.9",
+		"babel-plugin-module-resolver": "^4.1.0",
+		"nodemon": "^2.0.7"
+	}
+}
+```
+
+scripts:
+
+```json
+{
+	"scripts": {
+		"dev": "nodemon --exec babel-node src/index.js",
+		"build": "babel  src -d build",
+		"start": "yarn build && node build/index.js"
+	}
+}
+```
+
+Let's explore the scripts:
+
+- dev: This script will be used to start development server. `nodemon` will automatically start server when our code changes. But even before that `nodemon` will execute `babel-node` and will compile the `src/index.js` file.
+- build: This script will be used for `production`. `babel` will compile our code from `src` folder to the build directory. `babel` will automatically create build directory for you if it does not exist.
+- start: I will first run our build script. Then it will start our node server from build directory.
+
+If I show you the compiled code:
+
+```javascript
+'use strict'
+
+var _express = _interopRequireDefault(require('express'))
+
+function _interopRequireDefault(obj) {
+	return obj && obj.__esModule ? obj : { default: obj }
+}
+
+var app = (0, _express['default'])()
+app.get('/hello', function (req, res) {
+	return res.send('hello world from cules coding')
+})
+var port = process.env.PORT || 8000
+app.listen(port, function () {
+	return console.log('Server is running on '.concat(port))
+})
+```
+
+And that's how you can setup a nodejs project for `development` and `production`.
+
+### About me:
+
+#### Who am I?
+
+My name is Anjan. I am a full stack web developer from Dhaka, Bangladesh.
+
+#### What problems do I solve?
+
+I can create complex full stack web applications like social media application, blogging, e-commerce website and many more.
+
+#### Why do I do what I do?
+
+I love to solve problems and develop new ideas. I also enjoy sharing my knowledge to other people who are wiling to learn. That's why I wirte blog posts and run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+
+#### Think we should work together?
+
+##### Feel free to contact me
+
+Email: anjancules@gmail.com
+
+linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
+
+portofolio: [anjan](https://anjan.vercel.app/)
+
+Github: [@thatanjan](https://github.com/thatAnjan/)
+
+Instagram (perosnal): [@thatanjan](https://instagram.com/thatAnjan/)
+
+Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
+
+twitter: [@thatanjan](https://twitter.com/thatAnjan)
+
+#### About My channel:
+
+#### Why would you subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)?
+
+[ Cules Coding ](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) will teach you full stack development. I will teach you not only the basic concepts but also the advanced concepts that other youtube channels don't cover. I will also teach you Data Structures and Algorithms with abstraction and without Math. You will also find many turoials about developer tools and technologies. I also explain advanced concepts and technologies with simplicity.
+
+#### So what are you waiting for?
+
+Subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) so that my friend you don't miss any of these cool stuffs.
+
+
