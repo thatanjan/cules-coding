@@ -93,6 +93,11 @@ const Navigation = ({ closeResponsiveNav }: Props) => {
 						<span className='screen-reader-text'>Linkedin</span>
 					</a>
 				</li>
+				<li className='ss-youtube'>
+					<a href='https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1'>
+						<span className='screen-reader-text'>Youtube</span>
+					</a>
+				</li>
 			</ul>
 		</nav>
 	)

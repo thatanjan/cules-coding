@@ -2480,6 +2480,10 @@ ul.header__nav li a {
 	position: absolute;
 }
 
+.header__social .ss-youtube a::after {
+	background-image: url(../assets/icons/social/icon-youtube.svg);
+}
+
 .header__social .ss-linkedin a::after {
 	background-image: url(../assets/icons/social/icon-linkedin.svg);
 }
