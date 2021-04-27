@@ -3581,3 +3581,8 @@ input::placeholder {
 	/* Microsoft Edge */
 	color: red;
 }
+
+a.site-logo {
+	color: white;
+	font-size: 4rem;
+}

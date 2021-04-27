@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import clsx from 'clsx'
 
@@ -20,9 +21,9 @@ const Header = (props: Props) => {
 		>
 			<div className='header__top'>
 				<div className='header__logo'>
-					<a className='site-logo' href='index.html'>
-						{/* <img src='images/logo.svg' alt='Homepage' /> */}
-					</a>
+					<Link href='/'>
+						<a className='site-logo'>Cules</a>
+					</Link>
 				</div>
 
 				{showHeaderSearch && <HeaderSearch {...{ searchBoxHandler }} />}
