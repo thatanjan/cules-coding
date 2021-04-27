@@ -11,7 +11,11 @@ const CATEGORY = 'category'
 
 const menuNames = ['home', CATEGORY, 'about', 'portfolio', 'youtube', 'contact']
 
-const Navigation = () => {
+interface Props {
+	closeResponsiveNav: () => void
+}
+
+const Navigation = ({ closeResponsiveNav }: Props) => {
 	const [focusedMenuIndex, setFocusedMenuIndex] = useState<null | number>(null)
 
 	return (
@@ -24,7 +28,10 @@ const Navigation = () => {
 								key={nanoid()}
 								classes={[focusedMenuIndex === index ? 'current' : '']}
 								{...{ subMenuList: categoryMenuList, menuName: 'category' }}
-								focusClick={() => setFocusedMenuIndex(index)}
+								focusClick={() => {
+									setFocusedMenuIndex(index)
+									closeResponsiveNav()
+								}}
 							/>
 						)
 
@@ -34,7 +41,14 @@ const Navigation = () => {
 							key={nanoid()}
 						>
 							<Link href={menuName === 'home' ? '/' : `/${menuName}`}>
-								<a onClick={() => setFocusedMenuIndex(index)}>{menuName}</a>
+								<a
+									onClick={() => {
+										setFocusedMenuIndex(index)
+										closeResponsiveNav()
+									}}
+								>
+									{menuName}
+								</a>
 							</Link>
 						</li>
 					)

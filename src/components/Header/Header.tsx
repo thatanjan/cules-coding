@@ -11,18 +11,24 @@ interface Props {}
 
 const Header = (props: Props) => {
 	const [showHeaderSearch, setShowHeaderSearch] = useState(false)
-	const [headerMenuClicked, setHeaderMenuClicked] = useState(false)
+	const [showResponsiveNav, setShowResponsiveNav] = useState(false)
 
 	const searchBoxHandler = (val: boolean) => setShowHeaderSearch(val)
 
+	const toggleResponsiveNav = () => setShowResponsiveNav(prev => !prev)
+
+	const closeResponsiveNav = () => setShowResponsiveNav(false)
+
 	return (
 		<header
-			className={clsx('s-header', headerMenuClicked && 'nav-wrap-is-visible')}
+			className={clsx('s-header', showResponsiveNav && 'nav-wrap-is-visible')}
 		>
 			<div className='header__top'>
 				<div className='header__logo'>
 					<Link href='/'>
-						<a className='site-logo'>Cules</a>
+						<a className='site-logo' href='index.html'>
+							Cules
+						</a>
 					</Link>
 				</div>
 
@@ -35,14 +41,14 @@ const Header = (props: Props) => {
 				></a>
 				<a
 					href='#'
-					className={clsx('header__menu-toggle', headerMenuClicked && 'is-clicked')}
-					onClick={() => setHeaderMenuClicked(prev => !prev)}
+					className={clsx('header__menu-toggle', showResponsiveNav && 'is-clicked')}
+					onClick={toggleResponsiveNav}
 				>
 					<span>Menu</span>
 				</a>
 			</div>
 
-			<Navigation />
+			<Navigation {...{ closeResponsiveNav }} />
 		</header>
 	)
 }
