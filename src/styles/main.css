@@ -3591,3 +3591,10 @@ a.site-logo {
 	color: white;
 	font-size: 4rem;
 }
+
+.in-development {
+	display: grid;
+	place-items: center;
+	font-size: 5rem;
+	height: 80vh;
+}
