@@ -27,7 +27,11 @@ const Navigation = ({ closeResponsiveNav }: Props) => {
 							<MenuHasChildren
 								key={nanoid()}
 								classes={[focusedMenuIndex === index ? 'current' : '']}
-								{...{ subMenuList: categoryMenuList, menuName: 'category' }}
+								{...{
+									subMenuList: categoryMenuList,
+									menuName: 'category',
+									closeResponsiveNav,
+								}}
 								focusClick={() => {
 									setFocusedMenuIndex(index)
 									closeResponsiveNav()

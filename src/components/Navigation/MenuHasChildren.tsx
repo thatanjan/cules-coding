@@ -10,6 +10,7 @@ interface Props {
 	subMenuList: Array<string>
 	classes: Array<string>
 	focusClick: Function
+	closeResponsiveNav: () => void
 }
 
 const MenuHasChildren = ({
@@ -17,6 +18,7 @@ const MenuHasChildren = ({
 	menuName,
 	subMenuList,
 	classes,
+	closeResponsiveNav,
 }: Props) => {
 	const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
 
@@ -42,7 +44,9 @@ const MenuHasChildren = ({
 				}}
 			/>
 
-			{isSubMenuOpen && <SubMenu {...{ menuName, subMenuList }} />}
+			{isSubMenuOpen && (
+				<SubMenu {...{ menuName, subMenuList, closeResponsiveNav }} />
+			)}
 		</li>
 	)
 }

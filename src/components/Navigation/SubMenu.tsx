@@ -5,16 +5,19 @@ import { nanoid } from 'nanoid'
 interface Props {
 	menuName: string
 	subMenuList: Array<string>
+	closeResponsiveNav: () => void
 }
 
-const SubMenu = ({ menuName, subMenuList }: Props) => {
+const SubMenu = ({ menuName, subMenuList, closeResponsiveNav }: Props) => {
 	const generatePath = (subMenuName: string) => `/${menuName}/${subMenuName}`
 
 	return (
 		<ul className='sub-menu' style={{ display: 'block', gridColumn: '1/3' }}>
 			{subMenuList.map(subMenu => (
 				<li key={nanoid()}>
-					<Link href={generatePath(subMenu)}>{subMenu}</Link>
+					<Link href={generatePath(subMenu)}>
+						<a onClick={closeResponsiveNav}>{subMenu}</a>
+					</Link>
 				</li>
 			))}
 		</ul>
