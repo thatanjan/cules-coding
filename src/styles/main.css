@@ -1816,11 +1816,11 @@ input::-moz-focus-inner {
 	margin-bottom: 0;
 }
 
-.masonry .entry__title::first-letter {
+.entry__title::first-letter {
 	text-transform: uppercase;
 }
 
-.masonry .entry__title:first-letter {
+.entry__title:first-letter {
 	text-transform: uppercase;
 }
 
