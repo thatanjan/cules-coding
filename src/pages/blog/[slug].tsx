@@ -5,6 +5,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import { MdxRemote } from 'next-mdx-remote/types'
 import useSWR from 'swr'
 import mainAxios from 'axios'
+import { NextSeo } from 'next-seo'
 
 import fetcher from 'utils/fetcher'
 import axios from 'utils/axios'
@@ -70,26 +71,30 @@ const Blog = ({
 	}, [])
 
 	return (
-		<main className='row content__page'>
-			<article className='column large-full entry format-standard'>
-				<BlogHeaderMedia imagePath={banner} altText={altText} />
+		<>
+			<NextSeo {...{ title: title.charAt(0).toUpperCase() + title.slice(1) }} />
 
-				<BlogHeader
-					{...{
-						totalViews: data ? data.data.totalViews : totalViews,
-						title,
-						createdAt,
-						category,
-					}}
-				/>
+			<main className='row content__page'>
+				<article className='column large-full entry format-standard'>
+					<BlogHeaderMedia imagePath={banner} altText={altText} />
 
-				<p className='lead'>{description}</p>
+					<BlogHeader
+						{...{
+							totalViews: data ? data.data.totalViews : totalViews,
+							title,
+							createdAt,
+							category,
+						}}
+					/>
 
-				{content}
+					<p className='lead'>{description}</p>
 
-				<BlogNavigation {...{ prevPost, nextPost }} />
-			</article>
-		</main>
+					{content}
+
+					<BlogNavigation {...{ prevPost, nextPost }} />
+				</article>
+			</main>
+		</>
 	)
 }
 
