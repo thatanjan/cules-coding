@@ -1816,6 +1816,14 @@ input::-moz-focus-inner {
 	margin-bottom: 0;
 }
 
+.masonry .entry__title::first-letter {
+	text-transform: uppercase;
+}
+
+.masonry .entry__title:first-letter {
+	text-transform: uppercase;
+}
+
 .masonry .entry__title {
 	font-size: 2.6rem;
 	font-weight: 400;
