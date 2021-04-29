@@ -15,7 +15,6 @@ const schema = new Schema({
 	},
 	banner: { type: String, required: true },
 	altText: { type: String, required: true },
-	bannerRatio: { type: String, required: true },
 })
 
 export default mongoose.models.category || model('category', schema)

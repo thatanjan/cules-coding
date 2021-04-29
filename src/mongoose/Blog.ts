@@ -31,7 +31,6 @@ const schema = new Schema({
 	category: { type: String, required: true, text: true },
 	banner: { type: String, required: true },
 	altText: { type: String, required: true, text: true },
-	bannerRatio: { type: String, required: true },
 })
 
 export default mongoose.models.blog || model('blog', schema)
