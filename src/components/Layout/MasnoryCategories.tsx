@@ -42,8 +42,8 @@ const MasnoryCategories = ({ categories }: Props) => {
 										<a className='entry__thumb-link'>
 											<NextImage
 												layout='responsive'
-												height={1080}
-												width={1080}
+												height={720}
+												width={1280}
 												src={banner}
 												alt={altText}
 												objectFit='cover'
