@@ -55,7 +55,7 @@ const SinglePost = ({
 								<a href='#'>{createdAt}</a>
 							</span>
 							<span className='entry__meta-blog__views'>
-								{data ? data.data.totalViews : totalViews}
+								{data ? data.data.totalViews : totalViews} views
 							</span>
 						</div>
 					</div>
