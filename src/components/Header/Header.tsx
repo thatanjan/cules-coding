@@ -26,9 +26,7 @@ const Header = (props: Props) => {
 			<div className='header__top'>
 				<div className='header__logo'>
 					<Link href='/'>
-						<a className='site-logo' href='index.html'>
-							Cules
-						</a>
+						<a className='site-logo'>Cules</a>
 					</Link>
 				</div>
 
