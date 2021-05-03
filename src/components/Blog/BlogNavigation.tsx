@@ -14,7 +14,7 @@ const BlogNavigation = ({ prevPost, nextPost }: Props) => {
 			<div className='entry__nav'>
 				{prevPost && (
 					<div className='entry__prev'>
-						<Link href={`/blog/${convertSpaceToDash(prevPost)}`}>
+						<Link href={`/blog/${prevPost}`}>
 							<a>
 								<span>Previous Post</span>
 								{prevPost}
@@ -25,7 +25,7 @@ const BlogNavigation = ({ prevPost, nextPost }: Props) => {
 
 				{nextPost && (
 					<div className='entry__next'>
-						<Link href={`/blog/${convertSpaceToDash(nextPost)}`}>
+						<Link href={`/blog/${nextPost}`}>
 							<a>
 								<span>Next Post</span>
 								{nextPost}

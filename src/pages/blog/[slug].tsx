@@ -141,8 +141,8 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 		post => post.slug === slug
 	)
 
-	const nextPost = allPostOfCategory[currentBlogIndex + 1]?.title || ''
-	const prevPost = allPostOfCategory[currentBlogIndex - 1]?.title || ''
+	const nextPost = allPostOfCategory[currentBlogIndex + 1]?.slug || ''
+	const prevPost = allPostOfCategory[currentBlogIndex - 1]?.slug || ''
 
 	return {
 		props: {
