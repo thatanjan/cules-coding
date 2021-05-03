@@ -44,7 +44,7 @@ Client-side rendering (CSR) means rendering pages directly in the browser using 
 - A blank page is rendered to the user until the javascript is executed. Because html has no content on it.
 - After the javascript is executed, all the necessary content is rendered. Now the application becomes viewable and interactive.
 
-### This is a visual representation of the server side rendering process with react.
+### This is a visual representation of the client side rendering process with react.
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xtcpljqdaf77u9r8jd6r.png)
 
 Let's see the pros and cons of Client-side rendering (CSR).
@@ -60,8 +60,10 @@ Let's see the pros and cons of Client-side rendering (CSR).
 
 ## Client side rendering cons
 
+- Bad Seo. Because HTML has no content. The search engines will crawl through your webpage, it will find nothing. So it will give you bad seo.
 - Might take a huge amount of time when the javascript is heavy. If the application is big then the javascript will be big. Parsing Javascript is slower than HTML and CSS. But it can be optimized with code-splitting. If you want to learn more you can read it from [What is Code Splitting](/blog/what-is-code-splitting).
 - Blank page flickering on initial load. Because no content on the HTML.
+- Bad performance on slower mobile phones.
 
 Client side rendering is not always good or bad. It depends on various factors. It is up to you now. Know what your application is and choose what is good for your application.
 
