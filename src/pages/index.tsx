@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async () => {
 		.map(fileData => matter(fileData).data)
 		.map((matter: MatterData, index) => ({
 			...matter,
-			slug: '/category/' + files[index].replace('.mdx', ''),
+			slug: '/category/' + files[index].replace('.mdx', '').toLowerCase(),
 		}))
 
 	const updateCategories = matters.map(matter =>
@@ -83,7 +83,7 @@ export const getStaticProps: GetStaticProps = async () => {
 		const matterDatas = fileDatas.map(fileData => matter(fileData))
 
 		const returnObject = matterDatas.map(({ content, data }, index) => {
-			const slug = fileNames[index].replace('.mdx', '')
+			const slug = fileNames[index].replace('.mdx', '').toLowerCase()
 
 			return {
 				content,
