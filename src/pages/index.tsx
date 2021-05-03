@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 
 import { Blog } from 'interfaces/Blog'
+import MatterData from 'interfaces/MatterData'
 
 import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
@@ -11,7 +12,6 @@ import CategoryModel from 'mongoose/Category'
 
 import getFiles from 'utils/getFiles'
 import readFilesBySlug from 'utils/readFilesBySlug'
-import { convertDashToSpace, convertSpaceToDash } from 'utils/stringConvertor'
 
 import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
 
@@ -53,11 +53,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	const matters = fileDatas
 		.map(fileData => matter(fileData).data)
-		.map((matter, index) => ({
+		.map((matter: MatterData, index) => ({
 			...matter,
-			title: convertDashToSpace(
-				files[index].replace('.mdx', '').replace('-', ' ')
-			),
 			slug: '/category/' + files[index].replace('.mdx', ''),
 		}))
 
@@ -91,7 +88,6 @@ export const getStaticProps: GetStaticProps = async () => {
 			return {
 				content,
 				...data,
-				title: convertDashToSpace(slug),
 				category,
 				slug,
 			}
@@ -110,7 +106,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	const promises = data.map(blog => {
 		return BlogModel.updateOne(
-			{ title: blog.title },
+			{ slug: blog.slug },
 			{ $set: blog },
 			{
 				upsert: true,
