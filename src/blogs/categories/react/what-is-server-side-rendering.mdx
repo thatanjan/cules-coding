@@ -1,0 +1,97 @@
+---
+title: What is Server Side Rendering?
+description: Server-side rendering (SSR) is the traditional rendering system. Here the server serves the static HTML, CSS, JavaScript and other static assets. The content of the webpage is rendered by HTML itself.
+banner: /blogs/react/what-is-server-side-rendering/banner.png
+altText: Server-side rendering (SSR) is the traditional rendering system. Here the server serves the static HTML, CSS, JavaScript and other static assets. The content of the webpage is rendered by HTML itself.
+---
+
+I have created a video about it already. Feel free to check that out. And if you like the video then don't forget to SUBSCRIBE to my channel.
+[![](http://img.youtube.com/vi/LuG1KNowti4/0.jpg)](http://www.youtube.com/watch?v=LuG1KNowti4 "")
+
+### How does server side rendering work?
+
+- Abstractly There are two entities on the internet. One is Client and another one is Server.
+
+- First the client(browser) sends a request to the server.
+
+- Server then check the request and send html file as response.
+
+- Browser starts parsing the HTML from top to bottom. When the parser sees the link tag for CSS it blocks the parsing process and starts downloading the CSS files. Then it starts parsing the CSS.
+
+- After the CSS parsing is completed, the parser starts parsing the html again. As the parser parsing the html, the browser dom gets pained with content. Also with styles. Because the CSS is already parsed. That is why we put the CSS link tag at the top part of the HTML.
+
+- After the dom is pained with the content, your webpage is now viewable. Then the parser come across with the script tag at the bottom of the HTML. Now the browser will start downloading the JavaScript and then will parse the JavaScript.
+
+- The JavaScript might be big and might take some time depends on how big the files are. Parsing javascript is heavier task than parsing HTML and CSS. That's why we put script tag at the bottom of the HTML.
+
+- After the parsing is completed, now the webpage is now both viewable and interactive.
+
+### This is a visual representation of the server side rendering process with react.
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k48w5ip0hsughbloc3ji.png)
+
+### Server Side Rendering Pros
+
+- Great SEO. Because the content is already present on the HTML.
+
+- Initial load is fast. Not the whole application data is not served by the browser. Only the necessary data for the page is sent.
+
+- User doesn't have to see blank page on the initial load. Because the content is rendered by the HTML not JavaScript.
+
+- No need of external libraries or frameworks.
+
+### Server Side Rendering cons
+
+- Frequent server calls.
+
+- Slow navigation to any routes.
+
+- Page refresh while visiting any routes (not necessarily).
+
+- Bad user Experience when data changes frequently.
+
+If you have any question, please put them on the comment box. I would love to hear from you. Also if you like this blog then give it a 💖 reaction.  You can connect to me on any social media as @thatanjan.
+
+### About me:
+
+#### Who am I?
+
+My name is Anjan. I am a full stack web developer from Dhaka, Bangladesh.
+
+#### What problems do I solve?
+
+I can create complex full stack web applications like social media application, blogging, e-commerce website and many more.
+
+#### Why do I do what I do?
+
+I love to solve problems and develop new ideas. I also enjoy sharing my knowledge to other people who are wiling to learn. That's why I write blog posts and run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+
+#### Think we should work together?
+
+##### Feel free to contact me
+
+Email: anjancules@gmail.com
+
+linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
+
+portofolio: [anjan](https://anjan.vercel.app/)
+
+Github: [@thatanjan](https://github.com/thatAnjan/)
+
+Instagram (personal): [@thatanjan](https://instagram.com/thatAnjan/)
+
+Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
+
+twitter: [@thatanjan](https://twitter.com/thatAnjan)
+
+#### About My channel:
+
+#### Why would you subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)?
+
+[ Cules Coding ](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) will teach you full stack development. I will teach you not only the basic concepts but also the advanced concepts that other youtube channels don't cover. I will also teach you Data Structures and Algorithms with abstraction and without Math. You will also find many tutorials about developer tools and technologies. I also explain advanced concepts and technologies with simplicity.
+
+#### So what are you waiting for?
+
+Subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+so that my friend you don't miss any of these cool stuffs.
+
+

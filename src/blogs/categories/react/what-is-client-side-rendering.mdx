@@ -1,0 +1,110 @@
+---
+title: What is Client Side Rendering?
+description: Client-side rendering (CSR) means rendering pages directly in the browser using JavaScript. All logic, data fetching, templating and routing are handled on the client rather than the server.
+altText: Client-side rendering (CSR) means rendering pages directly in the browser using JavaScript. All logic, data fetching, templating and routing are handled on the client rather than the server.
+banner: /blogs/react/what-is-client-side-rendering/banner.png
+---
+
+
+Everybody talks about client side rendering, single page application. But
+
+- What problems does it solve?
+- What is it?
+- How it works?
+
+Let's learn the problem with the traditional Server side rendering. If you don't
+know what is server side rendering is,  please check this youtube video from my
+channel first.  And if you like the video then don't forget to SUBSCRIBE to my channel.
+[![](http://img.youtube.com/vi/LuG1KNowti4/0.jpg)](http://www.youtube.com/watch?v=LuG1KNowti4 "")
+
+Also you can check my blog about [Server Side Rendering](/blog/what-is-server-side-rendering).
+
+## Problems with Server side rendering.
+
+- Sends Request per page.
+- Heavy loads on server.
+- Full page reload.
+- Poor ui/ux experience when data changes frequently.
+
+Then what is the solution?
+
+### The solution is Client Side Rendering.
+
+## What is Client Side Rendering?
+
+Client-side rendering (CSR) means rendering pages directly in the browser using JavaScript. All logic, data fetching, templating and routing are handled on the client rather than the server.
+
+##### Let's see how Client-side rendering (CSR) works behind the scenes.
+
+- Browser first sends the request to server.
+- Server sends html css response to the client. But the html is almost empty. Because all the content is rendered by javascript.
+- Client starts parsing html and css.
+- After parsing,  the parser come across the javascript script tag at the bottom of the HTML.
+- Then it starts downloading the javascript where content lives. Parsing HTML and CSS is fast but not javascript.
+- A blank page is rendered to the user until the javascript is executed. Because html has no content on it.
+- After the javascript is executed, all the necessary content is rendered. Now the application becomes viewable and interactive.
+
+### This is a visual representation of the server side rendering process with react.
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xtcpljqdaf77u9r8jd6r.png)
+
+Let's see the pros and cons of Client-side rendering (CSR).
+
+## Client side rendering pros
+
+- Less Frequent server calls. Fetches all needed data at once.
+- Content loading is fast after the initial loading. Because all the needed the javascript file is present on the client.
+- Faster navigation to routes.
+- No page reload.
+- Great performance when data is changing frequently (dynamic web applications).
+- Less Pressure on Server. That's why server can serve the data quickly.
+
+## Client side rendering cons
+
+- Might take a huge amount of time when the javascript is heavy. If the application is big then the javascript will be big. Parsing Javascript is slower than HTML and CSS. But it can be optimized with code-splitting. If you want to learn more you can read it from [What is Code Splitting](/blog/what-is-code-splitting).
+- Blank page flickering on initial load. Because no content on the HTML.
+
+Client side rendering is not always good or bad. It depends on various factors. It is up to you now. Know what your application is and choose what is good for your application.
+
+### About me:
+
+#### Who am I?
+
+My name is Anjan. I am a full stack web developer from Dhaka, Bangladesh.
+
+#### What problems do I solve?
+
+I can create complex full stack web applications like social media application, blogging, e-commerce website and many more.
+
+#### Why do I do what I do?
+
+I love to solve problems and develop new ideas. I also enjoy sharing my knowledge to other people who are wiling to learn. That's why I write blog posts and run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+
+#### Think we should work together?
+
+##### Feel free to contact me
+
+Email: anjancules@gmail.com
+
+linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
+
+portofolio: [anjan](https://anjan.vercel.app/)
+
+Github: [@thatanjan](https://github.com/thatAnjan/)
+
+Instagram (personal): [@thatanjan](https://instagram.com/thatAnjan/)
+
+Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
+
+twitter: [@thatanjan](https://twitter.com/thatAnjan)
+
+#### About My channel:
+
+#### Why would you subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)?
+
+[ Cules Coding ](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) will teach you full stack development. I will teach you not only the basic concepts but also the advanced concepts that other youtube channels don't cover. I will also teach you Data Structures and Algorithms with abstraction and without Math. You will also find many tutorials about developer tools and technologies. I also explain advanced concepts and technologies with simplicity.
+
+#### So what are you waiting for?
+
+Subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+so that my friend you don't miss any of these cool stuffs.
+
