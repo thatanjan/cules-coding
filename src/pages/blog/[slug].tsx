@@ -72,7 +72,17 @@ const Blog = ({
 
 	return (
 		<>
-			<NextSeo {...{ title: title.charAt(0).toUpperCase() + title.slice(1) }} />
+			<NextSeo
+				{...{ title }}
+				openGraph={{
+					images: [
+						{
+							url: banner,
+							alt: altText,
+						},
+					],
+				}}
+			/>
 
 			<main className='row content__page'>
 				<article className='column large-full entry format-standard'>
