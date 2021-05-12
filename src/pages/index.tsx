@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo'
 import { GetStaticProps } from 'next'
 import matter from 'gray-matter'
 import fs from 'fs'
@@ -21,9 +22,28 @@ interface Props {
 	recentBlogs: Array<Blog>
 }
 
+const title = 'Cules Coding'
+
+const description =
+	'Cules coding is blogging site. People can read about programming, data structure, algorithms and many more'
+
 const Home = ({ topBlogs, recentBlogs }: Props) => {
 	return (
 		<>
+			<NextSeo
+				{...{ title, description }}
+				openGraph={{
+					title,
+					description,
+					images: [
+						{
+							url: '/cules-coding-banner.jpg',
+							alt: description,
+						},
+					],
+				}}
+			/>
+
 			<header className='listing-header'>
 				<h1 className='h2'>Top Blogs</h1>
 			</header>
