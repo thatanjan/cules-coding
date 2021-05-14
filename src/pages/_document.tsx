@@ -1,8 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-const description =
-	'Cules coding is blogging site. People can read about programming, data structure, algorithms and many more'
-
 class MyDocument extends Document {
 	render() {
 		return (
@@ -10,10 +7,6 @@ class MyDocument extends Document {
 				<Head>
 					<meta property='og:type' content='blog' />
 					<meta property='og:locale' content='en_US' />
-					<meta property='og:site_name' content='Cules Coding' />
-					<meta property='og:description' content={description} />
-
-					<meta property='og:image' content='/cules-coding-banner.jpg' />
 
 					<link
 						rel='apple-touch-icon'

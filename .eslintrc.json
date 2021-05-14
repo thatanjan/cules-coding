@@ -65,7 +65,8 @@
 		"no-param-reassign": [
 			"error",
 			{ "props": true, "ignorePropertyModificationsFor": ["state"] }
-		]
+		],
+		"arrow-body-style": "off"
 	},
 	"settings": {
 		"import/resolver": {
