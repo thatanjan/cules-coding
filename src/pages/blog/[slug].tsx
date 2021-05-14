@@ -73,8 +73,21 @@ const Blog = ({
 	return (
 		<>
 			<NextSeo
-				{...{ title }}
+				{...{
+					title,
+					description,
+					canonical: `https://www.culescoding.space/blog/${slug}`,
+				}}
 				openGraph={{
+					title,
+					description,
+					url: `https://www.culescoding.space/blog/${slug}`,
+					type: 'article',
+					article: {
+						publishedTime: createdAt,
+						authors: ['Anjan Shomodder'],
+						tags: [category],
+					},
 					images: [
 						{
 							url: banner,
