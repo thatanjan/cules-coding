@@ -86,6 +86,44 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	await Promise.all(updateCategoriesPromises)
 
+	const readAllBlogData = (category: string) => {
+		const allFiles = getFiles(['categories', category])
+
+		const allFilesParsedData = allFiles.map(fileName =>
+			matter(readFilesBySlug(['categories', category, fileName]))
+		)
+
+		return allFilesParsedData.map(({ data, content }, index) => ({
+			...(data as MatterData),
+			content,
+			readingTime: readingTime(content).text,
+			slug: allFiles[index].replace('.mdx', ''),
+		}))
+	}
+
+	const categoryNames = getFiles(['categories'])
+
+	type AllBlogData = ReturnType<typeof readAllBlogData>
+
+	let data: AllBlogData = [] as AllBlogData
+
+	categoryNames.forEach(category => {
+		data = data.concat(readAllBlogData(category))
+	})
+
+	const promises = data.map(blog => {
+		return BlogModel.updateOne(
+			{ slug: blog.slug },
+			{ $set: blog },
+			{
+				upsert: true,
+				setDefaultsOnInsert: true,
+			}
+		)
+	})
+
+	await Promise.all(promises)
+
 	const aggregate = BlogModel.aggregate()
 
 	const project = {
