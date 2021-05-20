@@ -27,7 +27,6 @@ const description =
 	'Cules coding is blogging site. People can read about programming, data structure, algorithms and many more'
 
 const Home = ({ topBlogs, recentBlogs }: Props) => {
-	console.log(topBlogs)
 	return (
 		<>
 			<NextSeo
@@ -98,6 +97,7 @@ export const getStaticProps: GetStaticProps = async () => {
 			content,
 			readingTime: readingTime(content).text,
 			slug: allFiles[index].replace('.mdx', ''),
+			category,
 		}))
 	}
 
