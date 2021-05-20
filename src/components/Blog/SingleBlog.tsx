@@ -16,6 +16,7 @@ const SinglePost = ({
 	description,
 	slug,
 	totalViews,
+	readingTime,
 }: Blog) => {
 	const slugLink = `/blog/${slug}`
 
@@ -51,12 +52,11 @@ const SinglePost = ({
 							<span className='entry__meta-cat'>
 								<Link href={`/category/${category}`}>{category}</Link>
 							</span>
-							<span className='entry__meta-date'>
-								<a href='#'>{createdAt}</a>
-							</span>
+							<span className='entry__meta-date'>{createdAt}</span>
 							<span className='entry__meta-blog__views'>
 								{data ? data.data.totalViews : totalViews} views
 							</span>
+							<span className='entry__meta-blog__reading_time'>{readingTime}</span>
 						</div>
 					</div>
 					<div className='entry__excerpt'>
