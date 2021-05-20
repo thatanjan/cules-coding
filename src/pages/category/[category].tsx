@@ -5,6 +5,7 @@ import getFiles from 'utils/getFiles'
 
 import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
+import CategoryModel from 'mongoose/Category'
 
 import { Blog } from 'interfaces/Blog'
 
@@ -15,7 +16,7 @@ interface Props {
 	blogs: Array<Blog>
 }
 
-const category = ({ category, blogs }: Props) => {
+const CategoryPage = ({ category, blogs }: Props) => {
 	return (
 		<>
 			<header className='listing-header'>
@@ -28,10 +29,12 @@ const category = ({ category, blogs }: Props) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const categories = getFiles('')
+	await connectDB()
 
-	const paths = categories.map(category => ({
-		params: { category },
+	const categories = await CategoryModel.find({}, 'slug')
+
+	const paths = categories.map(({ slug }) => ({
+		params: { category: slug },
 	}))
 
 	return {
@@ -68,4 +71,4 @@ export const getStaticProps: GetStaticProps = async ({
 	}
 }
 
-export default category
+export default CategoryPage

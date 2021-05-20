@@ -6,9 +6,16 @@ interface Props {
 	category: string
 	title: string
 	totalViews: number
+	readingTime: string
 }
 
-const BlogHeader = ({ title, createdAt, category, totalViews }: Props) => {
+const BlogHeader = ({
+	title,
+	createdAt,
+	category,
+	totalViews,
+	readingTime,
+}: Props) => {
 	return (
 		<div className='content__page-header entry__header'>
 			<h1 className='display-1 entry__title'>{title}</h1>
@@ -21,6 +28,7 @@ const BlogHeader = ({ title, createdAt, category, totalViews }: Props) => {
 					<Link href={`/category/${category}`}>{category}</Link>
 				</li>
 				<li className='views'>{totalViews} views</li>
+				<li className='reading_time'>{readingTime}</li>
 			</ul>
 		</div>
 	)

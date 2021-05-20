@@ -1,8 +1,7 @@
 import { NextSeo } from 'next-seo'
 import { GetStaticProps } from 'next'
 import matter from 'gray-matter'
-import fs from 'fs'
-import path from 'path'
+import readingTime from 'reading-time'
 
 import { Blog } from 'interfaces/Blog'
 import MatterData from 'interfaces/MatterData'
@@ -62,26 +61,21 @@ const Home = ({ topBlogs, recentBlogs }: Props) => {
 export const getStaticProps: GetStaticProps = async () => {
 	await connectDB()
 
-	// categories
+	const eachCategory = 'eachCategory'
+	const eachCategoryFileNames = getFiles([eachCategory])
 
-	const root = process.cwd()
-	const files = getFiles('../eachCategory')
-
-	const fileDatas = files.map(fileName =>
-		fs.readFileSync(path.join(root, 'src/blogs/eachCategory', fileName))
-	)
-
-	const matters = fileDatas
-		.map(fileData => matter(fileData).data)
-		.map((matter: MatterData, index) => ({
-			...matter,
-			slug: '/category/' + files[index].replace('.mdx', '').toLowerCase(),
+	const eachCategoryFilesMatterData = eachCategoryFileNames
+		.map(fileName => readFilesBySlug([eachCategory, fileName]))
+		.map(fileBuffer => matter(fileBuffer).data as MatterData)
+		.map((fileMatter, index) => ({
+			...fileMatter,
+			slug: eachCategoryFileNames[index].replace('.mdx', ''),
 		}))
 
-	const updateCategories = matters.map(matter =>
+	const updateCategoriesPromises = eachCategoryFilesMatterData.map(matterData =>
 		CategoryModel.updateOne(
-			{ title: matter.title },
-			{ $set: matter },
+			{ title: matterData.title },
+			{ $set: matterData },
 			{
 				upsert: true,
 				setDefaultsOnInsert: true,
@@ -89,39 +83,32 @@ export const getStaticProps: GetStaticProps = async () => {
 		)
 	)
 
-	await Promise.all(updateCategories)
+	await Promise.all(updateCategoriesPromises)
 
-	// allFiles
+	const readAllBlogData = (category: string) => {
+		const allFiles = getFiles(['categories', category])
 
-	const readOneCategoryFiles = (category: string) => {
-		const fileNames = getFiles(category)
-
-		const fileDatas = fileNames.map(fileName =>
-			readFilesBySlug(category, fileName)
+		const allFilesParsedData = allFiles.map(fileName =>
+			matter(readFilesBySlug(['categories', category, fileName]))
 		)
 
-		const matterDatas = fileDatas.map(fileData => matter(fileData))
-
-		const returnObject = matterDatas.map(({ content, data }, index) => {
-			const slug = fileNames[index].replace('.mdx', '').toLowerCase()
-
-			return {
-				content,
-				...data,
-				category,
-				slug,
-			}
-		})
-
-		return returnObject
+		return allFilesParsedData.map(({ data, content }, index) => ({
+			...(data as MatterData),
+			content,
+			readingTime: readingTime(content).text,
+			slug: allFiles[index].replace('.mdx', ''),
+			category,
+		}))
 	}
 
-	const categories = getFiles('')
+	const categoryNames = getFiles(['categories'])
 
-	let data = []
+	type AllBlogData = ReturnType<typeof readAllBlogData>
 
-	categories.forEach(category => {
-		data = data.concat(readOneCategoryFiles(category))
+	let data: AllBlogData = [] as AllBlogData
+
+	categoryNames.forEach(category => {
+		data = data.concat(readAllBlogData(category))
 	})
 
 	const promises = data.map(blog => {

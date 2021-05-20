@@ -10,6 +10,8 @@ import { NextSeo } from 'next-seo'
 import fetcher from 'utils/fetcher'
 import axios from 'utils/axios'
 
+import { Blog } from 'interfaces/Blog'
+
 import BlogHeaderMedia from 'components/Blog/BlogHeaderMedia'
 import BlogHeader from 'components/Blog/BlogHeader'
 import BlogNavigation from 'components/Blog/BlogNavigation'
@@ -18,21 +20,13 @@ import MDXComponents from 'components/Blog/MDXComponents'
 import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
 
-interface Props {
+interface Props extends Blog {
 	mdxSource: MdxRemote.Source
-	title: string
-	category: string
-	createdAt: string
 	prevPost: string
 	nextPost: string
-	description: string
-	banner: string
-	altText: string
-	totalViews: number
-	slug: string
 }
 
-const Blog = ({
+const BlogPage = ({
 	slug,
 	mdxSource,
 	title,
@@ -44,6 +38,7 @@ const Blog = ({
 	altText,
 	description,
 	totalViews,
+	readingTime,
 }: Props) => {
 	const content = hydrate(mdxSource, {
 		components: {
@@ -107,6 +102,7 @@ const Blog = ({
 							title,
 							createdAt,
 							category,
+							readingTime,
 						}}
 					/>
 
@@ -179,4 +175,4 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 	}
 }
 
-export default Blog
+export default BlogPage

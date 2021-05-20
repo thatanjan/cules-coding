@@ -7,4 +7,5 @@ export interface Blog {
 	category: string
 	slug: string
 	totalViews: string
+	readingTime: string
 }
