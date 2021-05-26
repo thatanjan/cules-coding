@@ -204,21 +204,24 @@ We need to extend the eslint config with prettier. So add `prettier` to `extends
 
 To turn any rule `off` or `on`, add the rules to the rules array. You can find the docs from [here](https://eslint.org/docs/user-guide/configuring/rules). Please watch my video to understand it well.
 
+- allow jsx on other extensions.
+
+```json
+	{
+		"rules": [
+			"react/jsx-filename-extension": [
+					1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+			]
+		]
+	}
+```
+
+
 - File extension on import statement.
 
 ```json
 	{
 		"rules": [
-			"import/extensions": [
-					"error",
-					"always",
-					{
-						"js": "never",
-						"jsx": "never",
-						"ts": "never",
-						"tsx": "never"
-					}
-				],
 			"react/jsx-filename-extension": [
 					1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
 			]
