@@ -220,13 +220,20 @@ To turn any rule `off` or `on`, add the rules to the rules array. You can find t
 - File extension on import statement.
 
 ```json
-	{
-		"rules": [
-			"react/jsx-filename-extension": [
-					1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-			]
+{
+	"rules": [
+			"import/extensions": [
+				"error",
+				"always",
+				{
+					"js": "never",
+					"jsx": "never",
+					"ts": "never",
+					"tsx": "never"
+				}
+			],
 		]
-	}
+}
 ```
 
 - Import unresolved error for absolute import(if you are using).
