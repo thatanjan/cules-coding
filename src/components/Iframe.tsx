@@ -1,14 +1,14 @@
 import React from 'react'
 
 interface Props {
-	src: string
+	videoID: string
 	title: string
 }
 
-const Iframe = ({ src, title }: Props) => {
+const Iframe = ({ videoID, title }: Props) => {
 	return (
 		<iframe
-			{...{ title, src }}
+			{...{ title, src: `https://www.youtube.com/embed/${videoID}` }}
 			frameBorder='0'
 			allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
 			allowFullScreen
