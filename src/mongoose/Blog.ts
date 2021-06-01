@@ -32,6 +32,7 @@ const schema = new Schema({
 	banner: { type: String, required: true },
 	altText: { type: String, required: true, text: true },
 	readingTime: { type: String, required: true },
+	customID: { type: String, required: true },
 })
 
 export default mongoose.models.blog || model('blog', schema)

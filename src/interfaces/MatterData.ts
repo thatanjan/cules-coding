@@ -3,4 +3,5 @@ export default interface MatterData {
 	banner: string
 	altText: string
 	title: string
+	customID: string
 }
