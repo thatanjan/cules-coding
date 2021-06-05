@@ -143,9 +143,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
 	const { _id: _, __v: __, content, createdAt, ...neededData } = blog.toObject()
 
-	const pureContent = content.replace('\n', '')
-
-	const mdxSource = await renderToString(pureContent, {
+	const mdxSource = await renderToString(content, {
 		components: MDXComponents,
 	})
 
