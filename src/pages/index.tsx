@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	const updateCategoriesPromises = eachCategoryFilesMatterData.map(matterData =>
 		CategoryModel.updateOne(
-			{ title: matterData.title },
+			{ customID: matterData.customID },
 			{ $set: matterData },
 			{
 				upsert: true,
@@ -113,7 +113,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	const promises = data.map(blog => {
 		return BlogModel.updateOne(
-			{ slug: blog.slug },
+			{ customID: blog.customID },
 			{ $set: blog },
 			{
 				upsert: true,
