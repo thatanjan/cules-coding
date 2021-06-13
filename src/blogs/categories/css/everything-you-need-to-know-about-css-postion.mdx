@@ -1,0 +1,203 @@
+---
+title: Everything you need to know about css position
+description: Css position is a property to position a element to the viewport.
+banner: /blogs/css/everything-you-need-to-know-about-css-postion/banner.png
+altText: Css position is a property to position a element to the viewport.
+customID: 16c99584-f6c9-47c3-9cb0-26c757eb1219
+---
+
+To apply css postion you need to use `position` property. 
+4 property to manipulate the position.
+  - top
+  - bottom
+  - left
+  - right
+
+There are 5 types of css position.
+
+## Static
+
+Static position is the default behaviour. It is always positioned according to the normal flow of the page.
+
+Note: header should be `static`. Sorry my mistake.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/psr8y0jwh0ezc9jn1fqu.png)
+
+```html
+  <h1>static</h1>
+  <div class="outer__parent">outer parent
+    <div class="parent">parent
+	 <div class="children">children</div>
+    </div>
+  </div>
+```
+
+```css
+  * {
+    color: #fff;
+  }
+  h1 {
+    color: #000;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .outer__parent {
+    background: #00f;
+    width: 50vw;
+    height: 50vh;
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+  .parent {
+    background: #f00;
+    height: 30vh;
+    margin-top: 1rem;
+  }
+  .children {
+    background: #0ff;
+    height: 10vh;
+    color: #000;
+    margin-top: 1rem;
+  }
+
+```
+
+## Relative
+Relative position is almost same as Static position. But you can change the position from its normal position with 4properties mentioned above. Its normal position will be blanked.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/o5uv9dk3ztwsa3n599uf.png)
+
+```css
+  .children {
+    background: #0ff;
+    height: 10vh;
+    color: #000;
+    margin-top: 1rem;
+    position: relative;
+    top: 20px;
+    left: 300px;
+  }
+
+```
+
+## Absolute
+Unlike `relative` position, it will be positioned to relative to its nearest relative parent. If it doesn't find any, then it will be positioned to document body. It will be removed from the flow of the webpage. It will be also be scrolled with other elements.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7q9svwa2ck13aarx1xmv.png)
+
+ without relative parent
+```css
+  .children {
+    background: #0ff;
+    height: 10vh;
+    color: #000;
+    margin-top: 1rem;
+    position: absolute;
+    top: 20px;
+    left: 300px;
+  }
+
+```
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j6h8jkwhebcatnvlsynl.png)
+
+with relative parent
+```css 
+  .parent {
+    background: #f00;
+    height: 30vh;
+    margin-top: 1rem;
+    position: relative;
+  }
+  .children {
+    background: #0ff;
+    height: 10vh;
+    color: #000;
+    margin-top: 1rem;
+    position: absolute;
+    top: 20px;
+    left: 300px;
+  }
+
+```
+
+## Fixed
+`fixed` is similar to `absolute` with some difference. It will be positioned relative to document body. It will stay fixed inside viewport and will never be scrolled.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b98l6qb5encu9sh3fekg.GIF)
+
+```css
+  .children {
+    background: #0ff;
+    height: 10vh;
+    color: #000;
+    margin-top: 1rem;
+    position: fixed;
+    top: 20px;
+    left: 15%;
+  }
+```
+
+## Sticky
+A sticky element toggles between `relative` and `fixed`. It will be stayed at `relative` first. When it will be scrolled down or up, it will met an offset(the position that you will give). Then it turn it to fix. If the parent is passed from the viewport it will also be scrolled. If the parent is the document body. Then it will always stays fixed.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jrvfpmo82va6j68t16sn.GIF)t
+
+```css
+  .children {
+  background: #0ff;
+  height: 10vh;
+  color: #000;
+  margin-top: 1rem;
+  position: sticky;
+  top: 20px;
+}
+
+```
+
+This is all you need to know about css postion. If you have any question feel free to DM me on any social media. Feel free to follow me on instagram Linkedin. I post content about productivity, motivation, tips and so on.  If you like the way I teach Please visit [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1).  
+so Stay safe  and good bye.
+
+### About me:
+
+#### Who am I?
+
+My name is Anjan. I am a full stack web developer from Dhaka, Bangladesh.
+
+#### What problems do I solve?
+
+I can create complex full stack web applications like social media application, blogging, e-commerce website and many more.
+
+#### Why do I do what I do?
+
+I love to solve problems and develop new ideas. I also enjoy sharing my knowledge to other people who are wiling to learn. That's why I write blog posts and run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+
+#### Think we should work together?
+
+##### Feel free to contact me
+
+Email: anjancules@gmail.com
+
+linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
+
+portofolio: [anjan](https://anjan.vercel.app/)
+
+Github: [@thatanjan](https://github.com/thatAnjan/)
+
+Instagram (personal): [@thatanjan](https://instagram.com/thatAnjan/)
+
+Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
+
+twitter: [@thatanjan](https://twitter.com/thatAnjan)
+
+#### About My channel:
+
+#### Why would you subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)?
+
+[ Cules Coding ](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) will teach you full stack development. I will teach you not only the basic concepts but also the advanced concepts that other youtube channels don't cover. I will also teach you Data Structures and Algorithms with abstraction and without Math. You will also find many tutorials about developer tools and technologies. I also explain advanced concepts and technologies with simplicity.
+
+#### So what are you waiting for?
+
+Subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) so that my friend you don't miss any of these cool stuffs.
+
+
