@@ -22,6 +22,8 @@ export interface Props {
 }
 
 const MasnoryCategories = ({ categories }: Props) => {
+	const redirectLink = (slug: string) => `category/${slug}`
+
 	return (
 		<div className='masonry-wrap'>
 			<div className='masonry'>
@@ -38,7 +40,7 @@ const MasnoryCategories = ({ categories }: Props) => {
 								key={nanoid()}
 							>
 								<div className='entry__thumb'>
-									<Link href={slug}>
+									<Link href={redirectLink(slug)}>
 										<a className='entry__thumb-link'>
 											<NextImage
 												layout='responsive'
@@ -55,7 +57,7 @@ const MasnoryCategories = ({ categories }: Props) => {
 								<div className='entry__text'>
 									<div className='entry__header'>
 										<h2 className='entry__title'>
-											<Link href={slug}>{title}</Link>
+											<Link href={redirectLink(slug)}>{title}</Link>
 										</h2>
 									</div>
 									<div className='entry__excerpt'>
