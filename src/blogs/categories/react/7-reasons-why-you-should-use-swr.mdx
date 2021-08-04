@@ -1,0 +1,147 @@
+---
+title: 7 reasons why you should use SWR
+description: SWR is a React Hooks library for remote data fetching.  The name “**SWR**” is derived from `stale-while-revalidate`, a cache invalidation strategy popularized by HTTP RFC 5861.  **SWR** first returns the data from cache (stale), then sends the fetch request (revalidate), and finally comes with the up-to-date data again.
+banner: /blogs/react/7-reasons-why-you-should-use-swr/banner.webp
+altText: SWR is a React Hooks library for remote data fetching.  The name “SWR” is derived from stale-while-revalidate, a cache invalidation strategy popularized by HTTP RFC 5861.
+customID: d2013b7d-9a3e-467a-8c03-2c177c5d55e9
+---
+
+# Why should you use SWR?
+
+
+Let's see what problems SWR solves.
+
+- Auto Revalidation: Suppose, you have opened up you todo application on two tabs. Normally, In one tab if you add a new todo then you won't see the update on the other tab. SWR really solves this problem out of the box by auto re-validating. When you change your focus from the tab and then refocus again, swr will make sure the data is valid or up to date. This done through sending another request to the API.
+
+- Data Mutation: You can tell swr to re-validate your data with mutation. This is a example from SWR documentation. It shows how to automatically refetch the login info (e.g. inside `<Profile/>`) when the user clicks the “Logout” button.
+
+```javascript
+import useSWR, { mutate } from 'swr'
+
+function App () {
+  return (
+    <div>
+      <Profile />
+      <button onClick={() => {
+        // set the cookie as expired
+        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+
+        // tell all SWRs with this key to revalidate
+        mutate('/api/user')
+      }}>
+        Logout
+      </button>
+    </div>
+  )
+}
+```
+
+- Real time experience: Suppose you want to create a todo app where you want to add new todo. But every time you add new item you have to refresh the page to see the changes. But with SWR `mutation` you can mutate the request. It simply means, when you add new data, it will automatically fetch another request and will update the ui.
+
+- Request deduplication: Take a look at this code.
+
+```javascript
+function useUser() {
+	return useSWR('/api/user', fetcher)
+}
+
+function Avatar() {
+	const { data, error } = useUser()
+
+	if (error) return <Error />
+	if (!data) return <Spinner />
+
+	return <img src={data.avatar_url} />
+}
+
+function App() {
+	return (
+		<>
+			<Avatar />
+			<Avatar />
+			<Avatar />
+			<Avatar />
+			<Avatar />
+		</>
+	)
+}
+```
+
+Normally it will send same 3 request to the API. That is totally unnecessary. It will take more data and will cause unneccessary rendering. Swr solves this by request deduplication. It will only send one request because they are requested at the same time. The default de-duplicating interval is 2 seconds. But you can change from the config. So it won't cause unnecessary rendering or take more data. It makes our user experience better specifically for mobile devices.
+
+- Can be use with Both rest and graphql: SWR does not fetch the data. The fetcher function does. And that's allow us to use both REST and Graphql api.
+
+- Built-in caching support: When you first fetch data from an api endpoint it caches the response data. If you send a request to the same api then it will first give you the cached data while fetching the up to date data. So that you don't have to show loading state to the user.
+
+Reusable code: SWR is itself a hook. And you can create custom hook from hooks. It allow us to write DRY(don't repeat yourself) code. Suppose you want to fetch data from `/users` endpoint. So every time you want to fetch the data, you have to pass the fetcher function and options again and again. But if you create a custom hook then you don't have to pass anything again.
+
+```javascript
+function App() {
+	const { data, error, isValidating } = useSWR('/users', fetcher)
+	return <>.... </>
+}
+
+// instead
+function useUser() {
+	return useSWR('/users', fetcher)
+}
+
+function App() {
+	const { data, error, isValidating } = useUser()
+	return <>.... </>
+}
+```
+
+- Super flexible: You can configure every settings of SWR if you want. You can also set a global configuration. Read more from [swr options](https://swr.vercel.app/docs/options)
+
+And these are the problems that SWR solves. I also some other features.
+
+- Built in Typescript support.
+- Fast, lightweight.
+- Tree shaking available.
+
+These are the reasons why I love SWR and you should try it too.
+
+### About me:
+
+#### Who am I?
+
+My name is Anjan. I am a full stack web developer from Dhaka, Bangladesh.
+
+#### What problems do I solve?
+
+I can create complex full stack web applications like social media application, blogging, e-commerce website and many more.
+
+#### Why do I do what I do?
+
+I love to solve problems and develop new ideas. I also enjoy sharing my knowledge to other people who are wiling to learn. That's why I write blog posts and run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+
+#### Think we should work together?
+
+##### Feel free to contact me
+
+Email: thatanjan@gmail.com
+
+linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
+
+portofolio: [anjan](https://anjan.vercel.app/)
+
+Github: [@thatanjan](https://github.com/thatAnjan/)
+
+Instagram (personal): [@thatanjan](https://instagram.com/thatAnjan/)
+
+Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
+
+twitter: [@thatanjan](https://twitter.com/thatAnjan)
+
+#### About My channel:
+
+#### Why would you subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)?
+
+[ Cules Coding ](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) will teach you full stack development. I will teach you not only the basic concepts but also the advanced concepts that other youtube channels don't cover. I will also teach you Data Structures and Algorithms with abstraction and without Math. You will also find many tutorials about developer tools and technologies. I also explain advanced concepts and technologies with simplicity.
+
+#### So what are you waiting for?
+
+Subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) so that my friend you don't miss any of these cool stuffs.
+
+
