@@ -38,6 +38,7 @@ const SinglePost = ({
 								src={banner}
 								alt={altText}
 								objectFit='cover'
+								quality={20}
 							/>
 						</a>
 					</Link>
