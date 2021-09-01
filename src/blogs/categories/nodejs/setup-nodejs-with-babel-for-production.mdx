@@ -6,15 +6,22 @@ altText: Nodejs and Babel banner
 customID: 60b5a94217f7bad8efaad4d8
 ---
 
+
 The features that this project will have.
 
 - Absolute import path
 - Older nodeJs version compatibility
-- Automatic restart the server after any changes on development environment.
+- Automatic restart of the server after any changes in the development environment.
 
-Alright enough talk let's get started.
+I have made a video about this topic. Watch the video to grasp the concepts.
 
-First I will create a folder called nodejs-setup. Then inside the folder I will initialize the package.json
+<Iframe videoID="7vGk8vFDGfA" title="Setup NodeJS with babel for production"  /> 
+
+If you like the video, Subscribe to the channel.
+
+Alright. Enough Talk. Let's get started.
+
+First, I will create a folder called nodejs-setup. Then inside the folder, I will initialize the package.json
 
 ```bash
 mkdir nodejs-setup
@@ -22,13 +29,13 @@ cd nodejs-setup
 yarn init -y
 ```
 
-Now we need to install some package. Let's install our only dependency.
+Now we need to install some packages. Let's install our only dependency.
 
 ```bash
 yarn add express
 ```
 
-Let's install some devdependency.
+Let's install some dev dependency.
 
 ```bash
 yarn add --dev @babel/cli @babel/core @babel/node @babel/preset-env babel-plugin-module-resolver nodemon
@@ -36,8 +43,8 @@ yarn add --dev @babel/cli @babel/core @babel/node @babel/preset-env babel-plugin
 
 Let's explore the devDependencies:
 
-- @babel/core: Babel is a transcompiler that compiles js code based on the given configuration. The babel does not do anything. Plugins does.
-- babel-plugin-module-resolver: This plugin allows us to write absolute path instead of relative path. Let's see a demo.
+- @babel/core: Babel is a transcompiler that compiles js code based on the given configuration. The babel does not do anything. Plugins do.
+- babel-plugin-module-resolver: This plugin allows us to write an absolute path instead of a relative path. Let's see a demo.
 
 ```javascript
 // Use Absolute path:
@@ -46,12 +53,12 @@ import MyUtilFn from 'utils/MyUtilFn'
 import MyUtilFn from '../../../../utils/MyUtilFn'
 ```
 
-- @babel/preset-env: Preset is a combination of bunch of plugins. This preset will allow us to use next generation javascript code. Then it will be compiled down to browser and nodejs compatible code. It also add many features.
+- @babel/preset-env: Preset is a combination of a bunch of plugins. This preset will allow us to use next-generation javascript code. Then it will be compiled down to browser and nodejs compatible code. It also adds many features.
 
-- nodemon: nodemon is tool to restart server automatically whenver we change out source code so that we don't have to manually do it.
+- nodemon: nodemon is a tool to restart the server automatically whenever we change our source code so that we don't have to do it manually.
 
 let's write some code.
-I will create a `src` folder where I will store all of my source file. Inside src create a file called `index.js`
+I will create an `src` folder where I will store all of my source files. Inside src create a file called `index.js`
 
 ```bash
 mkdir src
@@ -77,7 +84,7 @@ app.listen(port, () => console.log(`Server is running on ${port}`))
 Let's write some scripts in our package.json file.
 
 ```json
-// package.json
+// packagejson
 
 {
 	"name": "nodejs-setup",
@@ -100,7 +107,7 @@ Let's write some scripts in our package.json file.
 
 scripts:
 
-```json
+```JSON
 {
 	"scripts": {
 		"dev": "nodemon --exec babel-node src/index.js",
@@ -112,9 +119,9 @@ scripts:
 
 Let's explore the scripts:
 
-- dev: This script will be used to start development server. `nodemon` will automatically start server when our code changes. But even before that `nodemon` will execute `babel-node` and will compile the `src/index.js` file.
-- build: This script will be used for `production`. `babel` will compile our code from `src` folder to the build directory. `babel` will automatically create build directory for you if it does not exist.
-- start: I will first run our build script. Then it will start our node server from build directory.
+- dev: This script will be used to start the development server. `nodemon` will automatically start the server when our code changes. But even before that `nodemon` will execute `babel-node` and will compile the `src/index.js` file.
+- build: This script will be used for `production`. `babel` will compile our code from the `src` folder to the build directory. `babel` will automatically create a build directory for you if it does not exist.
+- start: I will first run our build script. Then it will start our node server from the build directory.
 
 If I show you the compiled code:
 
@@ -137,48 +144,82 @@ app.listen(port, function () {
 })
 ```
 
-And that's how you can setup a nodejs project for `development` and `production`.
+And that's how you can set up a nodejs project for `development` and `production`.
 
-### About me:
 
-#### Who am I?
+## Shameless Plug
 
-My name is Anjan. I am a full stack web developer from Dhaka, Bangladesh.
+I have already made a Redux toolkit crash course on my youtube channel. Redux toolkit is a tool to set up and wok with  redux easily
 
-#### What problems do I solve?
 
-I can create complex full stack web applications like social media application, blogging, e-commerce website and many more.
+<Iframe videoID="rSa8sUC8m_4" />
+
+I have simplified everything for you by building a simple to-do application.
+
+You can demo the application by going to [ this link ](https://redux-tookit-crash-course-demo.vercel.app/). Don't forget to like, share and subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1).
+
+![project demo](https://raw.githubusercontent.com/thatanjan/redux-tookit-crash-course-demo/client/public/Screenshot.png)
+
+Please like and subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1). It motivates me to create more content like this.
+
+If you have any questions, please comment down below.
+You can reach out to me on social media as @thatanjan. 
+Stray safe. Goodbye.
+
+## About me
 
 #### Why do I do what I do?
 
-I love to solve problems and develop new ideas. I also enjoy sharing my knowledge to other people who are wiling to learn. That's why I wirte blog posts and run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+The Internet has revolutionized our life. I want to make the internet more beautiful and useful.
 
-#### Think we should work together?
+#### What do I do?
 
-##### Feel free to contact me
+I ended up being a full-stack software engineer.
 
-Email: anjancules@gmail.com
+#### What can I do?
+
+I can develop complex full-stack web applications like social media applications or e-commerce sites.
+
+#### What have I done?
+
+I have developed a social media application called [Confession](https://con-fession.vercel.app/). The goal of this application is to help people overcome their imposter syndrome by sharing our failure stories.
+I also love to share my knowledge. So, I run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) where I teach people full-stack web development, data structure algorithms, and many more. So, Subscribe to Cules Coding so that you don't miss the cool stuff.
+
+## Want to work with me?
+
+I am looking for a team where I can show my ambition and passion and produce great value for them.
+Contact me through my email or any social media as @thatanjan. I would be happy to have a touch with you.
+
+## Contacts
+
+Email: thatanjan@gmail.com
 
 linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
 
-portofolio: [anjan](https://anjan.vercel.app/)
+portfolio: [anjan](https://thatanjan.me/)
 
 Github: [@thatanjan](https://github.com/thatAnjan/)
 
-Instagram (perosnal): [@thatanjan](https://instagram.com/thatAnjan/)
+Instagram (personal): [@thatanjan](https://instagram.com/thatAnjan/)
 
 Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
 
 twitter: [@thatanjan](https://twitter.com/thatAnjan)
 
-#### About My channel:
+Blogs you might want to read:
+- [ Eslint, prettier setup with TypeScript and react ](/blog/setup-eslint-prettier-with-typescript-and-react)
+- [What is Client-Side Rendering?](/blog/what-is-client-side-rendering)
+- [What is Server Side Rendering?](/blog/what-is-server-side-rendering)
+- [Everything you need to know about tree data structure](/blog/everything-you-need-to-know-about-tree-data-structure)
+- [13 reasons why you should use Nextjs](/blog/13-reasons-why-you-should-use-Nextjs)
 
-#### Why would you subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)?
+Videos might you might want to watch:
 
-[ Cules Coding ](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) will teach you full stack development. I will teach you not only the basic concepts but also the advanced concepts that other youtube channels don't cover. I will also teach you Data Structures and Algorithms with abstraction and without Math. You will also find many turoials about developer tools and technologies. I also explain advanced concepts and technologies with simplicity.
 
-#### So what are you waiting for?
-
-Subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) so that my friend you don't miss any of these cool stuffs.
-
+<Iframe videoID="NDyjI7hd4uE" /> 
+<Iframe videoID="T-n0mrssDiw" />   
+<Iframe videoID="Be_C_Op8Tx8" />
+<Iframe videoID="ag3je1g0BN8" />
+<Iframe videoID="B3HX2rWyKlU" />
+<Iframe videoID="C6VytdSDNSk" />
 
