@@ -6,12 +6,11 @@ altText: Eslint is a linter which enforces developer to write good and consisten
 customID: 60b5a9986591ce3613a599f5
 ---
 
-
-In this blog I will teach you, how to setup eslint, prettier with TypeScript and React. Even if you are not using TypeScript or react you can still follow along.
+In this blog, I will teach you, how to set up eslint, prettier with TypeScript and React. Even if you are not using TypeScript or react you can still follow along.
 
 I have already created a video about it on my youtube channel. Check that out for more details.
 <Iframe title='Setup Eslint, Prettier with TypeScript and React' videoID="T-n0mrssDiw"  /> 
-If yout like this video, Please like share and Subscribe to my channel.
+If you like this video, please like share, and Subscribe to my channel.
 
 For react, I will use Nextjs. Again the principles are the same. You can also use it with create-react-app.
 
@@ -28,9 +27,9 @@ yarn create-next-app
 
 Then put your app name. I am going to call it `eslint-prettier-typescript-react`
 
-After that it will set everything for you.
+After that, it will set everything for you.
 
-Now change directory to the folder.
+Now change the directory to the folder.
 
 ```bash
 cd eslint-prettier-typescript-react
@@ -63,7 +62,7 @@ Absolute Import vs Relative Import
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/400gedk393xdn0h631ql.png)
 
-Inside `tsconfig.json` file. create a new property `baseUrl` and set the import point. I will create a `src` folder and put all source code inside that.
+Inside the `tsconfig.json` file. create a new property `baseUrl` and set the import point. I will create an `src` folder and put all source code inside that.
 
 So add this extra code: 
 ```json
@@ -91,7 +90,7 @@ So add this extra code:
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fcm9x4buujeufr1skj33.png)
 
-- Choose your framework if you are using. In my case `react`
+- Choose your framework if you are using it. In my case `react`
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/aw6b38hxdgjgrqp1d0jt.png)
 
@@ -107,7 +106,7 @@ So add this extra code:
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nkrsxzg3l71ah8p1vea9.png)
 
-- I would liket to use Airbnb style guide. You can choose any style guide. But Airbnb is good and I recommend it.
+- I would like to use the Airbnb style guide. You can choose any style guide. But Airbnb is good and I recommend it.
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jk8bfygud485tck9hh3c.png)
 
@@ -115,12 +114,11 @@ So add this extra code:
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ntnjtfvmpvnwbbyffp64.png)
 
-- It will ask you to install some packages to Install with `npm`. If you want
-    to use `npm` then go ahead. But I will use yarn. 
+- It will ask you to install some packages to Install with `npm`. If you want to use `npm` then go ahead. But I will use yarn. 
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q8u06509o0ztw7h3mlag.png)
 
-So For those of who are using yarn like me, You can copy and paste package names and install them.
+So For those who are using yarn like me, You can copy and paste package names and install them.
 
 ##### With typescript: 
 
@@ -133,7 +131,7 @@ yarn add --dev eslint-plugin-react @typescript-eslint/eslint-plugin@latest eslin
 ```bash
 yarn add --dev eslint-plugin-react  eslint-config-airbnb@latest eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react-hooks  
 ```
-It will create a eslint config file `.eslintrc`. It will be a hidden file.
+It will create an eslint config file `.eslintrc`. It will be a hidden file.
 
 
 ### Prettier Setup
@@ -144,11 +142,11 @@ yarn add --dev eslint-config-prettier prettier
 ```
 
 - Create a prettier config file.
-```bash 
+```ash 
 touch .prettierrc.json
 ```
 
-Now you can put your config in `.prettierrc.json` file in json format. You can find the options from [here](https://prettier.io/docs/en/configuration.html)
+Now you can put your config in the `.prettierrc.json` file in json format. You can find the options from [here](https://prettier.io/docs/en/configuration.html)
 
 My basic config for prettier.
 ```json
@@ -162,7 +160,7 @@ My basic config for prettier.
 	}
 ```
 
-Now we are done with prettier. Let's setup eslint config.
+Now we are done with prettier. Let's set up eslint config.
 
 ### ESlint config setup
 
@@ -257,47 +255,52 @@ To turn any rule `off` or `on`, add the rules to the rules array. You can find t
 
 You can find my Eslint config from [here](https://gist.github.com/thatanjan/c3c2622e0360ecacb7aba9c7418023a1)
 
-So, that's it for today. I hope I have covered everything that you need to know about how to setup.
+So, that's it for today. I hope I have covered everything that you need to know about how to set up.
 
 ## Shameless Plug
-I have published a redux-tookit crash course on my youtube channel. Redux-tookit is a tool to setup redux with react. It abstracts away all the complicated code. You can use redux easier than ever. And you will learn about redux toolkit by creating a simple todo application.
 
-<Iframe title='Build the front End' videoID="rSa8sUC8m_4"  /> 
+I have made a video about how to build a carousel postcard with React, Material-UI, and Swiper.js.
+If you are interested you can check the video.
 
-## Project Demo
-You can demo the project from [ here ](https://redux-tookit-crash-course-demo.vercel.app/)
-![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q51topykw3wpv3y0armk.png)
+<Iframe videoID="NDyjI7hd4uE "  /> 
 
+You can also demo the application form [here](https://insta-carousel-demo.vercel.app/)
 
-[ View the Project code.](https://github.com/thatanjan/redux-toolkit-crash-course)
+![Screenshot of Insta Carousel](https://raw.githubusercontent.com/thatanjan/insta-carousel-yt/development/public/Screenshot%20of%20the%20App.png)
 
-So like, share, and subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1). It takes a lot of effort to build those videos.
+Please like and subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1). It motivates me to create more content like this.
 
-If you want to reach out to me, You can follow me on any social media as @thatanjan. Until then stay safe and good bye.
-
-### About me:
-
-#### Who am I?
-
-My name is Anjan. I am a full stack web developer from Dhaka, Bangladesh.
-
-#### What problems do I solve?
-
-I can create complex full stack web applications like social media application, blogging, e-commerce website and many more.
+## About me
 
 #### Why do I do what I do?
 
-I love to solve problems and develop new ideas. I also enjoy sharing my knowledge to other people who are wiling to learn. That's why I write blog posts and run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+The Internet has revolutionized our life. I want to make the internet more beautiful and useful.
 
-#### Think we should work together?
+#### What do I do?
 
-##### Feel free to contact me
+I ended up being a full-stack software engineer.
+
+#### What can I do?
+
+I can develop complex full-stack web applications like social media applications or e-commerce sites.
+
+#### What have I done?
+
+I have developed a social media application called [Confession](https://con-fession.vercel.app/). The goal of this application is to help people overcome their imposter syndrome by sharing our failure stories.
+I also love to share my knowledge. So, I run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) where I teach people full-stack web development, data structure algorithms, and many more. So, Subscribe to Cules Coding so that you don't miss the cool stuff.
+
+## Want to work with me?
+
+I am looking for a team where I can show my ambition and passion and produce great value for them.
+Contact me through my email or any social media as @thatanjan. I would be happy to have a touch with you.
+
+## Contacts
 
 Email: thatanjan@gmail.com
 
 linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
 
-portofolio: [anjan](https://anjan.vercel.app/)
+portfolio: [anjan](https://thatanjan.me/)
 
 Github: [@thatanjan](https://github.com/thatAnjan/)
 
@@ -307,14 +310,17 @@ Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
 
 twitter: [@thatanjan](https://twitter.com/thatAnjan)
 
-#### About My channel:
+Blogs you might want to read:
+- [ Eslint, prettier setup with TypeScript and react ](/blog/setup-eslint-prettier-with-typescript-and-react)
+- [What is Client-Side Rendering?](/blog/what-is-client-side-rendering)
+- [What is Server Side Rendering?](/blog/what-is-server-side-rendering)
+- [Everything you need to know about tree data structure](/blog/everything-you-need-to-know-about-tree-data-structure)
+- [13 reasons why you should use Nextjs](/blog/13-reasons-why-you-should-use-Nextjs)
 
-#### Why would you subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)?
-
-[ Cules Coding ](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) will teach you full stack development. I will teach you not only the basic concepts but also the advanced concepts that other youtube channels don't cover. I will also teach you Data Structures and Algorithms with abstraction and without Math. You will also find many tutorials about developer tools and technologies. I also explain advanced concepts and technologies with simplicity.
-
-#### So what are you waiting for?
-
-Subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) so that my friend you don't miss any of these cool stuffs.
-
-
+Videos might you might want to watch:
+<Iframe videoID="NDyjI7hd4uE" /> 
+<Iframe videoID="T-n0mrssDiw" />   
+<Iframe videoID="Be_C_Op8Tx8" />
+<Iframe videoID="ag3je1g0BN8" />
+<Iframe videoID="B3HX2rWyKlU" />
+<Iframe videoID="C6VytdSDNSk" />
