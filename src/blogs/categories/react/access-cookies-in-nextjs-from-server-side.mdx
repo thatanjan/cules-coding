@@ -6,7 +6,7 @@ banner: /blogs/react/access-cookies-in-nextjs-from-server-side/banner.png
 customID: 60b5a98b7c422d1652cc1307
 ---
 
-If you want to set some authentication system like jwt, then you have to store your token inside client(browser). You store them either in localStorage or as a cookie. But when you perform any kind of server side operation, then you don't have access to the client. So you don't have access the cookies from server side. Then what is the solution?
+If you want to set an authentication system like jwt, then you have to store your token inside the client(browser). You store them either in localStorage or as a cookie. But when you perform any kind of server-side operation, then you don't have access to the client. So you can't access the cookies from the server-side. Then what is the solution?
 
 ### The solution.
 ```typescript
@@ -22,12 +22,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 ```
 
 I have created a YouTube video about this. You can check that out. If you like this video, please like and subscribe to my channel.
-[![](http://img.youtube.com/vi/RECwLOZdiR4/0.jpg)](http://www.youtube.com/watch?v=RECwLOZdiR4 " Nextjs Cookies from server side")
+
+<Iframe videoID="RECwLOZdiR4" title="Access cookies in NextJS from server side" /> 
 
 
-You can access the cookies from request object inside `getServerSideProps` data fetching method. You can learn about data fetching methods of nextjs from here
+You can access the cookies from the request object inside the `getServerSideProps` data fetching method. You can learn about data fetching methods of nextjs from [ here ](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering).
 
-`getServerSideProps` method takes context as a parameter. Context is a giant object. Request and Response object is inside the context object.
+`getServerSideProps` method takes context as a parameter. A context is a giant object. Request and Response object is inside the context object.
 
 ```typescript
 const { req, res } = ctx
@@ -39,51 +40,74 @@ In the `request` object you'll find a `cookies` object.
 const { cookies } = req
 ```
 
-All your cookies will be inside `cookies` object.
+All your cookies will be inside the `cookies` object.
 
-So that's it. If you have any question, put them on the comment section. And also you can connect to me on any social media as @thatanjan.  
+So that's it for this blog.
 
+## Shameless Plug
 
-### About me:
+I have made a video about how to build a carousel postcard with React, Material-UI, and Swiper.js.
+If you are interested you can check the video.
 
-#### Who am I?
+<Iframe videoID="NDyjI7hd4uE" />
 
-My name is Anjan. I am a full stack web developer from Dhaka, Bangladesh.
+You can also demo the application form [here](https://insta-carousel-demo.vercel.app/)
 
-#### What problems do I solve?
+![Screenshot of Insta Carousel](https://raw.githubusercontent.com/thatanjan/insta-carousel-yt/development/public/Screenshot%20of%20the%20App.png)
 
-I can create complex full stack web applications like social media application, blogging, e-commerce website and many more.
+Please like and subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1). It motivates me to create more content like this.
+
+If you have any questions, feel free to contact me on any social media as @thatanjan.
+Stay safe. Goodbye.
+
+## About me
 
 #### Why do I do what I do?
 
-I love to solve problems and develop new ideas. I also enjoy sharing my knowledge to other people who are wiling to learn. That's why I write blog posts and run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+The Internet has revolutionized our life. I want to make the internet more beautiful and useful.
 
-#### Think we should work together?
+#### What do I do?
 
-##### Feel free to contact me
+I ended up being a full-stack software engineer.
 
-Email: anjancules@gmail.com
+#### What can I do?
 
-linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
+I can develop complex full-stack web applications like social media applications or e-commerce sites.
 
-portofolio: [anjan](https://anjan.vercel.app/)
+#### What have I done?
 
-Github: [@thatanjan](https://github.com/thatAnjan/)
+I have developed a social media application called [Confession](https://con-fession.vercel.app/). The goal of this application is to help people overcome their imposter syndrome by sharing our failure stories.
+I also love to share my knowledge. So, I run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) where I teach people full-stack web development, data structure algorithms, and many more. So, Subscribe to Cules Coding so that you don't miss the cool stuff.
 
-Instagram (personal): [@thatanjan](https://instagram.com/thatAnjan/)
+## Want to work with me?
 
-Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
+I am looking for a team where I can show my ambition and passion and produce great value for them.
+Contact me through my email or any social media as @thatanjan. I would be happy to have a touch with you.
 
-twitter: [@thatanjan](https://twitter.com/thatAnjan)
+## Contacts
 
-#### About My channel:
+- Email: thatanjan@gmail.com
+- linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
+- portfolio: [anjan](https://thatanjan.me/)
+- Github: [@thatanjan](https://github.com/thatAnjan/)
+- Instagram (personal): [@thatanjan](https://instagram.com/thatAnjan/)
+- Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
+- twitter: [@thatanjan](https://twitter.com/thatAnjan)
 
-#### Why would you subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)?
+Blogs you might want to read:
 
-[ Cules Coding ](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) will teach you full stack development. I will teach you not only the basic concepts but also the advanced concepts that other youtube channels don't cover. I will also teach you Data Structures and Algorithms with abstraction and without Math. You will also find many tutorials about developer tools and technologies. I also explain advanced concepts and technologies with simplicity.
+- [ Eslint, prettier setup with TypeScript and react ](/blog/setup-eslint-prettier-with-typescript-and-react)
+- [What is Client-Side Rendering?](/blog/what-is-client-side-rendering)
+- [What is Server Side Rendering?](/blog/what-is-server-side-rendering)
+- [Everything you need to know about tree data structure](/blog/everything-you-need-to-know-about-tree-data-structure)
+- [13 reasons why you should use Nextjs](/blog/13-reasons-why-you-should-use-Nextjs)
 
-#### So what are you waiting for?
+Videos might you might want to watch:
 
-Subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
-so that my friend you don't miss any of these cool stuffs.
+<Iframe videoID="NDyjI7hd4uE" /> 
+<Iframe videoID="T-n0mrssDiw" />   
+<Iframe videoID="Be_C_Op8Tx8" />
+<Iframe videoID="ag3je1g0BN8" />
+<Iframe videoID="B3HX2rWyKlU" />
+<Iframe videoID="C6VytdSDNSk" />
 
