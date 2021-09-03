@@ -16,6 +16,7 @@ const BlogImage = ({ imagePath, altText, quality }: Props) => {
 			alt={altText}
 			quality={quality || 20}
 			objectFit='cover'
+			priority
 		/>
 	)
 }
