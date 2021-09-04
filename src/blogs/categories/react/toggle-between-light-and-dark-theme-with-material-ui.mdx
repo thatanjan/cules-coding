@@ -7,12 +7,12 @@ customID: 60b5a9a6925970bfb31f660f
 ---
 
 I have already created a video about it on my youtube channel. Check that out. 
-<Iframe src="https://www.youtube.com/embed/ag3je1g0BN8" title="YouTube video player" /> 
+<Iframe videoID="ag3je1g0BN8" title="Easily toggle between light and dark theme with Material-UI" /> 
 
-We know that in dark mode, the background stays dark and the foreground is white to keep the contrast. In light mode, it is just opposite. 
-So, we need a component which automatically changes its background color based on the theme. Also for the text.
+We know that in dark mode, the background stays dark and the foreground is white to keep the contrast. In light mode, it is just the opposite. 
+So, we need a component that automatically changes its background color based on the theme. Also for the text.
 
-In Material-ui, we have a component like that. That is the Paper component.  Paper component is intelligent enough to automatically detect the theme and it will change its background color. For more information, please check their docs out. [Paper](https://material-ui.com/components/paper/#paper)
+In Material-ui, we have a component like that. That is the Paper component.  The Paper component is intelligent enough to automatically detect the theme and it will change its background color. For more information, please check their docs out. [Paper](https://material-ui.com/components/paper/#paper)
 
 - Let's create a boilerplate component.
 
@@ -74,9 +74,9 @@ export default DarkTheme
 
 ```
 
-Simply we specify the theme mode by the type property. In this case it will be updated based on the `dark` state value. We will use a button to manipulate the state.
+Simply we specify the theme mode by the type property. In this case, it will be updated based on the `dark` state value. We will use a button to manipulate the state.
 
-- Insert a paper with Typography component.
+- Insert a paper with the Typography component.
 
 ```javascript
 import React, { useState } from 'react'
@@ -105,7 +105,7 @@ const DarkTheme = () => {
 export default DarkTheme
 ```
 
-- Wrap all component by the ThemeProvider and pass the theme object as theme prop. 
+- Wrap all components by the ThemeProvider and pass the theme object as a theme prop. 
 
 ```javascript
 import React, { useState } from 'react'
@@ -137,13 +137,13 @@ export default DarkTheme
 ```
 
 If you have no idea about theming in material-ui, then please check this video out.
-<iframe src="https://www.youtube.com/embed/oMedA_vOJac" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<Iframe videoID="oMedA_vOJac" />
 
-ThemeProvider basically making our custom theme available to all the children. It is like redux and context api.
+ThemeProvider is making our custom theme available to all the children. It is like redux and context API.
 
 But we still don't have the toggle functionality. We need a switch component
 
-- Insert a switch component or any other button type component that can be togglable.
+- Insert a switch component or any other button-type component that can be togglable.
 
 ```javascript
 import React, { useState } from 'react'
@@ -157,7 +157,7 @@ const DarkTheme = () => {
 
 	const theme = createMuiTheme({
 		palette: {
-			type: dark ? 'dark' : 'light',
+			type: dark ? 'dark': 'light',
 		},
 	})
 
@@ -176,7 +176,7 @@ const DarkTheme = () => {
 export default DarkTheme
 ```
 
-Everytime you click on the switch button, the dark state will be changed to its opposite value. This will toggle the theme type.
+Every time you click on the switch button, the dark state will be changed to its opposite value. This will toggle the theme type.
 
 - Switch off.
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k66jyhem486cl64h6jj8.png)
@@ -185,51 +185,75 @@ Everytime you click on the switch button, the dark state will be changed to its 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0eqrj5pmik8f3zqeis7p.png)
 
 #### How is it working?
-Paper component has white Background color and dark font color. And Typography component by default inherit the font color from its parent. In this case it is the Paper component. 
-When the theme type is changed, Paper is intelligent enough to detect the change. It will invert the color to keep contrast between foreground and background color.
+The Paper component has a white Background color and dark font color. And Typography component by default inherits the font color from its parent. In this case, it is the Paper component. 
+When the theme type is changed, Paper is intelligent enough to detect the change. It will invert the color to keep the contrast between foreground and background color.
 
 So, This is how it works. Isn't it so easy? 
-Subscribe to my channel. Until then, stay safe and good bye.
+ 
+## Shameless Plug
 
-### About me:
+I have made a video about how to build a carousel postcard with React, Material-UI, and Swiper.js.
+If you are interested you can check the video.
 
-#### Who am I?
+<Iframe videoID="NDyjI7hd4uE" />
 
-My name is Anjan. I am a full stack web developer from Dhaka, Bangladesh.
+You can also demo the application form [here](https://insta-carousel-demo.vercel.app/)
 
-#### What problems do I solve?
+![Screenshot of Insta Carousel](https://raw.githubusercontent.com/thatanjan/insta-carousel-yt/development/public/Screenshot%20of%20the%20App.png)
 
-I can create complex full stack web applications like social media application, blogging, e-commerce website and many more.
+Please like and subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1). It motivates me to create more content like this.
+
+If you have any questions, feel free to contact me on any social media as @thatanjan.
+Stay safe. Goodbye.
+
+
+## About me
 
 #### Why do I do what I do?
 
-I love to solve problems and develop new ideas. I also enjoy sharing my knowledge to other people who are wiling to learn. That's why I write blog posts and run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+The Internet has revolutionized our life. I want to make the internet more beautiful and useful.
 
-#### Think we should work together?
+#### What do I do?
 
-##### Feel free to contact me
+I ended up being a full-stack software engineer.
 
-Email: anjancules@gmail.com
+#### What can I do?
 
-linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
+I can develop complex full-stack web applications like social media applications or e-commerce sites.
 
-portofolio: [anjan](https://anjan.vercel.app/)
+#### What have I done?
 
-Github: [@thatanjan](https://github.com/thatAnjan/)
+I have developed a social media application called [Confession](https://con-fession.vercel.app/). The goal of this application is to help people overcome their imposter syndrome by sharing our failure stories.
+I also love to share my knowledge. So, I run a youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) where I teach people full-stack web development, data structure algorithms, and many more. So, Subscribe to Cules Coding so that you don't miss the cool stuff.
 
-Instagram (personal): [@thatanjan](https://instagram.com/thatAnjan/)
+## Want to work with me?
 
-Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
+I am looking for a team where I can show my ambition and passion and produce great value for them.
+Contact me through my email or any social media as @thatanjan. I would be happy to have a touch with you.
 
-twitter: [@thatanjan](https://twitter.com/thatAnjan)
+## Contacts
 
-#### About My channel:
+- Email: thatanjan@gmail.com
+- linkedin: [@thatanjan](https://linkedin.com/in/thatanjan/)
+- portfolio: [anjan](https://thatanjan.me/)
+- Github: [@thatanjan](https://github.com/thatAnjan/)
+- Instagram (personal): [@thatanjan](https://instagram.com/thatAnjan/)
+- Instagram (youtube channel): [@thatanjan](https://instagram.com/cules_coding/)
+- twitter: [@thatanjan](https://twitter.com/thatAnjan)
 
-#### Why would you subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)?
+Blogs you might want to read:
 
-[ Cules Coding ](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) will teach you full stack development. I will teach you not only the basic concepts but also the advanced concepts that other youtube channels don't cover. I will also teach you Data Structures and Algorithms with abstraction and without Math. You will also find many tutorials about developer tools and technologies. I also explain advanced concepts and technologies with simplicity.
+- [ Eslint, prettier setup with TypeScript and react ](/blog/setup-eslint-prettier-with-typescript-and-react)
+- [What is Client-Side Rendering?](/blog/what-is-client-side-rendering)
+- [What is Server Side Rendering?](/blog/what-is-server-side-rendering)
+- [Everything you need to know about tree data structure](/blog/everything-you-need-to-know-about-tree-data-structure)
+- [13 reasons why you should use Nextjs](/blog/13-reasons-why-you-should-use-Nextjs)
 
-#### So what are you waiting for?
+Videos might you might want to watch:
 
-Subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1) so that my friend you don't miss any of these cool stuffs.
-
+<Iframe videoID="NDyjI7hd4uE" /> 
+<Iframe videoID="T-n0mrssDiw" />   
+<Iframe videoID="Be_C_Op8Tx8" />
+<Iframe videoID="ag3je1g0BN8" />
+<Iframe videoID="B3HX2rWyKlU" />
+<Iframe videoID="C6VytdSDNSk" />
