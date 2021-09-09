@@ -1,14 +1,19 @@
 import React from 'react'
 import Link from 'next/link'
 
-import { convertSpaceToDash } from 'utils/stringConvertor'
-
 interface Props {
 	prevPost?: string
 	nextPost?: string
+	nextPostTitle: string
+	prevPostTitle: string
 }
 
-const BlogNavigation = ({ prevPost, nextPost }: Props) => {
+const BlogNavigation = ({
+	prevPost,
+	nextPost,
+	nextPostTitle,
+	prevPostTitle,
+}: Props) => {
 	return (
 		<div className='entry__pagenav'>
 			<div className='entry__nav'>
@@ -17,7 +22,7 @@ const BlogNavigation = ({ prevPost, nextPost }: Props) => {
 						<Link href={`/blog/${prevPost}`}>
 							<a>
 								<span>Previous Post</span>
-								{prevPost}
+								{prevPostTitle}
 							</a>
 						</Link>
 					</div>
@@ -28,7 +33,7 @@ const BlogNavigation = ({ prevPost, nextPost }: Props) => {
 						<Link href={`/blog/${nextPost}`}>
 							<a>
 								<span>Next Post</span>
-								{nextPost}
+								{nextPostTitle}
 							</a>
 						</Link>
 					</div>
