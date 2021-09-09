@@ -9,9 +9,11 @@ import MatterData from 'interfaces/MatterData'
 import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
 import CategoryModel from 'mongoose/Category'
+import OutroModel from 'mongoose/Outro'
 
 import getFiles from 'utils/getFiles'
 import readFilesBySlug from 'utils/readFilesBySlug'
+import readOtherFiles from 'utils/readOtherFiles'
 
 import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
 
@@ -123,6 +125,18 @@ export const getStaticProps: GetStaticProps = async () => {
 	})
 
 	await Promise.all(promises)
+
+	const outroData = readOtherFiles(['src', 'blogs', 'outro', 'outro.mdx'])
+
+	 await OutroModel.updateOne(
+		{ title: 'outro' },
+		{
+			$set: { content: outroData },
+		},
+		{
+			upsert: true,
+		}
+	)
 
 	const aggregate = BlogModel.aggregate()
 

@@ -19,11 +19,13 @@ import MDXComponents from 'components/Blog/MDXComponents'
 
 import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
+import OutroModel from 'mongoose/Outro'
 
 interface Props extends Blog {
 	mdxSource: MdxRemote.Source
 	prevPost: string
 	nextPost: string
+	outroMdxSource: MdxRemote.Source
 }
 
 const BlogPage = ({
@@ -39,11 +41,15 @@ const BlogPage = ({
 	description,
 	totalViews,
 	readingTime,
+	outroMdxSource,
 }: Props) => {
 	const content = hydrate(mdxSource, {
 		components: {
 			...MDXComponents,
 		},
+	})
+	const outroContent = hydrate(outroMdxSource, {
+		components: { ...MDXComponents },
 	})
 
 	const { data, mutate } = useSWR(`/api/views/${slug}`, fetcher)
@@ -110,6 +116,8 @@ const BlogPage = ({
 
 					{content}
 
+					{outroContent}
+
 					<BlogNavigation {...{ prevPost, nextPost }} />
 				</article>
 			</main>
@@ -136,6 +144,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 	await connectDB()
+	const { content: outroContent } = await OutroModel.findOne({ title: 'outro' })
+
+	const outroMdxSource = await renderToString(outroContent, {
+		components: MDXComponents,
+	})
 
 	const blog = await BlogModel.findOne({ slug })
 
@@ -169,6 +182,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 			nextPost,
 			createdAt: createdAt.toDateString(),
 			slug,
+			outroMdxSource,
 		},
 	}
 }
