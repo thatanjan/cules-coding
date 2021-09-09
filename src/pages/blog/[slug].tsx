@@ -26,6 +26,8 @@ interface Props extends Blog {
 	prevPost: string
 	nextPost: string
 	outroMdxSource: MdxRemote.Source
+	nextPostTitle: string
+	prevPostTitle: string
 }
 
 const BlogPage = ({
@@ -42,6 +44,8 @@ const BlogPage = ({
 	totalViews,
 	readingTime,
 	outroMdxSource,
+	nextPostTitle,
+	prevPostTitle,
 }: Props) => {
 	const content = hydrate(mdxSource, {
 		components: {
@@ -118,7 +122,9 @@ const BlogPage = ({
 
 					{outroContent}
 
-					<BlogNavigation {...{ prevPost, nextPost }} />
+					<BlogNavigation
+						{...{ prevPost, nextPost, nextPostTitle, prevPostTitle }}
+					/>
 				</article>
 			</main>
 		</>
@@ -173,6 +179,8 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
 	const nextPost = allPostOfCategory[currentBlogIndex + 1]?.slug || ''
 	const prevPost = allPostOfCategory[currentBlogIndex - 1]?.slug || ''
+	const nextPostTitle = allPostOfCategory[currentBlogIndex + 1]?.title || ''
+	const prevPostTitle = allPostOfCategory[currentBlogIndex - 1]?.title || ''
 
 	return {
 		props: {
@@ -183,6 +191,8 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 			createdAt: createdAt.toDateString(),
 			slug,
 			outroMdxSource,
+			nextPostTitle,
+			prevPostTitle,
 		},
 	}
 }
