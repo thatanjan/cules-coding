@@ -1,0 +1,81 @@
+---
+title: Everything you need to know about Binary tree data structure
+description: Binary tree data structure is a very useful data structure. It is a common topic in coding interviews. In this blog, you will learn everything you need to know about Binary tree data structure.
+banner: /blogs/data-structure/everything-you-need-to-know-about-binary-tree-data-structure/banner.png
+altText: Everything you need to know about Binary tree data structure
+customID: 034490e0-668b-4f42-8e26-e97f30efd008
+---
+
+## Why does Binary tree data structure exist?
+
+- Stores the data in sorted order.
+- Easy to find nodes with binary search algorithm with O(logN) complexity.
+
+If you don't know anything about trees, please read the following blog: 
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yyun4h9qq4cr8h03kwqs.png)
+
+[Everything you need to know about Binary tree data structure]( https://www.culescoding.space/blog/everything-you-need-to-know-about-tree-data-structure )
+
+So, 
+
+## What is a Binary tree?
+
+A Binary tree is a tree where a parent node can have at most 2 children. It can have 0 children but it will never have 3 children or more. Let's see a picture.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/c1ewfmn3sem8sbip3i04.png)
+
+You can see that none of the parent nodes have more than 2 children. They have 0-2 children.
+
+Invalid tree: 
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hlkix0o0x9v834wm43pj.png)
+
+That is condition 1.
+
+Condition 2 is:
+- Every left child value will be less than the parent value.
+- Every right child value will be greater than the parent value.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/c1ewfmn3sem8sbip3i04.png)
+
+You can see that every parent and their children are maintaining the above condition.
+
+#### What about duplicate values?
+
+Now, it is up to you. You can allow duplicate values in the tree. If so, then you will add them to your left or right side.
+
+## What should a node contain?
+
+A node will contain 3 data.
+
+- Left child node reference.
+- Right child node reference.
+- Actual value.
+
+If a parent has no child or has only one child then the reference value will be null.
+
+## Properties of Binary tree
+
+- The maximum number of nodes at level 'l' of a binary tree is 2^l. 
+
+If you don't know about the levels of the height of a tree please read the blog about trees.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7002nw0vpv0ufjv0bjhf.png)
+
+
+- The maximum number of nodes in a binary tree of height 'h' is 2^h – 1.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b5t4de4vl218x7jdn485.png)
+
+- The minimum number of nodes in a binary tree of height 'h' is h+1
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/cey162lpoxvttnjh64ws.png)
+
+There are some variations of binary trees. They are : 
+
+- Full binary tree.
+- Perfect binary tree.
+- Complete binary tree.
+- Balanced binary tree.
+
+I will talk about them on other blogs.
+
