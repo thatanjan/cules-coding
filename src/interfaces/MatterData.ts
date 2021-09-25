@@ -4,4 +4,5 @@ export default interface MatterData {
 	altText: string
 	title: string
 	customID: string
+	slug: string
 }
