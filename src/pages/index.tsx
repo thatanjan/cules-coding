@@ -66,13 +66,15 @@ export const getStaticProps: GetStaticProps = async () => {
 	const eachCategory = 'eachCategory'
 	const eachCategoryFileNames = getFiles([eachCategory])
 
-	const eachCategoryFilesMatterData = eachCategoryFileNames
-		.map(fileName => readFilesBySlug([eachCategory, fileName]))
-		.map(fileBuffer => matter(fileBuffer).data as MatterData)
-		.map((fileMatter, index) => ({
-			...fileMatter,
-			slug: eachCategoryFileNames[index].replace('.mdx', ''),
-		}))
+	const eachCategoryFilesMatterData = eachCategoryFileNames.map(fileName => {
+		const fileBuffer = readFilesBySlug([eachCategory, fileName])
+
+		const fileMatter = matter(fileBuffer).data as MatterData
+
+		fileMatter.slug = fileName.replace('.mdx', '')
+
+		return fileMatter
+	})
 
 	const updateCategoriesPromises = eachCategoryFilesMatterData.map(matterData =>
 		CategoryModel.updateOne(
@@ -128,7 +130,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 	const outroData = readOtherFiles(['src', 'blogs', 'outro', 'outro.mdx'])
 
-	 await OutroModel.updateOne(
+	await OutroModel.updateOne(
 		{ title: 'outro' },
 		{
 			$set: { content: outroData },
