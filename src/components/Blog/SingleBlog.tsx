@@ -4,6 +4,7 @@ import NextImage from 'next/image'
 import useSWR from 'swr'
 
 import fetcher from 'utils/fetcher'
+import convertNumberToShortForm from 'utils/convertNumberToShortForm'
 
 import { Blog } from 'interfaces/Blog'
 
@@ -55,7 +56,10 @@ const SinglePost = ({
 							</span>
 							<span className='entry__meta-date'>{createdAt}</span>
 							<span className='entry__meta-blog__views'>
-								{data ? data.data.totalViews : totalViews} views
+								{data
+									? convertNumberToShortForm(data.data.totalViews)
+									: convertNumberToShortForm(totalViews)}{' '}
+								views
 							</span>
 							<span className='entry__meta-blog__reading_time'>{readingTime}</span>
 						</div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import convertNumberToShortForm from 'utils/convertNumberToShortForm'
 
 interface Props {
 	createdAt: string
@@ -27,7 +28,7 @@ const BlogHeader = ({
 				<li className='cat-links'>
 					<Link href={`/category/${category}`}>{category}</Link>
 				</li>
-				<li className='views'>{totalViews} views</li>
+				<li className='views'>{convertNumberToShortForm(totalViews)} views</li>
 				<li className='reading_time'>{readingTime}</li>
 			</ul>
 		</div>
