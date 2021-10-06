@@ -16,6 +16,12 @@ const BlogHeader = ({
 	totalViews,
 	readingTime,
 }: Props) => {
+	let convertedViews: string = `${totalViews}`
+
+	if (totalViews < 1000000) {
+		convertedViews = `${(totalViews / 100).toFixed(2)}k`
+	}
+
 	return (
 		<div className='content__page-header entry__header'>
 			<h1 className='display-1 entry__title'>{title}</h1>
@@ -27,7 +33,7 @@ const BlogHeader = ({
 				<li className='cat-links'>
 					<Link href={`/category/${category}`}>{category}</Link>
 				</li>
-				<li className='views'>{totalViews} views</li>
+				<li className='views'>{convertedViews} views</li>
 				<li className='reading_time'>{readingTime}</li>
 			</ul>
 		</div>
