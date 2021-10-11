@@ -5,7 +5,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import vsDark from 'prism-react-renderer/themes/vsDark'
 
 const CodeBlock = ({ children, className }) => {
-	const language = className.replace(/language-/, '')
+	const language = className ? className.replace(/language-/, '') : ''
 
 	return (
 		<Highlight
