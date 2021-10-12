@@ -3610,3 +3610,8 @@ a.site-logo {
 	font-size: 5rem;
 	height: 80vh;
 }
+
+.iframe-col {
+	display: grid;
+	align-items: end;
+}
