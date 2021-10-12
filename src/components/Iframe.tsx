@@ -2,7 +2,7 @@ import React from 'react'
 
 interface Props {
 	videoID: string
-	title: string
+	title?: string
 }
 
 const Iframe = ({ videoID, title }: Props) => {
