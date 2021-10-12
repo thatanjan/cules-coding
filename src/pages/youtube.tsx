@@ -1,12 +1,26 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import Link from 'next/link'
 
-import Image from 'components/Blog/BlogImage'
+import BlogImage from 'components/Blog/BlogImage'
 import Iframe from 'components/Iframe'
 
 const channelLink =
 	'https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1'
+
+interface IframeColumnProps {
+	videoID: string
+	title: string
+}
+
+const IframeColumn = ({ videoID, title }: IframeColumnProps) => (
+	<section className='column iframe-col'>
+		<h3>{title}</h3>
+		<section className='video-container'>
+			<Iframe videoID={videoID} />
+		</section>
+	</section>
+)
 
 const Youtube = () => {
 	return (
@@ -15,7 +29,7 @@ const Youtube = () => {
 				<section className='column large-full entry format-standard'>
 					<div className='media-wrap'>
 						<div>
-							<Image
+							<BlogImage
 								imagePath='/cules-coding-banner.jpg'
 								quality={50}
 								altText='Cules Coding Banner'
@@ -32,6 +46,9 @@ const Youtube = () => {
 						development, data structure algorithms and many more.
 					</p>
 
+					<h2>Channel Trailer</h2>
+					<Iframe videoID='tt8ERjL3DIQ' />
+
 					<p>
 						Cules coding has started it's journey on 2021. Since then it is providing
 						value to all kind of programmers.
@@ -44,26 +61,49 @@ const Youtube = () => {
 						<li>Help people to land their dream job</li>
 					</ul>
 
-					<h2>Popular tutorials</h2>
+					<h2>Popular Tutorials</h2>
 
 					<section className='row'>
-						<section className='column'>
-							<h3>
-								Setup Eslint Prettier with Typescript and React -Nextjs, Create React
-								App
-							</h3>
-							<section className='video-container'>
-								<Iframe videoID='T-n0mrssDiw' />
-							</section>
-						</section>
+						<IframeColumn
+							videoID='T-n0mrssDiw'
+							title='Setup Eslint Prettier with Typescript and React -Nextjs, Create React App'
+						/>
+						<IframeColumn
+							videoID='RECwLOZdiR4'
+							title='Access COOKIES in NextJS from server side. | Reactjs | SSR'
+						/>
 					</section>
+
+					<section className='row'>
+						<IframeColumn
+							videoID='NDyjI7hd4uE'
+							title='Build a carousel postcard like Instagram with reactjs, Material-UI, and swiperjs'
+						/>
+					</section>
+
+					<h2>Popular Courses</h2>
+					<section className='row'>
+						<IframeColumn title='Material-UI Basics Course' videoID='-TVLXeM99y8' />
+						<IframeColumn videoID='KYLBb1W1ZBA' title='Build a blog using JAMstack' />
+					</section>
+					<section className='row'>
+						<IframeColumn videoID='rSa8sUC8m_4' title='Redux toolkit crash course' />
+					</section>
+
+					<a href={channelLink} target='_blank' rel='noreferrer'>
+						<Image
+							src='/others/subscribe.png'
+							width='2361'
+							height='1036'
+							layout='responsive'
+						/>
+					</a>
+
 					<p>
-						<Link href={channelLink}>subscribe</Link> to{' '}
+						<Link href={channelLink}>Subscribe</Link> to{' '}
 						<Link href={channelLink}>Cules Coding </Link> youtube channel to watch
 						awesome coding videos.
 					</p>
-
-					<Link href='/youtube'>Learn more</Link>
 				</section>
 			</main>
 		</>
