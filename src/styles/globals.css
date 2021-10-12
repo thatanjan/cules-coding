@@ -753,6 +753,10 @@ textarea {
  * ## tablets
  * ------------------------------------------------------------------- */
 @media screen and (max-width: 800px) {
+	.column {
+		flex-basis: 100%;
+	}
+
 	.tab-1 {
 		-webkit-flex: 0 0 8.33333%;
 		-ms-flex: 0 0 8.33333%;
