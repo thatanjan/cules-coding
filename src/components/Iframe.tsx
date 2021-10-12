@@ -7,12 +7,14 @@ interface Props {
 
 const Iframe = ({ videoID, title }: Props) => {
 	return (
-		<iframe
-			{...{ title, src: `https://www.youtube.com/embed/${videoID}` }}
-			frameBorder='0'
-			allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-			allowFullScreen
-		/>
+		<section className='video-container'>
+			<iframe
+				{...{ title, src: `https://www.youtube.com/embed/${videoID}` }}
+				frameBorder='0'
+				allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+				allowFullScreen
+			/>
+		</section>
 	)
 }
 
