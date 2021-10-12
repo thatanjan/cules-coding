@@ -6,69 +6,74 @@ banner: /blogs/react/what-is-client-side-rendering/banner.png
 customID: 60b5a9ca01aa7fc0638c4998
 ---
 
-I have already created a video about client side rendering on my youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
+In this blog, you will learn everything you need to know about Client-side rendering.
+
+I have already created a video about client-side rendering on my youtube channel called [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1)
 
 
-[![What is Client Side Rendering?](http://img.youtube.com/vi/o7FvNQ5RNYw/0.jpg)](http://www.youtube.com/watch?v=o7FvNQ5RNYw "What is Client Side Rendering?")
+<Iframe videoID="o7FvNQ5RNYw" /> 
 
-Everybody talks about client side rendering, single page application. But
+Everybody talks about client-side rendering, single-page applications. But
 
 - What problems does it solve?
 - What is it?
 - How it works?
 
-Let's learn the problem with the traditional Server side rendering. If you don't
-know what is server side rendering is,  please check this youtube video from my
+Let's learn the problem with the traditional Server-side rendering. If you don't
+know what is server-side rendering is,  please check this youtube video from my
 channel first.  And if you like the video then don't forget to SUBSCRIBE to my channel.
-[![](http://img.youtube.com/vi/LuG1KNowti4/0.jpg)](http://www.youtube.com/watch?v=LuG1KNowti4 "")
+
+<Iframe videoID="LuG1KNowti4" /> 
 
 Also you can check my blog about [Server Side Rendering](/blog/what-is-server-side-rendering).
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/x1jtfd36x0x258fvd5e1.png)
 
-## Problems with Server side rendering.
+## Problems with Server-side rendering.
 
 - Sends Request per page.
-- Heavy loads on server.
+- Heavy loads on the server.
 - Full page reload.
-- Poor ui/ux experience when data changes frequently.
+- Poor UI/UX experience when data changes frequently.
 
 Then what is the solution?
 
-### The solution is Client Side Rendering.
+### The solution is Client-Side Rendering.
 
-## What is Client Side Rendering?
+## What is Client-Side Rendering?
 
-Client-side rendering (CSR) means rendering pages directly in the browser using JavaScript. All logic, data fetching, templating and routing are handled on the client rather than the server.
+Client-side rendering (CSR) means rendering pages directly in the browser using JavaScript. All logic, data fetching, templating, and routing are handled on the client rather than the server.
 
 ##### Let's see how Client-side rendering (CSR) works behind the scenes.
 
-- Browser first sends the request to server.
-- Server sends html css response to the client. But the html is almost empty. Because all the content is rendered by javascript.
-- Client starts parsing html and css.
-- After parsing,  the parser come across the javascript script tag at the bottom of the HTML.
+- Browser first sends the request to the server.
+- Server sends an HTML and a CSS response to the client. But the HTML is almost empty. Because all the content is rendered by javascript.
+- Client starts parsing HTML and CSS.
+- After parsing,  the parser comes across the javascript script tag at the bottom of the HTML.
 - Then it starts downloading the javascript where content lives. Parsing HTML and CSS is fast but not javascript.
-- A blank page is rendered to the user until the javascript is executed. Because html has no content on it.
+- A blank page is rendered to the user until the javascript is executed. Because HTML has no content on it.
 - After the javascript is executed, all the necessary content is rendered. Now the application becomes viewable and interactive.
 
-### This is a visual representation of the client side rendering process with react.
+### This is a visual representation of the client-side rendering process with react.
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xtcpljqdaf77u9r8jd6r.png)
 
 Let's see the pros and cons of Client-side rendering (CSR).
 
-## Client side rendering pros
+## Client-side rendering pros
 
 - Less Frequent server calls. Fetches all needed data at once.
 - Content loading is fast after the initial loading. Because all the needed the javascript file is present on the client.
 - Faster navigation to routes.
 - No page reload.
 - Great performance when data is changing frequently (dynamic web applications).
-- Less Pressure on Server. That's why server can serve the data quickly.
+- Less Pressure on Server. That's why the server can serve the data quickly.
 
-## Client side rendering cons
+## Client-side rendering cons
 
-- Bad Seo. Because HTML has no content. The search engines will crawl through your webpage, it will find nothing. So it will give you bad seo.
+- Bad Seo. Because HTML has no content. The search engines will crawl through your webpage, it will find nothing. So it will give you bad SEO.
 - Might take a huge amount of time when the javascript is heavy. If the application is big then the javascript will be big. Parsing Javascript is slower than HTML and CSS. But it can be optimized with code-splitting. If you want to learn more you can read it from [What is Code Splitting](/blog/what-is-code-splitting).
-- Blank page flickering on initial load. Because no content on the HTML.
+- Blank page flickering on initial load. Because of no content on the HTML.
 - Bad performance on slower mobile phones.
 
-Client side rendering is not always good or bad. It depends on various factors. It is up to you now. Know what your application is and choose what is good for your application.
+Client-side rendering is not always good or bad. It depends on various factors. It is up to you now. Know what your application is and choose what is good for your application.
+
 
