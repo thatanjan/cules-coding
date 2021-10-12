@@ -1,4 +1,5 @@
 import React from 'react'
+import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -23,8 +24,30 @@ const IframeColumn = ({ videoID, title }: IframeColumnProps) => (
 )
 
 const Youtube = () => {
+	const title = 'Hello, This is Cules Coding.'
+	const description =
+		'Cules Coding is a Youtube channel where you can learn about full stack web development, data structure algorithms and many more.'
+
 	return (
 		<>
+			<NextSeo
+				title={title}
+				description={description}
+				canonical='https://www.culescoding.space/youtube'
+				openGraph={{
+					title,
+					description,
+					type: 'Website',
+					images: [
+						{
+							url: '/cules-coding-banner.jpg',
+							width: 1920,
+							height: 1080,
+							alt: title,
+						},
+					],
+				}}
+			/>
 			<main className='row content__page'>
 				<section className='column large-full entry format-standard'>
 					<div className='media-wrap'>
@@ -38,7 +61,7 @@ const Youtube = () => {
 					</div>
 
 					<div className='content__page-header'>
-						<h1 className='display-1'>Hello, This is Cules Coding.</h1>
+						<h1 className='display-1'>{title}</h1>
 					</div>
 
 					<p className='lead '>
