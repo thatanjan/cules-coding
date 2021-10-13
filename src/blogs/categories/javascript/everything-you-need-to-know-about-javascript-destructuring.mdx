@@ -1,0 +1,219 @@
+---
+title: Everything you need to know about Javascript Destructuring
+description: The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+banner: /blogs/javascript/everything-you-need-to-know-about-javascript-destrucuturing/banner.png
+altText: The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+customID: 97955c6f-f8d4-40e6-b644-2d7df17383cc
+---
+
+In this blog, you will learn everything you need to know about javascript destructuring.
+
+I have already created a video about it on my youtube channel. Check that out for more details.
+<Iframe title='Setup Eslint, Prettier with TypeScript and React' videoID="T-n0mrssDiw"  /> 
+If you like this video, please like share, and Subscribe to my channel.
+
+### Why does Destructuring exist in javascript?
+
+
+Because it solves our problem. Let's see an example.
+
+This is a normal object containing the names of 4 people.
+
+```javascript
+const names = {
+	taylor: 'Taylor Swift',
+	shawn: 'Shawn Mendes',
+	zayn: 'Zayn Malik',
+	halsey: 'Halsey',
+}
+```
+
+Now if I ask you to print all the file names manually to the console, how would you do that. Possibly like this:
+
+```javascript
+console.log(names.taylor)
+console.log(names.shawn)
+console.log(names.zayn)
+console.log(names.halsey)
+```
+
+It works. But it is so annoying to use this dot notation. But how can we make this better?
+
+```javascript
+const taylor = names.taylor
+const shawn = names.shawn
+const zayn = names.zayn
+const halsey = names.halsey
+
+console.log(taylor)
+console.log(shawn)
+console.log(zayn)
+console.log(halsey)
+```
+
+Much better. But we are still repeating the same task. What if we can declare and assign the object properties on variables on a single?
+
+It would be better right?. This is where Object destructuring helps us. So instead we can do something like this :
+
+```javascript
+const { taylor, shawn, zayn, halsey} = names
+
+console.log(taylor)
+console.log(shawn)
+console.log(zayn)
+console.log(halsey)
+```
+
+Wow! That is way better than before. 
+
+### But, how is it working?
+
+It is so simple. We are just pulling out the properties from the object and storing them in a variable. And the variable name will be the same as the property name by default. You can change that like this.
+
+```javascript
+const { taylor, shawn, zayn: zaynMalik, halsey} = names
+```
+
+### What about array destructuring?
+
+Array destructuring works in a similar way with some differences. 
+We know data are stored in an array with indexes. They are sequential. So, while destructuring you have to maintain the order. For example:
+
+```javascript
+const albums = ['Lover', 'Evermore', 'Red', 'Fearless']
+
+const [lover, ever] = arr
+```
+
+And also arrays don't have a property for values. So, you can just give whatever variable name you want.
+
+Let's see some use cases of Object destructuring and array destructuring.
+
+### Array destrucutring
+ - Swapping variables
+
+<br  /> 
+
+```javascript
+let a = 1;
+let b = 3;
+
+[a, b] = [b, a];
+console.log(a); // 3
+console.log(b); // 1
+```
+
+- Ignoring some returned values
+
+```javascript
+function f() {
+  return [1, 2, 3];
+}
+
+const [a, , b] = f();
+console.log(a); // 1
+console.log(b); // 3
+```
+
+- Default values
+
+```javascript
+let a, b;
+
+[a=5, b=7] = [1];
+console.log(a); // 1
+console.log(b); // 7
+
+```
+
+- Create sub array with Rest parameters.
+```javascript
+const albums = ['Lover', 'Evermore', 'Red', 'Fearless']
+
+const [, ...albums2] = albums
+
+console.log(albums2) // ['Evermore', 'Red', 'Fearless']
+```
+
+
+### Object destrucutring
+
+- Unpacking fields from objects passed as a function parameter
+
+It is really useful for react props.
+
+```
+const anjan = {
+	   	name: 'Anjan', age: 20
+}
+
+const statement = ({name, age}) => {
+	   	return `My name is ${name}. I am ${age} years old.`
+}
+
+statement(anjan)
+
+```
+
+- Nested Object destructuring 
+
+```javascript
+const profile: { 
+	   name: 'Anjan', 
+	   age: 20,
+	   professional: {
+		  profession: 'Full Stack Software Engineer',
+	   }
+}
+
+const {name, age, professional: {profession}} = profile
+
+console.log(professional) // error
+console.log(profession) // Full Stack Software Engineer
+```
+
+- Default values
+
+<br  /> 
+
+In any case, the property is `undefined`
+
+```javascript
+const {a = 10, b = 5} = {a: 3};
+
+console.log(a); // 3
+console.log(b); // 5
+```
+
+
+- Nested object and array destructuring
+
+<br  /> 
+
+```javascript
+const taylor = {
+	name: 'Taylor Swift',
+	age: 31,
+	address: {
+		city: 'New York',
+		country: 'USA',
+	},
+	albums: ['Lover', 'Evermore', 'Red', 'Fearless'],
+}
+
+const {
+	name,
+	age,
+	address: { city },
+	albums: [lover, ...rest],
+} = taylor
+
+console.log(name) // Taylor Swift
+console.log(age) // 31
+console.log(city) // New York
+console.log(lover) // Lover
+console.log(rest) // [ 'Evermore', 'Red', 'Fearless' ]
+```
+
+
+That's all you need to know about javascript destructuring.
