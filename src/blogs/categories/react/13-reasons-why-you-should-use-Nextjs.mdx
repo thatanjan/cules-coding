@@ -12,9 +12,14 @@ Now, why should we use it? Simply because it solves our problems. So let's see t
 
 2. Server Side Rendering: Client side rendering has a bunch of problems like SEO, huge bundle size, slow initial load, and blank page flickering. Server side rendering doesn't have that problem. And we can use server side rendering with nextjs.
 
+
 3. Static Site Generation: Suppose you have a blogging website. In this type of website the content hardly changes after it gets deployed. So you don't need to fetch any data from the client or server side. Everything is present on the html and CSS. So the browser only needs to parse them and maybe a little bit javascript. This type of website we called static sites. They are super fast because they have fewer tasks to complete. With Nextjs, we can generate out static html on build time and we don't have to worry about it anymore.
 
 4. Client Side Rendering: Yes, you can also do Client side rendering in nextjs. If you want to have single page application that doesn't refresh, well you can have it here. You combine the 3(CSR, SSR, SSG) rendering systems in Nextjs. You provide your static HTML or fetch data from `getStaticProps` which will be treated as static html. So you can have SEO. Then you fetch the necessary server side data from the `getServerSide` function. And lastly, you can use any client side data fetching method. And that's how you can have a combination of 3rendering systems.
+
+I have already made a video about client and server side rendering. You can check them out.
+<Iframe videoID='o7FvNQ5RNYw'/>
+<Iframe videoID='LuG1KNowti4 '/>
 
 5. Image Optimization: Image is very important for our website. It can make the user experience so much better and also it can make our website super slow. So we need to optimize our images. And Nextjs here is to help us. With Nextjs `Image` component, we don't have to worry about optimization. It will do all the work for us. It can make our: 
    - Image size is smaller while keeping the quality good.
