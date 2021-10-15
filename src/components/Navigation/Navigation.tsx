@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 import MenuHasChildren from './MenuHasChildren'
 
-const categoryMenuList = ['react', , 'nodejs']
+const categoryMenuList = ['react', 'nodejs', 'css']
 
 const CATEGORY = 'category'
 
