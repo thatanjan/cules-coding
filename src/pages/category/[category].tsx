@@ -1,8 +1,6 @@
 import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
-import getFiles from 'utils/getFiles'
-
 import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
 import CategoryModel from 'mongoose/Category'
@@ -12,15 +10,22 @@ import { Blog } from 'interfaces/Blog'
 import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
 
 interface Props {
-	category: string
+	categoryData: {
+		title: string
+		description: string
+	}
 	blogs: Array<Blog>
 }
 
-const CategoryPage = ({ category, blogs }: Props) => {
+const CategoryPage = ({
+	categoryData: { title, description },
+	blogs,
+}: Props) => {
 	return (
 		<>
 			<header className='listing-header'>
-				<h1 className='h2'>Category: {category}</h1>
+				<h1 className='h2'>{title}</h1>
+				<p>{description}</p>
 			</header>
 
 			<MasonaryBlogs {...{ blogs }} />
@@ -50,7 +55,12 @@ export const getStaticProps: GetStaticProps = async ({
 }) => {
 	await connectDB()
 
-	let response = await BlogModel.find(
+	const categoryData = await CategoryModel.findOne(
+		{ slug: category },
+		'title description -_id'
+	)
+
+	const response = await BlogModel.find(
 		{ category },
 		{ _id: 0, __v: 0, content: 0 }
 	).sort({
@@ -64,7 +74,7 @@ export const getStaticProps: GetStaticProps = async ({
 		return blog
 	})
 
-	const props: Props = { blogs, category }
+	const props: Props = { blogs, categoryData: categoryData.toObject() }
 
 	return {
 		props,
