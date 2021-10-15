@@ -5,6 +5,7 @@ import useSWR from 'swr'
 
 import fetcher from 'utils/fetcher'
 import convertNumberToShortForm from 'utils/convertNumberToShortForm'
+import { convertDashToSpace } from 'utils/stringConvertor'
 
 import { Blog } from 'interfaces/Blog'
 
@@ -52,7 +53,9 @@ const SinglePost = ({
 						</h2>
 						<div className='entry__meta'>
 							<span className='entry__meta-cat'>
-								<Link href={`/category/${category}`}>{category}</Link>
+								<Link href={`/category/${category}`}>
+									{convertDashToSpace(category)}
+								</Link>
 							</span>
 							<span className='entry__meta-date'>{createdAt}</span>
 							<span className='entry__meta-blog__views'>
