@@ -20,6 +20,12 @@ const SubMenu = ({ menuName, subMenuList, closeResponsiveNav }: Props) => {
 					</Link>
 				</li>
 			))}
+
+			<li key={nanoid()}>
+				<Link href={`/${menuName}`}>
+					<a onClick={closeResponsiveNav}>Show all {menuName}</a>
+				</Link>
+			</li>
 		</ul>
 	)
 }
