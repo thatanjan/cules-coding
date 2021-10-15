@@ -1,0 +1,67 @@
+---
+title: What is Code Splitting?
+description: Code splitting is the splitting of code into various bundles or components which can then be loaded on demand or in parallel.
+banner: /blogs/react/what-is-code-splitting/banner.png
+altText: Code splitting is the splitting of code into various bundles or components which can then be loaded on demand or in parallel.
+customID: 869f4665-ec59-4d71-950c-54d572b10e2f
+---
+
+In this blog post I will explain:
+		
+- Why does code splitting exist?
+- What is it?
+- When to use Code splitting?
+
+So,
+
+### Why does code splitting exist?
+
+Let me give you a dummy example. Then I will give you a real world example.
+
+Suppose, I give you 10 apples and ask you to eat them right now. But you only need to eat only 1 apple. 10 apples are too much to eat and unnecessary to eat.  But you can eat them later when you are going to need them.
+
+So why have 10 apples when you only need 1?
+
+Code splitting is kinda a based on these concepts. The concept is :
+
+#### Why have more when you only need less?
+
+So let's take a real world example.
+
+I am building a social media project. It has a hamburger menu icon.  If I click on the menu button then a navigation menu will become visible. That menu has code and it has some size. When you build your code for production, the module bundler like webpack will include that code in the main bundle.  Here is the main problem. Does that code need to be included in the main bundle? Just because the application has a hamburger menu icon in it that doesn't mean a user going to click on that.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jw1lnacqgm09rkwajlhm.jpg)
+
+And this is just a simple case. There might be more cases like this.
+So why include those unnecessary codes in the main bundle?
+It gives you the following problem :
+
+- The main bundle gets larger.
+- Larger bundle takes more time to send.
+- Bigger the bundle is more it will take time to parse in the browser.
+
+This problem makes our website slow and users get a bad experience.
+
+#### So what is the solution?
+
+The solution is code splitting.
+So in the hamburger menu example, just don't include the code for the hamburger menu in the main bundle. Make a separate chunk. Or as the method name suggests, split the code into separate bundles. Then when a user going to click on that icon, another request will be sent to the server. Then the server will send the requested bundle.
+
+This has these benefits:
+
+- Main bundle will be small.
+- Small bundle will take less time to send.
+- It will take less time to parse.
+
+It makes our website faster and users will have a good experience.
+
+#### So, when to use Code splitting?
+
+- This is especially useful for Client side rendering applications. We know that in CSR applications content is rendered by javascript. So definitely the JavaScript bundle will be large. Depends on the application size, the bundle can be huge. And we have known that what happens when bundles are huge. Another problem is blank page flickering. Because there is no content on the html itself, so the browser has to wait for javascript to load and parse. Until everything is done, the user sees a blank page for a long time. By the way, I have already created video about Client side rendering and Server side rendering. you can check them out.
+
+<Iframe videoID='o7FvNQ5RNYw' /> 
+<Iframe videoID='LuG1KNowti4' /> 
+
+
+And Code splitting solves the problem for us.
+
