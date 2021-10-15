@@ -24,25 +24,16 @@ const MenuHasChildren = ({
 
 	return (
 		<li className={clsx('has-children', ...classes)}>
-			<Link href={`/${menuName}`}>
-				<a
-					className={clsx(isSubMenuOpen && 'sub-menu-is-open')}
-					onClick={() => {
-						setIsSubMenuOpen(!isSubMenuOpen)
-						focusClick()
-					}}
-				>
-					{menuName}
-				</a>
-			</Link>
-
-			<div
-				className={clsx(isSubMenuOpen && 'expanded', 'submenu__expander')}
+			<a
+				className={clsx(isSubMenuOpen && 'sub-menu-is-open')}
 				onClick={() => {
 					setIsSubMenuOpen(!isSubMenuOpen)
-					console.log(122323)
+					focusClick()
 				}}
-			/>
+				style={{ cursor: 'pointer' }}
+			>
+				{menuName}
+			</a>
 
 			{isSubMenuOpen && (
 				<SubMenu {...{ menuName, subMenuList, closeResponsiveNav }} />
