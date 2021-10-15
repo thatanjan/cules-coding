@@ -1,7 +1,6 @@
+import { NextSeo } from 'next-seo'
 import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-
-import getFiles from 'utils/getFiles'
 
 import connectDB from 'mongoose/connectDB'
 import BlogModel from 'mongoose/Blog'
@@ -11,16 +10,53 @@ import { Blog } from 'interfaces/Blog'
 
 import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
 
+import { APP_NAME } from 'variables/global'
+
 interface Props {
-	category: string
+	categoryData: {
+		title: string
+		description: string
+	}
 	blogs: Array<Blog>
 }
 
-const CategoryPage = ({ category, blogs }: Props) => {
+const CategoryPage = ({
+	categoryData: { title, description },
+	blogs,
+}: Props) => {
+	let maxViews = 0
+	let maxIndex = 0
+
+	blogs.forEach((blog, index) => {
+		if (maxViews < blog.totalViews) {
+			maxViews = blog.totalViews
+			maxIndex = index
+		}
+	})
+
+	const pageTitle = `${title} | ${APP_NAME}`
+
 	return (
 		<>
+			<NextSeo
+				{...{ title: pageTitle, description }}
+				openGraph={{
+					title: pageTitle,
+					description,
+					images: [
+						{
+							url: blogs[maxIndex].banner,
+							alt: blogs[maxIndex].description,
+							height: 1080,
+							width: 1920,
+						},
+					],
+				}}
+			/>
+
 			<header className='listing-header'>
-				<h1 className='h2'>Category: {category}</h1>
+				<h1 className='h2'>{title}</h1>
+				<p>{description}</p>
 			</header>
 
 			<MasonaryBlogs {...{ blogs }} />
@@ -50,7 +86,12 @@ export const getStaticProps: GetStaticProps = async ({
 }) => {
 	await connectDB()
 
-	let response = await BlogModel.find(
+	const categoryData = await CategoryModel.findOne(
+		{ slug: category },
+		'title description -_id'
+	)
+
+	const response = await BlogModel.find(
 		{ category },
 		{ _id: 0, __v: 0, content: 0 }
 	).sort({
@@ -64,7 +105,7 @@ export const getStaticProps: GetStaticProps = async ({
 		return blog
 	})
 
-	const props: Props = { blogs, category }
+	const props: Props = { blogs, categoryData: categoryData.toObject() }
 
 	return {
 		props,

@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 import MenuHasChildren from './MenuHasChildren'
 
-const categoryMenuList = ['react', , 'nodejs']
+const categoryMenuList = ['react', 'nodejs', 'css']
 
 const CATEGORY = 'category'
 
@@ -25,6 +25,9 @@ const Navigation = ({ closeResponsiveNav }: Props) => {
 
 			case 'home':
 				return '/'
+
+			case 'contact':
+				return 'https://anjan.vercel.app/contact'
 
 			default:
 				return `/${menuName}`
