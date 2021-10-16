@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo'
 import React from 'react'
 import { GetServerSideProps } from 'next'
 
@@ -8,14 +9,28 @@ import connectDB from 'mongoose/connectDB'
 
 import { Blog } from 'interfaces/Blog'
 
+import { APP_NAME } from 'variables/global'
+
 interface Props {
 	blogs: Blog[]
 	searchedItem: string
 }
 
 const Search = ({ blogs, searchedItem }: Props) => {
+	const title = `${searchedItem} | ${APP_NAME}`
 	return (
 		<>
+			<NextSeo
+				{...{ title }}
+				openGraph={{
+					title,
+					images: [
+						{
+							url: '/cules-coding-banner.jpg',
+						},
+					],
+				}}
+			/>
 			<header className='listing-header'>
 				<h1 className='h2' style={{ textTransform: 'none' }}>
 					You have {blogs.length} search result based on "{searchedItem}"
