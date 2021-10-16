@@ -50,7 +50,6 @@ const Navigation = ({ closeResponsiveNav }: Props) => {
 								}}
 								focusClick={() => {
 									setFocusedMenuIndex(index)
-									closeResponsiveNav()
 								}}
 							/>
 						)
