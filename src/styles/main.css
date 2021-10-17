@@ -2505,11 +2505,11 @@ ul.header__nav li a {
 }
 
 .header__social .ss-dribbble a::after {
-	background-image: url(../assets/icons/social/new/icon-dribbble.svg);
+	background-image: url(../assets/icons/social/icon-dribbble.svg);
 }
 
 .header__social .ss-behance a::after {
-	background-image: url(../assets/icons/social/new/icon-behance.svg);
+	background-image: url(../assets/icons/social/icon-behance.svg);
 }
 
 .header__social .ss-instagram a::after {
@@ -2517,15 +2517,15 @@ ul.header__nav li a {
 }
 
 .header__social .ss-pinterest a::after {
-	background-image: url(../assets/icons/social/new/icon-pinterest.svg);
+	background-image: url(../assets/icons/social/icon-pinterest.svg);
 }
 
 .header__social .ss-rss a::after {
-	background-image: url(../assets/icons/social/new/icon-rss.svg);
+	background-image: url(../assets/icons/social/icon-rss.svg);
 }
 
 .header__social .ss-email a::after {
-	background-image: url(../assets/icons/social/new/icon-email.svg);
+	background-image: url(../assets/icons/social/icon-email.svg);
 }
 
 /* -------------------------------------------------------------------
