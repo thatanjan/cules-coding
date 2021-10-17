@@ -2489,19 +2489,19 @@ ul.header__nav li a {
 }
 
 .header__social .ss-youtube a::after {
-	background-image: url(../assets/icons/social/icon-youtube.svg);
+	background-image: url(https://res.cloudinary.com/anjan18/image/upload/v1634467217/cules-coding/logos/youtube-icon_ybl44o.svg);
 }
 
 .header__social .ss-linkedin a::after {
-	background-image: url(../assets/icons/social/icon-linkedin.svg);
+	background-image: url(https://res.cloudinary.com/anjan18/image/upload/v1634467217/cules-coding/logos/linkedin-_kyckjl.svg);
 }
 
 .header__social .ss-facebook a::after {
-	background-image: url(../assets/icons/social/icon-facebook.svg);
+	background-image: url(https://res.cloudinary.com/anjan18/image/upload/v1634467216/cules-coding/logos/facebook_m1u14v.svg);
 }
 
 .header__social .ss-twitter a::after {
-	background-image: url(../assets/icons/social/icon-twitter.svg);
+	background-image: url(https://res.cloudinary.com/anjan18/image/upload/v1634467407/cules-coding/logos/twitter-6_rma9ok.svg);
 }
 
 .header__social .ss-dribbble a::after {
@@ -2513,7 +2513,7 @@ ul.header__nav li a {
 }
 
 .header__social .ss-instagram a::after {
-	background-image: url(../assets/icons/social/icon-instagram.svg);
+	background-image: url(https://res.cloudinary.com/anjan18/image/upload/v1634466963/cules-coding/logos/instagram_raaw2p.svg);
 }
 
 .header__social .ss-pinterest a::after {
@@ -3013,11 +3013,11 @@ body.search-is-visible {
 	text-transform: uppercase;
 	color: rgba(255, 255, 255, 0.5);
 	transition: all 0.3s;
-	background-image: url(../assets/icons/icon-arrow-up.svg);
+	background-image: url(https://res.cloudinary.com/anjan18/image/upload/v1634468151/cules-coding/logos/up-arrow-svgrepo-com_lzxdjr.svg);
 	background-color: #000000;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-size: 7px 14px;
+	background-size: 50px 14px;
 }
 
 .go-top.link-is-visible {
