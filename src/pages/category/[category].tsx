@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo'
 import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
@@ -8,6 +9,8 @@ import CategoryModel from 'mongoose/Category'
 import { Blog } from 'interfaces/Blog'
 
 import MasonaryBlogs from 'components/Layout/MasonaryBlogs'
+
+import { APP_NAME } from 'variables/global'
 
 interface Props {
 	categoryData: {
@@ -21,8 +24,36 @@ const CategoryPage = ({
 	categoryData: { title, description },
 	blogs,
 }: Props) => {
+	let maxViews = 0
+	let maxIndex = 0
+
+	blogs.forEach((blog, index) => {
+		if (maxViews < blog.totalViews) {
+			maxViews = blog.totalViews
+			maxIndex = index
+		}
+	})
+
+	const pageTitle = `${title} | ${APP_NAME}`
+
 	return (
 		<>
+			<NextSeo
+				{...{ title: pageTitle, description }}
+				openGraph={{
+					title: pageTitle,
+					description,
+					images: [
+						{
+							url: blogs[maxIndex].banner,
+							alt: blogs[maxIndex].description,
+							height: 1080,
+							width: 1920,
+						},
+					],
+				}}
+			/>
+
 			<header className='listing-header'>
 				<h1 className='h2'>{title}</h1>
 				<p>{description}</p>
