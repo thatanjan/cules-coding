@@ -3013,7 +3013,7 @@ body.search-is-visible {
 	text-transform: uppercase;
 	color: rgba(255, 255, 255, 0.5);
 	transition: all 0.3s;
-	background-image: url(../assets/icons/icon-arrow-up.svg);
+	background-image: url(../assets/icons/social/new/icon-arrow-up.svg);
 	background-color: #000000;
 	background-repeat: no-repeat;
 	background-position: center center;
