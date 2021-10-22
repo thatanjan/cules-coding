@@ -3611,26 +3611,32 @@ a.site-logo {
 	height: 80vh;
 }
 
-iframe {
-	width: 100%;
-	height: 50vh;
-	border: none;
+.iframe-col {
+	display: grid;
+	align-items: end;
 }
 
-@media screen and (max-width: 700px) {
-	iframe {
-		height: 40vh;
-	}
+.header__nav li.has-children > a.sub-menu-is-open::after {
+	-webkit-transform: rotate(225deg);
+	transform: rotate(225deg);
 }
 
-@media screen and (max-width: 500px) {
-	iframe {
-		height: 30vh;
-	}
-}
-
-@media screen and (max-width: 400px) {
-	iframe {
-		height: 20vh;
-	}
+.header__nav li.has-children > a::after {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+	border-right: 1px solid rgba(255, 255, 255, 0.4);
+	content: '';
+	display: block;
+	height: 5px;
+	width: 5px;
+	margin-top: -4px;
+	pointer-events: none;
+	position: absolute;
+	right: 1.8rem;
+	top: 21px;
+	-webkit-transform-origin: 66% 66%;
+	-ms-transform-origin: 66% 66%;
+	transform-origin: 66% 66%;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	transition: all 0.5s;
 }
