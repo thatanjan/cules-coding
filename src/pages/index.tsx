@@ -122,19 +122,17 @@ export const getStaticProps: GetStaticProps = async () => {
 		data = data.concat(readAllBlogData(category))
 	})
 
-	const promises = data.map(blog => {
-		return BlogModel.updateOne(
-			{ customID: blog.customID },
-			{ $set: blog },
-			{
-				upsert: true,
-				setDefaultsOnInsert: true,
-			}
-		)
-	})
+	const blogBulkUpdateArray = data.map(blog => ({
+		updateOne: {
+			filter: { customID: blog.customID },
+			update: { $set: blog },
+			options: { upsert: true, setDefaultsOnInsert: true },
+		},
+	}))
 
-	await Promise.all(promises)
+	const update = await BlogModel.bulkWrite(blogBulkUpdateArray)
 
+	console.log(update)
 	const outroData = readOtherFiles(['src', 'blogs', 'outro', 'outro.mdx'])
 
 	await OutroModel.updateOne(
