@@ -186,7 +186,7 @@ export const getStaticProps: GetStaticProps = async () => {
 			customID: { $in: featuredBlogsID },
 		},
 		project
-	)
+	).sort('-createdAt')
 
 	const featuredBlogs = featuredBlogsResult.map(blog => {
 		const blogObject = blog.toObject()
