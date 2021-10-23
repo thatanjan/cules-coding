@@ -168,8 +168,28 @@ export const getStaticProps: GetStaticProps = async () => {
 		return blogObject
 	})
 
+	const featuredPostsID = [
+		'b81539cc-c66e-498e-9d35-c48622773234',
+		'034490e0-668b-4f42-8e26-e97f30efd008',
+		'86249a12-be37-48ee-80b8-1b1716b80c4e',
+	]
+
+	const featuredPostsResult = await BlogModel.find(
+		{
+			customID: { $in: featuredPostsID },
+		},
+		project
+	)
+
+	const featuredPosts = featuredPostsResult.map(blog => {
+		const blogObject = blog.toObject()
+		blogObject.createdAt = blogObject.createdAt.toDateString()
+
+		return blogObject
+	})
+
 	return {
-		props: { topBlogs, recentBlogs },
+		props: { topBlogs, recentBlogs, featuredPosts },
 		revalidate: 10,
 	}
 }
