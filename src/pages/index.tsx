@@ -83,18 +83,18 @@ export const getStaticProps: GetStaticProps = async () => {
 		return fileMatter
 	})
 
-	const updateCategoriesPromises = eachCategoryFilesMatterData.map(matterData =>
-		CategoryModel.updateOne(
-			{ customID: matterData.customID },
-			{ $set: matterData },
-			{
-				upsert: true,
-				setDefaultsOnInsert: true,
-			}
-		)
-	)
+	const updateCategoriesArray = eachCategoryFilesMatterData.map(matterData => ({
+		updateOne: {
+			filter: {
+				customID: matterData.customID,
+			},
+			update: { $set: matterData },
+			upsert: true,
+			setDefaultsOnInsert: true,
+		},
+	}))
 
-	await Promise.all(updateCategoriesPromises)
+	await CategoryModel.bulkWrite(updateCategoriesArray)
 
 	const readAllBlogData = (category: string) => {
 		const allFiles = getFiles(['categories', category])
@@ -122,18 +122,16 @@ export const getStaticProps: GetStaticProps = async () => {
 		data = data.concat(readAllBlogData(category))
 	})
 
-	const promises = data.map(blog => {
-		return BlogModel.updateOne(
-			{ customID: blog.customID },
-			{ $set: blog },
-			{
-				upsert: true,
-				setDefaultsOnInsert: true,
-			}
-		)
-	})
+	const blogBulkUpdateArray = data.map(blog => ({
+		updateOne: {
+			filter: { customID: blog.customID },
+			update: { $set: blog },
+			upsert: true,
+			setDefaultsOnInsert: true,
+		},
+	}))
 
-	await Promise.all(promises)
+	await BlogModel.bulkWrite(blogBulkUpdateArray)
 
 	const outroData = readOtherFiles(['src', 'blogs', 'outro', 'outro.mdx'])
 
