@@ -140,34 +140,32 @@ export const getStaticProps: GetStaticProps = async () => {
 		}
 	)
 
-	const aggregate = BlogModel.aggregate()
-
 	const project = {
 		_id: 0,
 		__v: 0,
 		content: 0,
 	}
 
-	const topBlogsResult = await aggregate
+	const topBlogsResult = await BlogModel.find({}, project)
 		.sort('-totalViews')
 		.limit(10)
-		.project(project)
 
-	const recentBlogsResult = await aggregate
+	const recentBlogsResult = await BlogModel.find({}, project)
 		.sort('-createdAt')
 		.limit(20)
-		.project(project)
 
 	const topBlogs = topBlogsResult.map(blog => {
-		blog.createdAt = blog.createdAt.toDateString()
+		const blogObject = blog.toObject()
+		blogObject.createdAt = blogObject.createdAt.toDateString()
 
-		return blog
+		return blogObject
 	})
 
 	const recentBlogs = recentBlogsResult.map(blog => {
-		blog.createdAt = blog.createdAt.toDateString()
+		const blogObject = blog.toObject()
+		blogObject.createdAt = blogObject.createdAt.toDateString()
 
-		return blog
+		return blogObject
 	})
 
 	return {
