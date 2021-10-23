@@ -21,7 +21,7 @@ interface Props {
 	category: string
 	topBlogs: Array<Blog>
 	recentBlogs: Array<Blog>
-	featuredPosts: Array<Blog>
+	featuredBlogs: Array<Blog>
 }
 
 const title = 'Cules Coding'
@@ -29,7 +29,7 @@ const title = 'Cules Coding'
 const description =
 	'Cules coding is blogging site. People can read about programming, data structure, algorithms and many more'
 
-const Home = ({ topBlogs, recentBlogs, featuredPosts }: Props) => {
+const Home = ({ topBlogs, recentBlogs, featuredBlogs }: Props) => {
 	return (
 		<>
 			<NextSeo
@@ -50,7 +50,7 @@ const Home = ({ topBlogs, recentBlogs, featuredPosts }: Props) => {
 				<h1 className='h2'>Featured Blogs</h1>
 			</header>
 
-			<MasonaryBlogs {...{ blogs: featuredPosts }} />
+			<MasonaryBlogs {...{ blogs: featuredBlogs }} />
 
 			<header className='listing-header'>
 				<h1 className='h2'>Top Blogs</h1>
@@ -175,20 +175,20 @@ export const getStaticProps: GetStaticProps = async () => {
 		return blogObject
 	})
 
-	const featuredPostsID = [
+	const featuredBlogsID = [
 		'b81539cc-c66e-498e-9d35-c48622773234',
 		'034490e0-668b-4f42-8e26-e97f30efd008',
 		'86249a12-be37-48ee-80b8-1b1716b80c4e',
 	]
 
-	const featuredPostsResult = await BlogModel.find(
+	const featuredBlogsResult = await BlogModel.find(
 		{
-			customID: { $in: featuredPostsID },
+			customID: { $in: featuredBlogsID },
 		},
 		project
 	)
 
-	const featuredPosts = featuredPostsResult.map(blog => {
+	const featuredBlogs = featuredBlogsResult.map(blog => {
 		const blogObject = blog.toObject()
 		blogObject.createdAt = blogObject.createdAt.toDateString()
 
@@ -196,7 +196,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	})
 
 	return {
-		props: { topBlogs, recentBlogs, featuredPosts },
+		props: { topBlogs, recentBlogs, featuredBlogs },
 		revalidate: 10,
 	}
 }
