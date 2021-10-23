@@ -21,6 +21,7 @@ interface Props {
 	category: string
 	topBlogs: Array<Blog>
 	recentBlogs: Array<Blog>
+	featuredPosts: Array<Blog>
 }
 
 const title = 'Cules Coding'
@@ -28,7 +29,7 @@ const title = 'Cules Coding'
 const description =
 	'Cules coding is blogging site. People can read about programming, data structure, algorithms and many more'
 
-const Home = ({ topBlogs, recentBlogs }: Props) => {
+const Home = ({ topBlogs, recentBlogs, featuredPosts }: Props) => {
 	return (
 		<>
 			<NextSeo
@@ -44,6 +45,12 @@ const Home = ({ topBlogs, recentBlogs }: Props) => {
 					],
 				}}
 			/>
+
+			<header className='listing-header'>
+				<h1 className='h2'>Featured Blogs</h1>
+			</header>
+
+			<MasonaryBlogs {...{ blogs: featuredPosts }} />
 
 			<header className='listing-header'>
 				<h1 className='h2'>Top Blogs</h1>
