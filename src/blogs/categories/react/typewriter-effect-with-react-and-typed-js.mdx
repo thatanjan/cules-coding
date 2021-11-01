@@ -1,0 +1,166 @@
+---
+title: Typewriter effect with React and Typed.js
+description: Typewriter effect is an animation effect where a text appears like someone is typing.
+banner: /blogs/react/typewriter-effect-with-react-and-typed-js/banner.png
+altText: Typewriter effect is an animation effect where a text appears like someone is typing.
+customID: b7f545b0-fe44-4234-b5d9-779e451dc991
+---
+
+In this blog, you are going to create a typewriter effect with React and Typed.js.
+
+## Demo:
+
+<Iframe videoID='06DLL8JVrOE'  />
+
+## Starter code.
+
+- Create a React project(I am using NextJS) and install typed.js
+
+```bash
+yarn add typed.js
+```
+
+- index.js file:
+
+```javascript
+import React from 'react'
+import Image from 'next/image'
+
+import TypeWriter from '../components/TypeWriter'
+import { container, overlay } from '../../styles/type.module.css'
+
+const Type = () => {
+	return (
+		<div className={container}>
+			<TypeWriter />
+			<Image src='/tw_2.jpg' layout='fill' objectFit='cover' alt='Taylor swift' />
+		</div>
+	)
+}
+
+export default Type
+```
+
+- TypeWriter.jsx file:
+
+```javascript
+import React from 'react'
+
+import { typeContainer } from '../../styles/type.module.css'
+
+const Type = () => {
+	return (
+		<div className={typeContainer}>
+			<h1 style={{ display: 'inline' }} />
+		</div>
+	)
+}
+```
+
+- type.module.css file for styles
+
+```css
+.container {
+	height: 100vh;
+	position: relative;
+}
+
+.typeContainer {
+	position: absolute;
+	background: #02020294;
+	width: 100vw;
+	z-index: 20;
+	color: white;
+	padding: 50px 0;
+	bottom: 15%;
+	padding-left: 2rem;
+}
+```
+
+- Result
+  ![Result without typewriter effect](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/my5376y2m4pm708sabps.png)
+
+We don't have anything special. We have just a container with the position of `relative`. The container is taking full width and height of the screen.
+
+A nextjs Image component is used to display the image as if it is a background image.
+Behind the scenes, the image is positioned `absolute` and it is taking the whole width and height of its container to make it look like a background image.
+
+On the Typewriter component, we have a container with className of `.typeContainer`. It is also positioned as `absolute`. Inside we have an `h1` tag. This will be used to create a typewriter effect.
+
+Let's do the actual task.
+
+- import typed.js
+
+```javascript
+import Typed from 'typed.js'
+```
+
+- We need to create two refs with the `useRef` hook. With ref, we can reference the dom element.
+
+```javascript
+// TypeWriter.jsx
+const Type = () => {
+	// Create reference to store the DOM element containing the animation
+	const el = React.useRef(null)
+	// Create reference to store the Typed instance itself
+	const typed = React.useRef(null)
+
+	return (
+		<div className={typeContainer}>
+			<h1 ref={el} style={{ display: 'inline' }} />
+		</div>
+	)
+}
+```
+
+We have attached the `el` ref to the h1 using the `ref` prop.
+
+- We need to use the useEffect hook which will always run after the component gets mounted
+
+```javascript
+const Type = () => {
+	// Create reference to store the DOM element containing the animation
+	const el = React.useRef(null)
+	// Create reference to store the Typed instance itself
+	const typed = React.useRef(null)
+
+	React.useEffect(() => {
+		const options = {
+			// strings that will be rendered for typewriter effect
+			strings: [
+				'Hello, My name is Taylor Swift.',
+				"My new album Red (Taylor's Version) is coming on November 12, 2021.",
+				'PRE-ORDER NOW',
+			],
+			typeSpeed: 50, // typeing speed will be 50ms
+			backSpeed: 10, // typing backSpeed will be 10ms
+			loop: true,
+		}
+
+		// elRef refers to the <h1 /> rendered below
+		typed.current = new Typed(el.current, options)
+
+		return () => {
+			// Make sure to destroy Typed instance during cleanup
+			// to prevent memory leaks
+			typed.current.destroy()
+		}
+	}, [])
+
+	return (
+		<div className={typeContainer}>
+			<h1 ref={el} style={{ display: 'inline' }} />
+		</div>
+	)
+}
+```
+
+We have created a new instance of the Typed class passing the `h1` dom reference and options.
+
+To see more available options visit [ the docs ](http://mattboldt.github.io/typed.js/docs)
+
+Our Final Result:
+
+<Iframe videoID='06DLL8JVrOE'  />
+
+That's it for this blog.
