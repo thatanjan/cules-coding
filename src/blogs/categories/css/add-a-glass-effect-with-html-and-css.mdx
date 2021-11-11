@@ -1,0 +1,205 @@
+---
+title: Add a glass effect with HTML and CSS
+description: In this blog, you will learn how to add a glass effect with Html & CSS. You are going to learn this by building this simple project.
+banner: /blogs/css/add-a-glass-effect-with-html-and-css/banner.png
+altText: In this blog, you will learn how to add a glass effect with Html & CSS. You are going to learn this by building this simple project.
+customID: 619f627e-a6c6-4efb-b828-a94f4488e2b5
+---
+
+
+Preview:
+
+<Iframe videoID="VRqJoBl3vr0" />
+
+Requirements:
+
+- Basic HTML & CSS knowledge
+- Basic Javascript(Optional. only required for the toggle effect)
+
+I have already made a video about it on my channel. Please check this out for more explanation.
+
+<Iframe videoID="0an2g0lq7LU" />
+
+If you like this video, please like share, and Subscribe to my channel.
+
+## Let's start
+
+Html code:
+
+```html
+<!DOCTYPE html>
+<html lang="eng">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Glass effect</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="image_container">
+				<img src="./media/photo.jpg" alt="" class="image" />
+				<div class="glass hidden"></div>
+			</div>
+			<div class="button_container">
+				<button class="toggle_button">
+					<span class="hide_or_show">Hide</span> the image
+				</button>
+			</div>
+		</div>
+
+		<script src="index.js"></script>
+	</body>
+</html>
+```
+
+Explanation:
+
+- A container to contain all the elements of the page.
+- Image container for the image.
+- An empty `div` with `glass` class is added to add the glass effect.
+- A button container with a button.
+- Button text `Hide` is wrapped up with a span tag. Text will be changed when we will click the button.
+
+Result:
+![Without CSS (Cules Coding)](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mbioexv0aoo7jlay7jo8.png)
+
+Css code:
+
+```css
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.container {
+	min-height: 100vh;
+	display: grid;
+	justify-items: center;
+	grid-row-gap: 3rem;
+}
+
+.image_container {
+	width: 50%;
+	align-self: end;
+	position: relative;
+}
+
+.image {
+	width: 100%;
+}
+
+.toggle_button {
+	padding: 1rem;
+	background: red;
+	border: none;
+	color: white;
+	width: 15rem;
+	cursor: pointer;
+}
+
+.toggle_button:focus {
+	outline: none;
+}
+
+.toggle_button:active {
+	transform: translate(0, 2px);
+}
+
+.glass {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.hidden {
+	display: none;
+}
+```
+
+Result:
+![with css](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9xv5pbkztvtzg2ckp02x.png)
+
+Explanation:
+
+- The container is taking the whole width.
+- The image container is only taking 50% width of its container. And the image itself is taking 100% width of its container.
+- The image container is position relative and the glass element is aligned with the image container using position absolute.
+
+If you have confusion with Css position then you can watch this video.
+
+<Iframe  videoID='tO2KjMlor4o'/>
+
+- The glass element is hidden with the hidden class.
+- The image and button are centered horizontally and vertically using css grid.
+- But the image and button are next to each other.
+- Some basic styles for Button.
+
+Let's finally add the blur and it is very easy.
+
+```css
+.glass {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	backdrop-filter: blur(10px);
+}
+```
+
+Result:
+![With effect](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kgvim1q5hmknmdcmvpcc.png)
+
+Explanation:
+
+- We have used `backdrop-filter` property to make it work.
+- We need to use the blur function for the value.
+- Inside the blur function pass any valid measurement value you want.
+
+To read more about `backdrop-filter`, visit the [docs](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)
+
+#### Note:
+
+The `backdrop-filter` property will not work in firefox. If anyone knows how to fix that please let me know.
+
+Let's add the toggle effect. Here we will use a little bit of javascript.
+
+```javascript
+const toggleButton = document.querySelector('.toggle_button')
+const glass = document.querySelector('.glass')
+const hideOrShow = document.querySelector('.hide_or_show')
+
+const hidden = 'hidden'
+
+toggleButton.addEventListener('click', () => {
+	glass.classList.toggle(hidden)
+
+	if (glass.classList.contains(hidden)) {
+		hideOrShow.innerHTML = 'Hide'
+	} else {
+		hideOrShow.innerHTML = 'Show'
+	}
+})
+```
+
+Result:
+
+<Iframe videoID="VRqJoBl3vr0" />
+
+Explanation:
+
+- First, we have selected 3 elements.
+
+  1. Toggle Button
+  2. Gass element
+  3. Hide or show text element inside the button
+
+- We have added an event listener to the toggle button to listen for the click event. The callback function will be called when the button will be called.
+- Then simply we will toggle the `hidden` class inside the glass element. This will toggle the glass effect.
+- Finally, we are checking if the `hidden` class is present or not. And we are just changing the text content of the button based on that.
+
+And we are done. This is how we add a glass effect with vanilla HTML and css. That was easy, right?
