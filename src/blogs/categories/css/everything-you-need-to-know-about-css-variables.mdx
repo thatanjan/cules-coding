@@ -1,0 +1,232 @@
+---
+title: Everything you need to know about css variables
+description: Custom properties (sometimes referred to as CSS variables or cascading variables) are entities defined by CSS authors that contain specific values to be reused throughout a document.
+banner: /blogs/css/everything-you-need-to-know-about-css-variables/banner.png
+altText: Custom properties (sometimes referred to as CSS variables or cascading variables) are entities defined by CSS authors that contain specific values to be reused throughout a document.
+customID: e6fe83f7-ec32-4a4f-84cf-84e37c64ffd1
+---
+
+In this blog, you will learn about css variables also known as custom properties.
+
+You will learn:
+
+- Why do Css variables exist?
+- How to use it?
+- How cascading works with Css variables?
+- How to access css variables in javascript?
+- How to change css variables with javascript?
+
+For example, You have 5 containers on your webpage. All of the container
+the background color will be red.
+
+```css
+.container1 {
+	background: red;
+}
+
+.container2 {
+	background: red;
+}
+
+.container3 {
+	background: red;
+}
+
+.container4 {
+	background: red;
+}
+
+.container5 {
+	background: red;
+}
+```
+
+Ok. That works fine. But after some time you started to think that the background color should be blue. Now you want to change the color. But now you have to every single container and apply the change. It will work but that is too much work. So,
+
+## What is the solution?
+
+What if we can change the color once and that will be applied everywhere?
+
+Yes, we can do that with the help of css variables. Css variables are officially known as custom properties.
+
+So,
+
+## How to use Css variables?
+
+We normally define variables at the root.
+
+At the top of your css file select the root like this:
+
+```css
+:root {
+}
+```
+
+Inside the root you have to declare the variables just like you use properties and value in CSS.
+
+```css
+:root {
+	--primary-bg-color: red;
+}
+```
+
+#### Syntax
+
+Variable name has to start will `--`(double dash). For example:
+
+- `--primary-bg-color`
+- `--secondary-bg-color`
+- `--primary-font-color`
+
+Now you can use those variables as a value in any valid css property. Let's apply it to our example.
+
+```css
+:root {
+	--primary-bg-color: red;
+}
+
+.container1 {
+	background: var(--primary-bg-color);
+}
+
+.container2 {
+	background: var(--primary-bg-color);
+}
+
+.container3 {
+	background: var(--primary-bg-color);
+}
+
+.container4 {
+	background: var(--primary-bg-color);
+}
+
+.container5 {
+	background: var(--primary-bg-color);
+}
+```
+
+Now if you want to change the color, just change the value of the variable. And changes will be applied everywhere.
+
+```css
+:root {
+	--primary-bg-color: blue;
+}
+
+.container1 {
+	background: var(--primary-bg-color);
+}
+
+.container2 {
+	background: var(--primary-bg-color);
+}
+
+.container3 {
+	background: var(--primary-bg-color);
+}
+
+.container4 {
+	background: var(--primary-bg-color);
+}
+
+.container5 {
+	background: var(--primary-bg-color);
+}
+```
+
+## How cascading works with Css variables?
+
+You can re-decalre the value for any css selector. Like this:
+
+```css
+:root {
+	--primary-bg-color: blue;
+}
+
+.container1 {
+	background: var(--primary-bg-color);
+}
+
+.container2 {
+	--primary-bg-color: green;
+	background: var(--primary-bg-color);
+}
+
+.container3 {
+	background: var(--primary-bg-color);
+}
+
+.container4 {
+	background: var(--primary-bg-color);
+}
+
+.container5 {
+	background: var(--primary-bg-color);
+}
+```
+
+Now the `.container2` will have a background color of `green`. But other containers' background colors will not change. But why?
+
+All of the places that you are using CSS variables are just inheriting values from the `root`. But when you redeclare the variable for `.container2` all of the elements inside the `.container2` are just inheriting the value from the `.container2`.
+
+If the .container2 would look like below, what would be the color of `.subcontainer2`?
+
+```css
+:root {
+	--primary-bg-color: blue;
+}
+
+.container2 {
+	--primary-bg-color: green;
+	background: var(--primary-bg-color);
+}
+
+.container2 .subcontainer1 {
+	background: teal;
+}
+
+.container2 .subcontainer1 .subcontainer2 {
+	background: var(--primary-bg-color);
+}
+```
+
+Will it be green or blue???
+
+It will be green. Why?
+
+Because
+
+- The CSS parser will check inside `.subcontainer2` first. Then it will not find anything.
+- Then it will check `subcontainer2`'s parent `.subcontainer1`. Again it will find anything.
+- Then it will check `.subcontainer1`'s parent `.container`. This time the parser will see a
+  variable declaration that has the value green. It will not check anything.
+
+So, this is how it works:
+
+![Css variables cascading demonstratition](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f1z2s90tm935gdsv32na.png)
+
+I know it sounds complex. If you know javascript, it is like scope chain in javscript
+
+## How to access CSS variables in javascript?
+
+Yes, you can access css variables in javascript and also you can manipulate them.
+
+```javascript
+const allStyles = getComputedStyle(document.documentElement) // returns all css styles as an object
+
+const bgColor = allStyles.getPropertyValue(--primary - bg - color)
+
+console.log(bgColor) // green or whatever the value is
+```
+
+## How to change css variables with javascript?
+
+```javascript
+// Get the root element
+const root = document.querySelector(':root')
+
+// changing the value of variable
+root.style.setProperty('--primary-bg-color', 'red')
+```
+
+And that's all you need to know about css variables.
