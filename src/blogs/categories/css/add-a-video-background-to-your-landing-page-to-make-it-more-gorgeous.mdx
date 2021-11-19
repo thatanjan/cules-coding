@@ -1,0 +1,156 @@
+---
+title: Add a video background to your landing page to make it more gorgeous
+description: In this blog you will learn how to add a video background to your landing page to make it more gorgeous.
+banner: /blogs/css/add-a-video-background-to-your-landing-page-to-make-it-more-gorgeous/banner.png
+altText: In this blog you will learn how to add a video background to your landing page to make it more gorgeous.
+customID: 54472f4f-08b6-4003-a6a1-b67c5d8accf0
+---
+
+Preview:
+
+<Iframe videoID='nVryoBkVEzc'  />
+
+Requirements:
+
+- Basic HTML & CSS knowledge
+- Basic Javascript(Optional. only required for the navigation toggle effect)
+
+I have already created a video about it on my youtube channel. Check that out for more details.
+
+<Iframe videoID="s6J2Q2vOhf0" />
+
+If you like this video, please like share, and Subscribe to my channel.
+
+source code: https://github.com/thatanjan/video-background-landing-page-yt
+
+### Starter code
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Taylor Swift</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="nav.css" />
+		<link rel="stylesheet" href="content.css" />
+		<link rel="stylesheet" href="responsive.css" />
+	</head>
+	<body>
+		This is body
+
+		<script src="index.js"></script>
+	</body>
+</html>
+```
+
+### Let's add the video and overlay to html.
+
+```html
+<section class="video_container">
+	<video src="./media/background.mp4" autoplay loop muted></video>
+	<div class="overlay"></div>
+</section>
+```
+
+Result:
+![video with no style - Add video background to your landing page to make it more gorgeous by cules coding ](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vjzp8464atlc7x38y8p4.png)
+
+Explanation:
+
+- A video container to contain the video and overlay.
+- Video will be started automatically with a loop. It will also be muted.
+
+### Css reset
+
+```CSS
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	max-width: 100vw;
+	overflow-x: hidden;
+}
+```
+
+Explanation:
+
+- The entire webpage should not be bigger than the screen width.
+- Webpage will not have any horizontal scrolling.
+
+### Let's style the video:
+
+```css
+.video_container {
+	min-height: 100vh;
+	max-height: 100vh;
+	overflow: hidden;
+	position: relative;
+}
+
+.video_container video {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+```
+
+Result:
+![video styled but no overlay - Add video background to your landing page to make it more gorgeous by Cules Coding ](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/recuxoyiwft08256si2u.png)
+
+Explanation:
+
+- The video container is taking the full width of the screen without any overflow. It is also positioned as `relative`.
+- Actual video is positioned `absolute` and aligned with the container. It is also taking the full height and width.
+
+If you have confusion with Css position then you can watch this video.
+
+<Iframe  videoID='tO2KjMlor4o'/>
+
+- To make the video fit, we need to use `object-fit` to `cover`.
+- If the user adjusts screen width, the user will always see the center of the video because of `object-position: center;`.
+
+### Let's style the overlay.
+
+```css
+:root {
+	--primary-red: #70000e;
+}
+
+.overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--primary-red);
+	mix-blend-mode: soft-light;
+}
+```
+
+Result:
+![with overlay](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z4llmdtpsn2c1u224dfi.png)
+
+Explanation:
+
+- Overlay element is aligned with the container using position `absolute`.
+- The background color is stored inside a variable. If you don't know about css variable, then you can check out this [blog](https://www.culescoding.space/blog/everything-you-need-to-know-about-css-variables)
+- Overlay has been blended with the background using a blend mode. We need to use `mix-blend-mode` property to do so. I will use `soft-light` as value. You can learn about `mix-blend-mode` from [here](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode)
+
+And that's how you add a video background to a landing page to make it more gorgeous. If you want to learn how the rest of the project was made please watch the video.
+
+<Iframe videoID="s6J2Q2vOhf0" />
+
+source code: https://github.com/thatanjan/video-background-landing-page-yt
+
+Final result:
+
+<Iframe videoID='nVryoBkVEzc'  />
