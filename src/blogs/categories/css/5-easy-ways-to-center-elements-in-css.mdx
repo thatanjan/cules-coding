@@ -1,0 +1,175 @@
+---
+title: 5 easy ways to center elements in CSS
+description: Centering elements in CSS is a very common and important task. Sometimes we struggle a lot to do this simple task. In this blog, you will learn 5 easy ways to center an element in CSS.
+banner: /blogs/css/5-easy-ways-to-center-elements-in-css/banner.png
+altText: 5 easy ways to center elements in CSS
+customID: 58dd2a9d-b126-4c6d-904b-d9122f6d760b
+---
+
+I have already made a video about it on my channel. Please check this out for more explanation.
+
+<Iframe videoID="HM7x3FhZqMk" />
+
+#### Starter Code
+
+##### HTML
+
+```html
+<div class="parent">
+	<div class="children">
+		<h2 class="text">Subscribe to Cules Coding</h2>
+	</div>
+</div>
+```
+
+##### CSS
+
+```css
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.parent {
+	height: 800px;
+	background: red;
+}
+
+.children {
+	height: 50%;
+	width: 50%;
+	background: cyan;
+}
+```
+
+![5 easy ways to center elements in CSS ](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3vhjialnba9gmhl86hwf.png)
+
+Our target is to center the `.children` element inside the parent container.
+
+### Css Grid
+
+```css
+.parent {
+	height: 800px;
+	background: red;
+	display: grid;
+	place-items: center;
+}
+```
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j8ygwnemfiem3fc7xefz.png)
+
+##### Explaination
+
+- We made the parent container a grid.
+- Place-items property is the shorthand property for `align-items` and `justify-items`. `align-items` handle horizontal alignment and `justify-items` handle vertical alignment. We have given the value `center` to both of the properties.
+
+### Align Text (extra)
+
+To Align any kind of text use `text-align` property.
+
+```css
+.text {
+	text-align: center;
+}
+```
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/13ayto1za088upn146oi.png)
+
+### Css Flexbox
+
+```css
+.parent {
+	height: 800px;
+	background: red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+```
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j8ygwnemfiem3fc7xefz.png)
+
+##### Explaination
+
+- We have made the container a flexbox.
+- `justify-content` will align children horizontally and `align-items` will align items vertically.
+
+### Padding (only vertically)
+
+```css
+.parent {
+	/* height: 800px; */
+	background: red;
+	padding: 100px 0;
+}
+```
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/v2f41s9x0rqr6vffdvtq.png)
+
+##### Explaination
+
+- Remove height from the parent.
+- Add padding to the top and bottom. Value has to be the same.
+
+### Margin (only horizontally)
+
+```css
+.parent {
+	height: 800px;
+	background: red;
+	width: 600px;
+}
+
+.children {
+	height: 50%;
+	width: 50%;
+	background: cyan;
+	margin: 0 auto;
+}
+```
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/18nuidfbub0abquka97g.png)
+
+##### Explaination
+
+- Add width to the parent.
+- Set margin `0` to the top and bottom and `auto` to `left` and `right`.
+
+### Css postion
+
+```css
+.parent {
+	height: 800px;
+	background: red;
+	position: relative;
+}
+.children {
+	height: 50%;
+	width: 50%;
+	background: cyan;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+```
+
+###### Without transform
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4l7yyu06qct7v7fsohvt.png)
+
+###### With transform
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j8ygwnemfiem3fc7xefz.png)
+
+##### Explaination
+
+- Make the parent position relative.
+- Make the children's position absolute.
+- Move the children down and to right by `50%` relative to the parent. Now the children starting position will be the center of the parent.
+- Move the children to the top and left by `-50%` using css transform.
+
+That's it, guys. There are other ways you can center elements in CSS. But these are the easiest method. I hope you have learned something new.
