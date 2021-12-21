@@ -1,0 +1,799 @@
+---
+title: Build a SpaceX Landing Page Clone with HTML, CSS & JAVASCRIPT
+description: In this blog, You will learn how to build a landing page like the SpaceX website.
+banner: /blogs/css/build-a-spaceX-clone/banner.png
+altText: SpaceX clone by Anjan Shomodder (Cules Coding)
+customID: 7090d87b-b64d-40af-8033-31377296b871
+---
+
+## Demo
+
+<Iframe videoID='m6IjYZA57es'  />
+
+## Live Demo
+
+You can see the live demo from [ here ](https://thatanjan.github.io/spaceX-landing-page-clone-yt/).
+
+## Source code
+
+You can find all the source code, media files from [here](https://github.com/thatanjan/spaceX-landing-page-clone-yt)
+
+## You will learn:
+
+- Javascript intersection observer to add cool effects
+- DOM manipulation
+- Aligning elements with css positions.
+- How to make responsive websites.
+
+## Requirements:
+
+- Basic Html
+- Basic Css
+- Basic Javascript
+
+I have already made a video tutorial about it. I have explained everything in
+details in the video.
+
+<Iframe videoID='HkOcmKGm0zU '  />
+
+Don't forget to like, share and subscribe to [Cules
+Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1).
+
+I will only explain the javascript code about Intersection observer and Header animation in this blog. Because that will be quite long and you will not like that. Instead, I will go over HTML and css briefly. Don't worry you will understand. If you don't understand anything, please watch the video and feel free to ask me questions.
+
+### So, Let's do it.
+
+We will make the page with a mobile first approach.
+
+#### Footer
+
+![SpaceX clone Footer Cules Coding](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3wno1avvdqwpkdz1916m.png)
+
+```html
+<footer class="footer">
+	<div class="footer__text">SPACEX © 2021</div>
+
+	<ul class="footer__list">
+		<li><a class="footer__list__link" href="#">Twitter</a></li>
+		<li><a class="footer__list__link" href="#">youtube</a></li>
+		<li><a class="footer__list__link" href="#">instagram</a></li>
+		<li><a class="footer__list__link" href="#">flickr</a></li>
+		<li><a class="footer__list__link" href="#">Linkedin</a></li>
+		<li><a class="footer__list__link" href="#">Privacy Policy</a></li>
+	</ul>
+</footer>
+```
+
+```css
+.footer {
+	position: relative;
+	margin: 0 auto;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 0.7rem;
+	font-weight: 400;
+	padding: 1.5rem 0;
+}
+
+.footer__text {
+	color: #979797;
+}
+
+.footer__list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+	padding: 0 1rem;
+	padding-top: 1rem;
+	margin: 0 auto;
+}
+
+.footer__list li {
+	margin: 0 10px 10px 0;
+}
+
+.footer__list__link {
+	font-weight: 600;
+	transition: color 1s cubic-bezier(0.25, 1, 0.25, 1);
+}
+
+.footer__list__link:hover {
+	color: #8b939b;
+}
+```
+
+#### Mission Sections
+
+![mission container](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4h0o51p8e83qflud6ek6.png)
+
+```html
+<section class="mission__container">
+	<div class="background one"></div>
+
+	<div class="bottom__content">
+		<h4 class="bottom__content__subheader">RECENT LAUNCH</h4>
+
+		<h1 class="bottom__content__header">
+			Double Asteroid Redirection Test (DART) Mission
+		</h1>
+
+		<a class="content__button" href="#">
+			<span class="text">RE-WATCH</span>
+			<div class="hover"></div>
+		</a>
+	</div>
+</section>
+
+<section class="mission__container">
+	<div class="background two"></div>
+
+	<div class="bottom__content">
+		<h4 class="bottom__content__subheader">RECENT LAUNCH</h4>
+
+		<h1 class="bottom__content__header">
+			Double Asteroid Redirection Test (DART) Mission
+		</h1>
+
+		<a class="content__button" href="#">
+			<span class="text">RE-WATCH</span>
+			<div class="hover"></div>
+		</a>
+	</div>
+</section>
+
+<section class="mission__container">
+	<div class="background three"></div>
+
+	<div class="bottom__content">
+		<h4 class="bottom__content__subheader">RECENT LAUNCH</h4>
+
+		<h1 class="bottom__content__header">
+			Double Asteroid Redirection Test (DART) Mission
+		</h1>
+
+		<a class="content__button" href="#">
+			<span class="text">RE-WATCH</span>
+			<div class="hover"></div>
+		</a>
+	</div>
+</section>
+
+<section class="mission__container">
+	<div class="background four"></div>
+
+	<div class="bottom__content">
+		<h4 class="bottom__content__subheader">RECENT LAUNCH</h4>
+
+		<h1 class="bottom__content__header">
+			Double Asteroid Redirection Test (DART) Mission
+		</h1>
+
+		<a class="content__button" href="#">
+			<span class="text">RE-WATCH</span>
+			<div class="hover"></div>
+		</a>
+	</div>
+</section>
+
+<section class="mission__container">
+	<div class="background five"></div>
+
+	<div class="bottom__content">
+		<h4 class="bottom__content__subheader">RECENT LAUNCH</h4>
+
+		<h1 class="bottom__content__header">
+			Double Asteroid Redirection Test (DART) Mission
+		</h1>
+
+		<a class="content__button" href="#">
+			<span class="text">RE-WATCH</span>
+			<div class="hover"></div>
+		</a>
+	</div>
+</section>
+```
+
+```css
+.mission__container {
+	height: 100vh;
+	position: relative;
+}
+
+.mission__container .background {
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.mission__container .background:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.mission__container .background.one {
+	background-image: url(../media/1.webp);
+}
+
+.mission__container .background.two {
+	background-image: url(../media/2.webp);
+}
+
+.mission__container .background.three {
+	background-image: url(../media/3.webp);
+}
+
+.mission__container .background.four {
+	background-image: url(../media/4.webp);
+}
+
+.mission__container .background.five {
+	background-image: url(../media/5.webp);
+	background-position: 65% center;
+}
+
+.mission__container .bottom__content {
+	position: absolute;
+	bottom: 10%;
+	left: 1.5rem;
+	width: 90%;
+	max-width: 500px;
+	overflow: hidden;
+	opacity: 0;
+	transform: translateY(-100%);
+	transition: opacity 1s, transform 1s;
+}
+
+.mission__container .bottom__content .bottom__content__header {
+	font-size: 2rem;
+	text-align: left;
+	margin: 0 0 1rem auto;
+	font-weight: 600;
+}
+
+.mission__container .bottom__content .bottom__content__subheader {
+	font-size: 1rem;
+}
+
+.mission__container .bottom__content .content__button {
+	border: 2px solid white;
+	display: inline-block;
+	position: relative;
+	z-index: 2;
+	margin-top: 1rem;
+}
+
+.mission__container .bottom__content .content__button .text {
+	font-weight: bold;
+	font-size: 0.8rem;
+	display: inline-block;
+	text-transform: uppercase;
+	padding: 1.2rem 2.5rem;
+	transition: color 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.mission__container .bottom__content .content__button .hover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: white;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	transform: scale3d(1, 0, 1);
+	transform-origin: top center;
+	transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.mission__container .bottom__content .content__button:hover .hover {
+	transform: scale3d(1, 1, 1);
+	transform-origin: bottom center;
+}
+
+.mission__container .bottom__content .content__button:hover .text {
+	color: black;
+}
+
+.mission__container.on__screen .bottom__content {
+	opacity: 1;
+	transform: translateY(0);
+}
+```
+
+```javascript
+const missons = document.querySelectorAll('.mission__container')
+
+const missionObserver = new IntersectionObserver(
+	entries => {
+		const ON_SCREEN = 'on__screen'
+		entries.forEach(entry => {
+			const { isIntersecting, target } = entry
+
+			if (isIntersecting) {
+				target.classList.add(ON_SCREEN)
+				return true
+			}
+
+			target.classList.remove(ON_SCREEN)
+		})
+	},
+	{
+		threshold: 0.5,
+	}
+)
+
+missons.forEach(misson => {
+	missionObserver.observe(misson)
+})
+```
+
+#### Explaination:
+
+- First, we have selected all the mission containers.
+- Then we created a new Instance of `IntersectionObserver`. We have passed a
+- Then we created a new Instance of `IntersectionObserver`. We have passed a function that will run every time an element comes into the view.
+- We loop over every single mission element and observe them with `missionObserver`.
+- We got all the entries(array of objects) as params. Every entry has two properties.
+
+  1. isIntersecting: boolean value if an element is on the view or not.
+  2. target: Current element.
+
+- If `isIntersecting` is true then we will attach the `on__screen` class to that element. Else we will remove the class.
+- `on__screen` class will be responsible to show the `bottom__content`.
+
+By the way, this blog is originally published on [cules coding website.](https://www.culescoding.space/blog/build-a-spaceX-clone). I would be glad if you give it a visit.
+
+![Build a SpaceX Landing Page Clone with HTML, CSS & JAVASCRIPT on Cules coding](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2qotkg3zgcnd3fv6s6je.png)
+
+#### Header
+
+![Header](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/enk43b884flqi0rhw2ra.png)
+
+```html
+<header class="header show">
+	<div class="background"></div>
+
+	<div class="header__inner">
+		<div class="header__logo">
+			<a href="#">
+				<img src="./media/logos//spacex-logo.png" alt="SpaceX" />
+			</a>
+		</div>
+
+		<nav class="header__navigation">
+			<ul>
+				<li>
+					<a class="nav__link" href="#">Falcon 9</a>
+				</li>
+				<li>
+					<a class="nav__link" href="#">Falcon Heavy</a>
+				</li>
+				<li>
+					<a class="nav__link" href="#">Dragon</a>
+				</li>
+				<li>
+					<a class="nav__link" href="#">STARSHIP</a>
+				</li>
+				<li>
+					<a class="nav__link" href="#">human space flight</a>
+				</li>
+				<li>
+					<a class="nav__link" href="#">rideshare</a>
+				</li>
+			</ul>
+
+			<div class="shop__container">
+				<a class="nav__link" href="#">shop</a>
+			</div>
+		</nav>
+
+		<button class="hamburger hamburger--emphatic" type="button">
+			<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+			</span>
+		</button>
+	</div>
+</header>
+```
+
+```css
+.header {
+	height: 5rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+	transform: translateY(-100%);
+	transition: transform 0s 0s;
+}
+
+header#hiding .header__inner {
+	transition-delay: 0s;
+}
+
+header#hiding .background {
+	transition-delay: 0.3s;
+}
+
+header#hiding {
+	transition-delay: 0.9s;
+}
+
+.header.show {
+	transform: translateY(0);
+}
+
+.header.show .header__inner {
+	opacity: 1;
+}
+
+.header .background {
+	background: black;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	transform: translateY(-100%);
+	transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
+}
+
+.header.show.with__background .background {
+	transform: translateY(0);
+}
+
+.header .header__inner {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	opacity: 0;
+	transition: opacity 0.2s 0.6s;
+}
+
+.header__logo {
+	flex-grow: 1;
+	overflow: hidden;
+	margin: auto 0;
+}
+
+.header__logo a {
+	display: block;
+	width: 10rem;
+	margin: 0 auto;
+}
+
+.header__logo a img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.header__navigation {
+	flex-grow: 2;
+	display: none;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header__navigation ul li {
+	margin: 0 0.7rem;
+	display: inline-block;
+}
+
+.header__navigation .nav__link {
+	font-weight: bold;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	position: relative;
+}
+
+.header__navigation .shop__container {
+	flex-basis: 5rem;
+	text-align: center;
+}
+
+.header__navigation .nav__link:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: white;
+	transform: scaleX(0);
+	transform-origin: right center;
+	transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.header__navigation .nav__link:hover:after {
+	transform: scaleX(1);
+	transform-origin: left center;
+}
+```
+
+```javascript
+const header = document.querySelector('.header')
+
+const IS_ACTIVE = 'is-active'
+const SHOW = 'show'
+const WITH_BACKGROUND = 'with__background'
+
+let prevScrollPos = window.pageYOffset
+
+window.onscroll = () => {
+	const currentScrollPos = window.pageYOffset
+	const halfScreenHeight = Math.floor(window.innerHeight / 2)
+
+	if (currentScrollPos > halfScreenHeight) {
+		header.classList.add(WITH_BACKGROUND)
+	} else {
+		header.classList.remove(WITH_BACKGROUND)
+	}
+
+	const HIDING = 'hiding'
+
+	if (currentScrollPos > prevScrollPos) {
+		header.classList.remove(SHOW)
+		header.setAttribute('id', HIDING)
+
+		setTimeout(() => {
+			header.removeAttribute('id', HIDING)
+		}, 900)
+	} else {
+		header.classList.add(SHOW)
+	}
+
+	prevScrollPos = currentScrollPos
+}
+```
+
+### Let me explain the header animation.
+
+1. The Header will only be displayed if `header` has a `show` class. By default, it will be there. If we are scrolling down, then the `show` class will be removed. And will be added if we scroll down. When we will remove the class, we will attach a `hiding` id. After `0.9s` we will remove that id.
+1. The background will be shown only if the header has the `with__background` class. If
+1. The background will be shown only if the header has the `with__background` class. If the scroll position is on the top half of the page then `with__background` class will be removed.
+   There will be two types of animation.
+
+1. Scroll down:
+
+   - Header inner part will be removed.
+   - Then background will be removed.
+   - Finally, the header will be removed.
+
+1. Scroll up:
+   - Header will be shown.
+   - Background will be shown.
+   - Header inner part will be shown.
+
+The thing you need to care about is the animation duration and delay.
+
+1. Scroll up:
+
+- Header will come instantly without any delay.
+- Background will be shown in `0.5` second with a `0.1` delay.
+- Header inner part will be shown in `0.2` second. But it will be after
+- Header inner part will be shown in `0.2` second. But it will be after background animation which will take `0.5 + 0.1 = 0.6`second. So, it will be our delay.
+
+2. Scroll down:
+   - Now we only need to change the delay.
+   - Header inner will disappear without delay.
+   - Background will be removed after header inner. Header inner animation will take about `0.2` seconds. So background delay would be `0.3`second.
+   - Header will be removed after the Background. Background animation will take `0.5 + 0.3` second. So, the delay would be `0.9`second.
+
+#### Right Navigation
+
+![Right navigation](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gybf4pw7tq8bc94mjceg.png)
+
+```html
+<nav class="navigation__menu">
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">About</a></li>
+		<li><a href="#">Launch</a></li>
+		<li><a href="#">mission</a></li>
+		<li><a href="#">History</a></li>
+		<li><a href="#">Press</a></li>
+		<li><a href="#">Careers</a></li>
+		<li><a href="#">Contact</a></li>
+	</ul>
+</nav>
+```
+
+```css
+.navigation__menu {
+	position: fixed;
+	top: 0;
+	right: 0;
+	background: black;
+	z-index: 5;
+	width: 80%;
+	max-width: 20rem;
+	height: 100%;
+	transform: translateX(100%);
+	transition: all 0.5s ease-in-out;
+}
+
+.navigation__menu ul {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 8rem;
+	text-align: right;
+}
+
+.navigation__menu ul li {
+	transform: translateY(100%);
+	transition: all 1s 0.6s;
+	opacity: 0;
+}
+
+.navigation__menu ul li a {
+	display: block;
+	font-size: 1rem;
+	line-height: 40px;
+	font-weight: 500;
+	text-transform: uppercase;
+	border-bottom: 1pt solid #252525;
+	transition: color 0.4s cubic-bezier(0.25, 1, 0.25, 1);
+}
+
+.navigation__menu ul li a:hover {
+	color: #8b939b;
+}
+
+.navigation__menu.open {
+	transform: translateX(0);
+}
+
+.navigation__menu.open ul li {
+	opacity: 1;
+	transform: translateY(0);
+}
+```
+
+```javascript
+const hamburger = document.querySelector('.hamburger')
+const navigation = document.querySelector('.navigation__menu')
+
+const IS_ACTIVE = 'is-active'
+
+hamburger.addEventListener('click', () => {
+	hamburger.classList.toggle(IS_ACTIVE)
+	navigation.classList.toggle('open')
+})
+```
+
+#### Explaination:
+
+- navigation will only be seen if the `is-active` class is present.
+- When we will click on the hamburger, we will toggle the is-active class on both
+- When we will click on the hamburger, we will toggle the is-active class on both `hamburger` and `navigation` elements.
+
+#### Responsive
+
+```css
+/* sm = 600 */
+/* md = 900 */
+/* lg = 1200 */
+/* xl = 1600 */
+
+@media screen and (min-width: 600px) {
+	.mission__container .bottom__content {
+		bottom: 15%;
+		left: 3rem;
+	}
+
+	.header .header__logo a {
+		width: 13rem;
+	}
+
+	.footer .footer__list {
+		width: 90%;
+	}
+}
+
+@media screen and (min-width: 900px) {
+	.mission__container .bottom__content {
+		left: 4rem;
+		max-width: 600px;
+	}
+
+	.mission__container .bottom__content .bottom__content__header {
+		font-size: 2.5rem;
+		margin: 1rem 0;
+	}
+
+	.mission__container .bottom__content .bottom__content__subheader {
+		font-size: 1.5rem;
+	}
+
+	.footer .footer__list {
+		width: 60%;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.header__navigation {
+		display: flex;
+	}
+
+	.mission__container .bottom__content {
+		left: 6rem;
+	}
+
+	.mission__container .bottom__content .bottom__content__header {
+		font-size: 3rem;
+	}
+
+	.mission__container .bottom__content .content__button .text {
+		padding: 1.5rem 3rem;
+	}
+
+	.header {
+		height: 6.5rem;
+	}
+
+	.header .header__logo {
+		flex-grow: 0;
+		margin-left: 6rem;
+		margin-right: 2rem;
+	}
+
+	.header .header__logo a {
+		width: 15rem;
+	}
+
+	.navigation__menu {
+		max-width: 30rem;
+	}
+
+	.footer .footer__list {
+		width: 50%;
+	}
+}
+
+@media screen and (min-width: 1600px) {
+	.mission__container .bottom__content {
+		left: 15rem;
+	}
+
+	.header .header__logo {
+		margin-left: 15rem;
+	}
+
+	.footer .footer__list {
+		width: 40%;
+	}
+}
+```
+
+## XS
+
+![XS screen](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/eriz2cg6edep5vyck1co.png)
+
+## SM
+
+![SM screen](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ts6ixr8qrxxvc5qu08ap.png)
+
+## MD
+
+![MD](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5n3ah8wuwzd2o4xq6abm.png)
+
+## LG
+
+![LG screen](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w9vj5zi24seud0j8shbn.png)
+
+## XL
+
+![XL screen](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pezl5351e57ug2vbka6e.png)
+
+That's it for this blog. I have tried to explain things simply. Feel free to watch the video if you get stuck. And like always you can ask me questions.
+
+By the way, I am looking for a new opportunity in a company where I can provide great value with my skills. If you are a recruiter, looking for someone skilled in full stack web development and passionate about revolutionizing the world, feel free to contact me. Also, I am open to talking about any freelance project.
