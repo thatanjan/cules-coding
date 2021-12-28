@@ -1,0 +1,220 @@
+---
+title: Build a carousel postcard like Instagram with Reactjs, Material-UI, and Swiperjs
+description: In this blog, you will learn how to build a carousel postcard like instagram with Reactjs, Material-UI, and Swiperjs.
+banner: /blogs/react/build-a-carousel-postcard-like-Instagram-with-Reactjs,-Material-UI,-and-Swiperjs/banner.png
+altText: Build a carousel postcard like Instagram with Reactjs, Material-UI, and Swiperjs
+customID: 6b57db60-1b0f-469f-8908-b1f61dd285b5
+---
+
+### Live demo
+
+You can demo the website from [here](https://insta-carousel-demo.vercel.app/)
+
+![](https://res.cloudinary.com/practicaldev/image/fetch/s--sXlAWXXh--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://raw.githubusercontent.com/thatanjan/insta-carousel-yt/development/public/Screenshot%2520of%2520the%2520App.png)
+
+### Video Tutorial
+
+I have already made a video about it on my youtube channel. Check that out for more details.
+
+<Iframe videoID='NDyjI7hd4uE ' />
+
+### Note:
+
+The application is built with Material-UI V4. The current version is 5. But don't
+worry. You can still use the code. You only need to change the import paths of
+components. Everything else will be the same. [ Check their docs for more details.
+](https://mui.com/guides/migration-v4/#introduction)
+
+## Setup from scratch
+
+### Create a create-react-app
+
+```bash
+npx create-react-app <app>
+cd <app>
+```
+
+### Install packages
+
+```bash
+yarn add @material-ui/core @material-ui/icons swiper
+```
+
+## Start from minimal setup
+
+```bash
+git clone git@github.com:thatanjan/insta-carousel-yt.git
+cd insta-carousel-yt
+git fetch
+git checkout scratch
+```
+
+### Create the container and title of the application
+
+```javascript
+// App.js
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+
+import PostCard from './PostCard'
+
+function App() {
+	return (
+		<div className='App'>
+			<Grid container>
+				<Grid
+					iem
+					xs={12}
+					style={{ height: '25vh', display: 'grid', placeItems: 'center' }}
+				>
+					<Typography variant='h3'>Insta Carousel</Typography>
+				</Grid>
+
+				<Grid item container xs={12} justifyContent='center'>
+					<Grid item xs={3}>
+						<PostCard />{' '}
+					</Grid>
+				</Grid>
+			</Grid>
+		</div>
+	)
+}
+
+export default App
+```
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9k9eksz6i88hubrk9qbx.png)
+
+#### Explanation:
+
+- Created a title that will be centered.
+- Made a container containing the post card which will take 3grid space out of 12. If you don't about the Material UI grid you can the following video.
+
+<Iframe videoID='MaGD-RMtLFk' />
+
+```javascript
+import React from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { makeStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardMedia from '@material-ui/core/CardMedia'
+import CardContent from '@material-ui/core/CardContent'
+import CardActions from '@material-ui/core/CardActions'
+import Avatar from '@material-ui/core/Avatar'
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import ShareIcon from '@material-ui/icons/Share'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import CommentIcon from '@material-ui/icons/Comment'
+
+import SwiperCore, {
+	Keyboard,
+	Scrollbar,
+	Pagination,
+	Navigation,
+} from 'swiper/core'
+
+import 'swiper/swiper.min.css'
+import 'swiper/components/pagination/pagination.min.css'
+import 'swiper/components/navigation/navigation.min.css'
+import 'swiper/components/scrollbar/scrollbar.min.css'
+
+import avatarImage from './media/postAvatar.jpg'
+import ts_1 from './media/carousels/ts_1.jpg'
+import ts_2 from './media/carousels/ts_2.jpg'
+import ts_3 from './media/carousels/ts_3.jpg'
+import ts_4 from './media/carousels/ts_4.jpg'
+import ts_5 from './media/carousels/ts_5.jpg'
+
+const useStyles = akeStyles({
+	media: {
+		height: 0,
+		paddingTop: '100%',
+	},
+	swiperContainer: {
+		paddingBottom: '3rem',
+		'& .swiper-pagination-bullet': {
+			background: 'blue',
+		},
+		'& .swiper-button-next:after': {
+			fontSize: '2rem !important',
+		},
+		'& .swiper-button-prev:after': {
+			fontSize: '2rem !important',
+		},
+	},
+})
+
+SwiperCore.use([Keyboard, Scrollbar, Pagination, Navigation])
+
+const images = [ts_1, ts_2, ts_3, ts_4, ts_5]
+
+const PostCard = () => {
+	const { media, swiperContainer } = useStyles()
+	return (
+		<Card>
+			<CardHeader
+				avatar={<Avatar src={avatarImage} />}
+				title='Just a Carousel'
+				subheader={new Date().toDateString()}
+				action={
+					<IconButton>
+						<MoreVertIcon />
+					</IconButton>
+				}
+			/>
+
+			<Swiper
+				grabCursor
+				keyboard={{ enabled: true }}
+				pagination={{ clickable: true }}
+				navigation
+				loop
+				className={swiperContainer}
+			>
+				{images.map((image, index) => (
+					<SwiperSlide key={index}>
+						<CardMedia className={media} image={image} />
+					</SwiperSlide>
+				))}
+			</Swiper>
+
+			<CardActions disableSpacing>
+				<IconButton>
+					<FavoriteIcon />
+				</IconButton>
+				<IconButton>
+					<CommentIcon />
+				</IconButton>
+				<IconButton>
+					<ShareIcon />
+				</IconButton>
+			</CardActions>
+
+			<CardContent>
+				<Typography variant='body2' color='textSecondary' component='p'>
+					Adipisicing eaque temporibus elit incidunt obcaecati. Aut eum excepturi id
+					aut consequatur ex? Incidunt debitis at consequuntur accusamus rerum
+					Tempora veritatis maiores quam molestias aut placeat qui. Iure neque libero
+					voluptas aliquid!
+				</Typography>
+			</CardContent>
+		</Card>
+	)
+}
+
+export default PostCard
+```
+
+![](https://res.cloudinary.com/practicaldev/image/fetch/s--sXlAWXXh--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://raw.githubusercontent.com/thatanjan/insta-carousel-yt/development/public/Screenshot%2520of%2520the%2520App.png)
+
+#### Explaination:
+
+- We have used card, cardHeader, and other components from Material UI.
+- CardMedia component will have our image. It has a little bit of custom style so that it stays responsive on every screen size and it will always maintain the aspect ratio.
+- We have imported `Keyboard, Scrollbar, Pagination, Navigation` modules from Swiperjs. To have navigation, navigation with keyboard and so on.
+- We added custom styles to the `Swiper` component to modify the icons of `Swiper` component.
+
+And the project is ready. Please watch the video for more details.
