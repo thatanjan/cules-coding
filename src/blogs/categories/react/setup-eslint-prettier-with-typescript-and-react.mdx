@@ -8,19 +8,26 @@ customID: 60b5a9986591ce3613a599f5
 
 In this blog, I will teach you, how to set up eslint, prettier with TypeScript and React. Even if you are not using TypeScript or react you can still follow along.
 
+## Video tutorial
+
 I have already created a video about it on my youtube channel. Check that out for more details.
-<Iframe title='Setup Eslint, Prettier with TypeScript and React' videoID="T-n0mrssDiw"  /> 
+
+<Iframe
+	title='Setup Eslint, Prettier with TypeScript and React'
+	videoID='T-n0mrssDiw'
+/>
 If you like this video, please like share, and Subscribe to my channel.
 
 For react, I will use Nextjs. Again the principles are the same. You can also use it with create-react-app.
 
 ## Editor setup
+
 You need to install eslint and prettier plugins for your editor. To learn more, visit these links.
 [ Eslint ](https://eslint.org/docs/user-guide/integrations#editors)
 [Prettier](https://prettier.io/docs/en/editors.html)
 
-
 ## Setup
+
 ```bash
 yarn create-next-app
 ```
@@ -58,13 +65,15 @@ yarn dev
 It will fill up the `tsconfig.json` file. Now convert all the javascript files to typescript files.
 
 ### Setup Absolute import
+
 Absolute Import vs Relative Import
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/400gedk393xdn0h631ql.png)
 
 Inside the `tsconfig.json` file. create a new property `baseUrl` and set the import point. I will create an `src` folder and put all source code inside that.
 
-So add this extra code: 
+So add this extra code:
+
 ```json
 {
 	"baseUrl": "src/"
@@ -73,91 +82,100 @@ So add this extra code:
 ```
 
 ### Setup eslint
-- Install eslint globally on your computer.
+
+Since Nextjs version 11.0.0, eslint is already configured out of the box. But that's not enough for me. I want more. So, I will customize that more.
+
+-   Install eslint globally on your computer.
+
 ```bash
 	yarn global add eslint
 ```
 
-- Inside your project initialize eslint.
+-   Inside your project initialize eslint.
+
 ```bash
 	eslint --init
 ```
-- Choose 3.
+
+-   Choose 3.
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5a5qy6a4goz8yjtwgbm8.png)
 
-- Choose 1
+-   Choose 1
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fcm9x4buujeufr1skj33.png)
 
-- Choose your framework if you are using it. In my case `react`
+-   Choose your framework if you are using it. In my case `react`
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/aw6b38hxdgjgrqp1d0jt.png)
 
-- If you are using TypeScript then `yes`. I am using TypeScript.
+-   If you are using TypeScript then `yes`. I am using TypeScript.
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/e4eutfvqk6vweeu4phcg.png)
 
-- Browser in my case.
+-   Browser in my case.
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/iql056fynfoz6390k4m7.png)
 
-- Use a popular style guide.
+-   Use a popular style guide.
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nkrsxzg3l71ah8p1vea9.png)
 
-- I would like to use the Airbnb style guide. You can choose any style guide. But Airbnb is good and I recommend it.
+-   I would like to use the Airbnb style guide. You can choose any style guide. But Airbnb is good and I recommend it.
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jk8bfygud485tck9hh3c.png)
 
-- I will use json for my config file.
+-   I will use json for my config file.
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ntnjtfvmpvnwbbyffp64.png)
 
-- It will ask you to install some packages to Install with `npm`. If you want to use `npm` then go ahead. But I will use yarn. 
+-   It will ask you to install some packages to Install with `npm`. If you want to use `npm` then go ahead. But I will use yarn.
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q8u06509o0ztw7h3mlag.png)
 
 So For those who are using yarn like me, You can copy and paste package names and install them.
 
-##### With typescript: 
+##### With typescript:
 
 ```bash
 yarn add --dev eslint-plugin-react @typescript-eslint/eslint-plugin@latest eslint-config-airbnb@latest eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react-hooks  @typescript-eslint/parser@latest
 ```
 
-##### Without typescript: 
+##### Without typescript:
 
 ```bash
-yarn add --dev eslint-plugin-react  eslint-config-airbnb@latest eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react-hooks  
+yarn add --dev eslint-plugin-react  eslint-config-airbnb@latest eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react-hooks
 ```
-It will create an eslint config file `.eslintrc`. It will be a hidden file.
 
+It will create an eslint config file `.eslintrc`. It will be a hidden file.
 
 ### Prettier Setup
 
-- Let's install prettier.
+-   Let's install prettier.
+
 ```bash
 yarn add --dev eslint-config-prettier prettier
 ```
 
-- Create a prettier config file.
-```ash 
+-   Create a prettier config file.
+
+```bash
 touch .prettierrc.json
 ```
 
 Now you can put your config in the `.prettierrc.json` file in json format. You can find the options from [here](https://prettier.io/docs/en/configuration.html)
 
 My basic config for prettier.
+
 ```json
-	{
-		"singleQuote": true,
-		"useTabs": true,
-		"tabWidth": 1,
-		"semi": false,
-		"jsxSingleQuote": true,
-		"arrowParens": "avoid"
-	}
+{
+	"singleQuote": true,
+	"useTabs": true,
+	"tabWidth": 1,
+	"semi": false,
+	"jsxSingleQuote": true,
+	"arrowParens": "avoid"
+}
 ```
 
 Now we are done with prettier. Let's set up eslint config.
@@ -165,95 +183,117 @@ Now we are done with prettier. Let's set up eslint config.
 ### ESlint config setup
 
 Your `.eslintrc` file should look like this.
+
 ```json
-	{
-	    "env": {
-		   "browser": true,
-		   "es2021": true
-	    },
-	    "extends": [
-		   "plugin:react/recommended",
-		   "airbnb"
-	    ],
-	    "parser": "@typescript-eslint/parser",
-	    "parserOptions": {
-		   "ecmaFeatures": {
-			  "jsx": true
-		   },
-		   "ecmaVersion": 12,
-		   "sourceType": "module"
-	    },
-	    "plugins": [
-		   "react",
-		   "@typescript-eslint"
-	    ],
-	    "rules": {
-	    }
-	}
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": ["plugin:react/recommended", "airbnb"],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"plugins": ["react", "@typescript-eslint"],
+	"rules": {}
+}
 ```
 
-We need to extend the eslint config with prettier. So add `prettier` to `extends` array.
+We need to extend the eslint config with prettier and nextjs. So add `prettier` and `next/core-web-vitals` to `extends` array.
+
 ```json
-	{
-		"extends": [
-		   "plugin:react/recommended",
-		   "airbnb",
-		   "prettier" 
-	    ],
+{
+	"extends": [
+		"next/core-web-vitals",
+		"plugin:react/recommended",
+		"airbnb",
+		"prettier"
+	]
+}
+```
+
+Explanation:
+
+-   Extends array takes configs. But configs need to be ordered. The last items will have more priority than previous configs. For example, if any rule gets conflict between `airbnb` and `prettier`, the Airbnb config rule will be overridden by prettier.
+
+## Run eslint from the command line
+
+For nextjs(11.0.0 +):
+
+```json
+{
+	"scripts": {
+		"lint": "next lint"
 	}
+}
+```
+
+For every other case:
+
+```json
+{
+	"scripts": {
+		"lint": "eslint . --ext ts --ext tsx --ext js"
+	}
+}
 ```
 
 ###### Let's fix some eslint errors
 
 To turn any rule `off` or `on`, add the rules to the rules array. You can find the docs from [here](https://eslint.org/docs/user-guide/configuring/rules). Please watch my video to understand it well.
 
-- allow jsx on other extensions.
-
-```json
-	{
-		"rules": {
-			"react/jsx-filename-extension": [
-					1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-			]
-		}
-	}
-```
-
-
-- File extension on import statement.
+-   allow jsx on other extensions.
 
 ```json
 {
 	"rules": {
-			"import/extensions": [
-				"error",
-				"always",
-				{
-					"js": "never",
-					"jsx": "never",
-					"ts": "never",
-					"tsx": "never"
-				}
-			],
-		}
+		"react/jsx-filename-extension": [
+			1,
+			{ "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+		]
+	}
 }
 ```
 
-- Import unresolved error for absolute import(if you are using).
-```json 
-	{
-		"settings": {
-			"import/resolver": {
-				"node": {
-					"extensions": [".js", ".jsx", ".ts", ".tsx"],
-					"moduleDirectory": ["node_modules", "src/"]
-				}
+-   File extension on import statement.
+
+```json
+{
+	"rules": {
+		"import/extensions": [
+			"error",
+			"always",
+			{
+				"js": "never",
+				"jsx": "never",
+				"ts": "never",
+				"tsx": "never"
+			}
+		]
+	}
+}
+```
+
+-   Import unresolved error for absolute import(if you are using).
+
+```json
+{
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"],
+				"moduleDirectory": ["node_modules", "src/"]
 			}
 		}
 	}
+}
 ```
 
 You can find my Eslint config from [here](https://gist.github.com/thatanjan/c3c2622e0360ecacb7aba9c7418023a1)
 
 So, that's it for today. I hope I have covered everything that you need to know about how to set up.
-
