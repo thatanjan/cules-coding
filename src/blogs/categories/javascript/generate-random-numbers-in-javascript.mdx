@@ -1,0 +1,129 @@
+---
+title: Generate random numbers in JavaScript
+description:
+banner: /blogs/javascript/generate-random-numbers-in-javascript/banner.png
+altText: Generate random numbers in JavaScript by Cules Coding
+customID: 5723433f-ac06-4f64-97a4-6564f560deb4
+---
+
+In this blog, you will learn how to generate random numbers in javascript.
+
+There is no straightforward way to generate a random number. You have to use a little trick.
+
+`Math.random` function gives us a random number between 0 and 1.
+
+```javascript
+const getRandomNum = () => {
+	reutrn Math.random()
+}
+
+console.log(getRandomNum())
+console.log(getRandomNum())
+console.log(getRandomNum())
+console.log(getRandomNum())
+
+// output
+// 0.4656524910632813
+// 0.36946529666025185
+// 0.93309610877532
+// 0.6869999317373736
+```
+
+That's not what you want. You need an integer. To get an integer you need to multiply the random number with another number. And then you have to floor the value.
+
+## Get a random integer
+
+```javascript
+const random = Math.random
+const floor = Math.floor
+
+const getRandomNum = () => {
+	return floor(random() * 10)
+}
+
+setInterval(() => {
+	const num = getRandomNum()
+
+	console.log(num)
+}, 500)
+
+// Output:
+// 2
+// 5
+// 1
+// 9
+// 1
+// 7
+// 6
+// 0
+// 7
+// 3
+// 4
+// 8
+// 2
+// 2
+// 4
+// 5
+// 5
+// 0
+```
+
+By multiplying a number you have set an upper limit for the random number.
+We have floored the value because we don't want a floating-point number.
+Math.floor function gives us this
+```
+8.343487294263 --> 8
+3.37294263	   --> 3
+```
+
+Notice that we never get 10 as our random number. Because that is our limit. To include 10, just add `1` to the number.
+
+
+## Get a random integer in a range
+Let's see how we can get a random number between 10 and 20
+
+```javascript
+const random = Math.random
+const floor = Math.floor
+
+const getRandomNumInRange = (min, max) => {
+	return floor(random() * (max - min + 1)) + min
+}
+
+setInterval(() => {
+	const num = getRandomNumInRange(10, 20)
+
+	console.log(num)
+}, 500)
+
+// output:
+// 11
+// 13
+// 14
+// 20
+// 13
+// 13
+// 10
+// 16
+// 17
+// 10
+// 16
+```
+Explanation:
+Now we need something between two numbers. So, we generate random numbers up to the difference of our range.
+In our case, it will be 
+```
+difference = 10
+random numbers = [
+	2,3,4,6,10 ...
+]
+```
+Then we add our minimum number with a random number. And that number definitely will be in the range. 
+
+You can write the code in one line.
+```javascript
+const getRandomInt = (min, max) =>
+	Math.floor(Math.random() * (max - min + 1)) + min
+```
+That's how we get a random number in a range.
+
