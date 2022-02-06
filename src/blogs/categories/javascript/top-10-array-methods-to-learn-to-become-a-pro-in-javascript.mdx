@@ -1,0 +1,395 @@
+---
+title: Top 10 array methods to learn to become a pro in JavaScript
+description: Arrays are very important in JavaScript. You will always have to deal with arrays. So, working with arrays efficiently is important. Today I will teach you the top 10 array methods that you should learn to become a pro in JavaScript. If you read till the end, I will teach you two extra methods.
+banner: /blogs/javascript/top-10-array-methods-to-learn-to-become-a-pro-in-javascript/banner.png
+altText: Top 10 array methods to learn to become a pro in JavaScript by Cules Coding. @thatanjan
+customID: 10863263-040b-4ed0-9c84-559575c2adbd
+---
+
+
+<!-- ## Video tutorial -->
+<!---->
+<!-- I have already made a video about it on my youtube channel. -->
+<!---->
+<!-- <!-- <Iframe /> --> -->
+<!---->
+<!-- Please like and subscribe to my channel. It motivates me to create more content like this. -->
+
+## Source Code
+
+<Codepen id='rNYWwLd' tab='js' />
+
+## Top 10 method list
+
+1.  forEach
+2.  map
+3.  filter
+4.  reduce
+5.  find
+6.  findIndex
+7.  some
+8.  every
+9.  sort
+10. splice
+
+The first 9 methods are iterative functions. Iterative simply means looping. They are also Higher order functions. Don't worry if you don't understand Higher order functions. I will teach you higher order functions and arrow functions.
+If you understand them you skip that part.
+
+Let's understand Higher order functions.
+
+## Higher order functions
+
+A higher order function is a function that takes other functions as parameters.
+
+```javascript
+function hof(arg) {
+	console.log(arg)
+}
+
+hof('argument') // 'argument'
+```
+
+We know that we can pass anything as arguments to function calls like a number, string, boolean, etc.
+
+But we can also pass functions as arguments.
+
+```javascript
+function hof(arg) {
+	hof() // 'callback'
+}
+
+hof(() => console.log('Callback'))
+```
+
+We have just passed a function as an argument and called the argument inside the `hof` function. That's why I have put the comment inside the `hof` function body.
+
+The function that takes another function as an argument is called a higher order function. The function that has passed as an argument is called a callback function.
+
+That's all you need to know about higher order functions for now.
+
+Let's understand Arrow functions
+
+## Arrow functions (optional)
+
+These functions are doing the same thing.
+
+```javascript
+function getSum(a, b) {
+	return a + b
+}
+
+const getSum = (a, b) => {
+	return a + b
+}
+
+const getSum = (a, b) => a + b
+
+const getSum2 = a => a + 10
+```
+
+The first one is the normal function with the `function` keyword. Other functions are arrow functions. They are the same thing except arrow functions are much cleaner and easier to write and read. Also, it solves some problems of our normal functions with the `function` keyword.
+
+If you are just returning something from the function you don't need to use curly braces and the `return` keyword.
+And If you are using only one 1 parameter then you don't even have to use parentheses.
+
+So, that's all you need to know.
+
+## Let's understand the JavaScript array iterative methods.
+
+We will use the following data to understand the methods.
+
+```javascript
+const users = [
+	{ name: 'John', age: 30 },
+	{ name: 'Mary', age: 25 },
+	{ name: 'Bob', age: 20 },
+	{ name: 'Mike', age: 35 },
+	{ name: 'Jill', age: 32 },
+	{ name: 'Jack', age: 40 },
+	{ name: 'Alice', age: 45 },
+	{ name: 'Julie', age: 35 },
+	{ name: 'Jane', age: 20 },
+	{ name: 'Liz', age: 25 },
+]
+```
+
+## forEach method
+
+If I ask you to print all the user names, how would you do that?
+
+Most probably like this:
+
+```javascript
+for (let i = 0; i < users.length; i++) {
+	const name = users[i].name
+	console.log(name)
+}
+```
+
+That's a lot of code. But we could do this with forEach method of JavaScript.
+
+```javascript
+// better way
+users.forEach(user => {
+	console.log(user.name)
+})
+
+// much better way
+users.forEach(user => console.log(user.name))
+
+// output:
+// John
+// Mary
+// Bob
+// Mike
+// Jill
+// Jack
+// Alice
+// Julie
+// Jane
+// Liz
+```
+
+Explanation:
+
+1. The forEach method will run a loop over the array.
+2. The callback function will be called on every single loop. And the current array item, index, and the array itself will be passed as an argument.
+
+```javascript
+users.forEach((user, index, array) => console.log(index, user.name))
+
+// output:
+// 0 John
+// 1 Mary
+// 2 Bob
+// 3 Mike
+// 4 Jill
+// 5 Jack
+// 6 Alice
+// 7 Julie
+// 8 Jane
+// 9 Liz
+```
+
+Behind the scenes it works like this:
+
+```javascript
+const callback = (item, index, array) => console.log(item)
+
+for (let i = 0; i < users.length; i++) {
+	const item = users[i]
+
+	callback(item, i, users)
+}
+```
+
+It might seem confusing. Don't worry. When I was learning about this, I was also confused. If you understand the `forEach` method, the rest of them will be easy.
+
+## map method
+
+Let's create two new arrays of all user names and ages.
+
+```javascript
+const names = users.map(user => user.name)
+
+const ages = users.map(user => user.age)
+```
+
+Explanation:
+
+1. Map function creates a new array.
+2. Then it works just like the forEach method. Except you have to return something from the function on each loop.
+3. Whatever you will learn will be pushed to that array. In our case, it was name and age. Then the array is returned.
+
+## filter method
+
+Let's get all the users whose age is more than or equal to 30.
+
+```javascript
+const over30 = users.filter(user => user.age >= 30)
+```
+
+Explanation:
+
+1. It works the same way as a map does. But instead of returning any value like number or string, you have to return a condition.
+2. That condition will be run on every item of the array. If the condition is true then that item will be pushed to an array.
+3. Finally the array will be returned.
+
+## Array method chaining
+
+You can chain method one after another in one line.
+
+Let's see the last example again. We want to get all users over 30 but only their names.
+
+```javascript
+// normal way
+const over30 = users.filter(user => user.age >= 30)
+const names = over30.map(user => user.name)
+
+// with method chaining
+const over30names = users.filter(user => user.age >= 30).map(user => user.name)
+```
+
+## Warning about method chaining.
+
+If you are handling large input, then method chaining can be inefficient. Because you have to loop over multiple times over a large number of inputs. Instead, you can use other methods.
+
+```javascript
+// with method chaining
+const over30names = users.filter(user => user.age >= 30).map(user => user.name)
+
+// with foreach loop
+const over30names = []
+
+users.forEach(user => {
+	if (user.age >= 30) over30names.push(user.name)
+})
+```
+
+## reduce method
+
+This one is a little bit different.
+Let's get the total age of all the users.
+
+```javascript
+let totalAge = 0
+
+users.forEach(user => {
+	totalAge += user.age
+})
+```
+
+With reduce method:
+
+```javascript
+const totalAge = users.reduce((total, user) => total + user.age, 0)
+```
+
+Explanation:
+
+1. `reduce` take two arguments.
+    - Callback
+    - initialValue
+2. In the callback function, `total` is the first argument. When `reduce` will run the first time `total` value would be the initial value.
+3. Then you have to return something from the callback. Whatever you will return will be passed as the total for the next loop. And it will keep going on.
+4. On the last loop, the `total` will be returned from the `reduce` method.
+
+`reduce` method behind the scene:
+
+```javascript
+const callback = (total, item) => total + item.age
+
+let total = 0
+
+for (let i = 0; i < users.length; i++) {
+	total += callback(total, users[i])
+}
+```
+
+## find method
+
+Find the first user with the name 'John'
+
+```javascript
+const findUser = users.find(user => user.name === 'John')
+```
+
+Explanation:
+
+1. Similar to `filter`. Except it will return the first item that matches the condition and the loop will be stopped.
+2. If no item is matched, then `undefined` will be returned.
+
+## findIndex
+
+Find the index of the first user with the name 'John'
+
+```javascript
+const findIndex = users.findIndex(user => user.name === 'Jane')
+```
+
+Explanation:
+
+1. Similar to `findIndex`. Except it will return the index that matches the condition and the loop will be stopped.
+
+## some
+
+Check if there is any user with the name 'Mike'
+
+```javascript
+const someUser = users.some(user => user.name === 'Mike')
+```
+
+Explanation:
+
+1. It will check if any item matches the condition.
+2. Return value is boolean
+
+## every
+
+Check if all users are adult
+
+```javascript
+const everyUser = users.every(user => user.age >= 18)
+```
+
+Explanation:
+
+1. Similar to `some`. But it will run the condition on every loop. If any item doesn't match the condition, then loop will be stopped. 
+2. Return value is boolean
+
+## sort
+
+Sort the users by their age.
+
+```javascript
+const sortUsers = users.sort((a, b) => a.age - b.age) // sort users by age
+const sortUsersDesc = users.sort((a, b) => b.age - a.age) // sort users by age in descending order
+```
+
+Explanation::
+
+1. When the sort() function compares two values, it sends the values to the compare function and sorts the values according to the returned (negative, zero, positive) value.
+
+2. If the result is negative a is sorted before b. If the result is positive b is sorted before a. If the result is 0 no changes are done with the sort order of the two values.
+
+## splice method
+
+```javascript
+users.splice(2, 0, { name: 'Jenny', age: 45 }) // add new user at index 2
+
+const removedUsers = users.splice(2, 1) // remove user at index 2 and returned
+```
+
+Explanation:
+
+1. `splice` method is really helpful. You can add or remove items at any index.
+2. At the first argument we have to pass the index from where we want to do operations.
+3. 2nd argument is for how many items you want to remove from the array.
+4. Then you can pass as many arguments as you want. They will be added to the given index.
+5. If you remove any item, then it will be removed from the function as an array.
+
+These are the top 10 array methods you should know. Now it is time for bonus methods.
+
+## slice method
+
+```javascript
+const sliceUsers = users.slice(2, 5) // slice users from index 2 to index 5
+```
+
+Explanation:
+
+1. `slice` method returns a portion of the array.
+2. The First argument is the starting index. The last argument is for the ending index. But it will include that index item.
+3. For instance, if we pass `2` and `5` then the return array will include `[2,3,4]`.
+
+## concat method
+
+```javascript
+const concatUsers = users.concat([{ name: 'Jenny', age: 45 }])
+```
+
+Explanation:
+
+1. `concat` method joins two or more arrays.
+2. It will create a new array and will be returned.
+
