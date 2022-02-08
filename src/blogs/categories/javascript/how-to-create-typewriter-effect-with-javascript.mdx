@@ -1,0 +1,232 @@
+---
+title: How to create typewriter effect with JavaScript
+description:
+banner: /blogs/javascript/how-to-create-typewriter-effect-with-javascript/banner.png
+altText: How to create typewriter effect with JavaScript by Cules Coding
+customID: 333948e3-35f3-4fbe-aa02-744f46e16e9cj
+---
+
+In this blog, I will show you how to create a typewriter effect with JavaScript.
+
+## Typewriter Effect Demo
+
+<Codepen id='GROrRQJ'/>
+
+## Basic Idea
+
+We will have an `h1` tag. It will contain the text `I am a`. Then we will have a word with the typewriter effect.
+We will take each of the characters and put them in a span tag. Then we will put that span tag inside the `h1` tag.
+We will do this for each character. After completing the word, we will wait for a while and then start removing the character.
+After removing the whole word, we will wait for a while and then start adding the next word.
+This is how we will create the typewriter effect.
+
+## Html
+
+```html
+<body>
+	<h1 class="text">I am a&nbsp;</h1>
+</body>
+```
+
+`a&nbsp;` is an HTML entity for non-breaking space.
+
+## Css
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Cousine:wght@700&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-family: 'Cousine', monospace;
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	background-color: black;
+}
+
+:root {
+	--text-color: white;
+}
+
+.text {
+	font-size: 4rem;
+	display: inline-block;
+	letter-spacing: 0.2rem;
+	color: var(--text-color);
+	border-right: 1rem solid var(--text-color);
+	animation: blink 0.5s step-end infinite alternate;
+}
+
+.char {
+	color: orange;
+}
+
+@keyframes blink {
+	50% {
+		border-color: transparent;
+	}
+}
+
+@media (min-width: 600px) {
+	.text {
+		font-size: 6rem;
+	}
+}
+
+@media (min-width: 900px) {
+	.text {
+		font-size: 8rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.text {
+		font-size: 11rem;
+	}
+}
+
+@media (min-width: 1600px) {
+	.text {
+		font-size: 14rem;
+	}
+}
+```
+
+Basic css for the website.
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j0ykpznl4k5bc0n35nd6.png)
+
+## Javascript
+
+```javascript
+const textEl = document.querySelector('.text')
+
+const words = ['Developer', 'Youtuber', 'Blogger'].map(word => word + '.')
+
+let wordIndex = 0
+let charIndex = 0
+
+let addingChars = true
+let shouldWait = false
+
+let currentWord = words[wordIndex]
+```
+
+Explanation:
+
+- `textEl` is the `h1` tag.
+- `words` is an array of words that will have the typewriter effect.
+- `wordIndex` is the index of the current word.
+- `charIndex` is the index of the current character.
+- `addingChars` is a boolean that tells us if we are adding characters or removing them.
+- `shouldWait` is a boolean that tells us if we should wait for a while.
+- `currentWord` is the current word that we are working on.
+
+```javascript
+const addChar = () => {
+	let currChar = currentWord[charIndex]
+
+	const char = document.createElement('span')
+
+	char.innerText = currChar
+	char.classList.add('char')
+
+	textEl.appendChild(char)
+
+	charIndex++
+
+	if (charIndex === currentWord.length) {
+		charIndex--
+		addingChars = false
+		shouldWait = true
+	}
+}
+```
+
+Explanation:
+
+- `currChar` is the current character. We put them in a span tag and them inside the `textEl` element.
+- We increase the `charIndex` by 1.
+- If the `charIndex` is equal to the length of the current word, we decrement `charIndex` by 1. Because we have to start removing from the last character.
+- We set `addingChars` to false and `shouldWait` to true. Because we have to wait for a while.
+
+```javascript
+const removeChar = () => {
+	const char = textEl.lastElementChild
+
+	textEl.removeChild(char)
+
+	charIndex--
+
+	if (charIndex < 0) {
+		charIndex++
+		addingChars = true
+		updateCurrWord()
+	}
+}
+```
+
+Explanation :
+
+- We remove the last child of the `textEl` element and decrease the `charIndex` by 1.
+- If the `charIndex` is less than 0, we increase it by 1. Because we have to start adding from the first character to the next word.
+- We set `addingChars` to true and `shouldWait` to false. Because we have to add the next word.
+- And we call the `updateCurrWord` function. Let's implement the `updateCurrWord` function.
+
+```javascript
+const updateCurrWord = () => {
+	wordIndex++
+
+	if (wordIndex === words.length) wordIndex = 0
+
+	currentWord = words[wordIndex]
+}
+```
+
+Explanation:
+
+- We increase the `wordIndex` by 1.
+- If the `wordIndex` is equal to the length of the words array, we set `wordIndex` to 0. Because we have to start from the first word.
+- Finally, we update the `currentWord` to the current index.
+
+```javascript
+const runTypewriter = () => {
+	const operation = addingChars ? addChar : removeChar
+
+	operation()
+
+	let timeout = addingChars ? 200 : 100
+
+	if (shouldWait) {
+		timeout = 1000
+		shouldWait = false
+	}
+
+	setTimeout(runTypewriter, timeout)
+}
+
+setTimeout(runTypewriter, 1500)
+```
+
+Explanation:
+
+- We create an `operation` variable. It will store the function that we want to call. It will be either `addChar` or `removeChar` depending on the `addingChars` variable.
+- We create a `timeout` variable. It will store the time that we want to wait. It will be either `200` or `1000` depending on the `shouldWait` variable.
+- If `shouldWait` is true, we set `timeout` to 1000 and `shouldWait` to false.
+- We call the `runTypewriter` function inside the `typewriter` function. This is what we call `recursion`. But don't worry about it. It will create a loop that will create the typewriter effect.
+- Finally, we call the `runTypewriter` function globally after 1500 milliseconds.
+
+## Final Result
+
+<Codepen id='GROrRQJ'/>
+
+That's it! You can check out the [GitHub repository](https://github.com/thatanjan/typewriting-effect-yt) for the code. Feel free to Star it, fork it, and make your own version.
