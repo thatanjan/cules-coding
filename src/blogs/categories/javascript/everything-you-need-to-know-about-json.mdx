@@ -1,0 +1,188 @@
+---
+title: Everything you need to know about JSON
+description:
+banner: /blogs/javascript/everything-you-need-to-know-about-json/banner.png
+altText: Everything you need to know about JSON by Cules Coding
+customID: 72e479c5-6f6e-4489-87b3-7d7af7981a22
+---
+
+In this blog, you will learn everything you need to know about JSON.
+
+## What is JSON?
+
+- JSON stands for JavaScript Object Notation.
+- It is a lightweight data-interchange format.
+- Most of the time, JSON is used for sending and receiving data between a server and a client.
+- It is also used for configuration files. For instance, package.json in npm, settings.json in VScode.
+
+## Why use JSON?
+
+- It is easy to read, write and understand.
+- JSON can be used with any programming language.
+- It is lightweight.
+
+## JSON data types
+
+- String: Any text enclosed in double-quotes. For instance, "Hello World".
+- Number: Any valid number. For instance, 123, -123, 0.123, 1.23e-10.
+- Boolean: true or false.
+- Object: A collection of key-value pairs enclosed in curly braces. For instance, { "name": "John", "age": 30 }.
+- Array: An ordered list of values enclosed in square brackets. For instance, [1, 2, 3, 4, 5] or ["Hello", "World"].
+- Null
+
+## Unsupported data types in JSON
+
+- function
+- date
+- undefined
+
+## JSON syntax
+
+- A string has to be enclosed in double quotes. All the property names are strings. So they also have to be enclosed in double quotes. Make sure you have a comma at the end.
+
+```json
+{"name": "John", "age": 30}// valid
+
+{'name': 'John', "age": 30}// invalid
+```
+
+- A JSON data has to have top-level data. It can be a single string or number like below. But you will not see this in the JSON data.
+
+```json
+"Hello World"
+```
+
+```json
+123
+```
+
+- Below code is invalid JSON data because they are having two top-level data.
+
+```json
+({ "name": "John", "age": 30 }, { "name": "Jane", "age": 30 })
+```
+
+- But you will use an array or object as the top-level data like below.
+
+```json
+{
+	"name": "John",
+	"age": 30,
+	"isMarried": false,
+	"cars": ["Ford", "BMW", "Fiat"]
+}
+```
+
+or,
+
+```json
+[
+	{
+		"name": "John",
+		"age": 30,
+		"isMarried": false,
+		"cars": ["Ford", "BMW", "Fiat"]
+	},
+	{
+		"name": "Mary",
+		"age": 28,
+		"isMarried": true,
+		"cars": ["Renault", "Peugeot"]
+	}
+]
+```
+
+Let's see how to parse this JSON data.
+
+## Stringify Json data
+
+A common use of JSON is to exchange data to/from a web server. When sending data to a web server, the data has to be a string.
+We can convert a JavaScript object into a JSON string.
+
+```javascript
+const users = [
+	{
+		name: 'John',
+		age: 30,
+		isMarried: false,
+		cars: ['Ford', 'BMW', 'Fiat'],
+	},
+	{
+		name: 'Mary',
+		age: 28,
+		isMarried: true,
+		cars: ['Renault', 'Peugeot'],
+	},
+]
+
+const json = JSON.stringify(users)
+console.log(json)
+
+// output
+// '[{"name":"John","age":30,"isMarried":false,"cars":["Ford","BMW","Fiat"]},{"name":"Mary","age":28,"isMarried":true,"cars":["Renault","Peugeot"]}]'
+```
+
+We can also pretty print the JSON data.
+
+```javascript
+const prettyJson = JSON.stringify(users, null, 2)
+console.log(prettyJson)
+
+// Output
+
+// [
+//   {
+//     "name": "John",
+//     "age": 30,
+//     "isMarried": false,
+//     "cars": [
+//       "Ford",
+//       "BMW",
+//       "Fiat"
+//     ]
+//   },
+//   {
+//     "name": "Mary",
+//     "age": 28,
+//     "isMarried": true,
+//     "cars": [
+//       "Renault",
+//       "Peugeot"
+//     ]
+//   }
+// ]
+```
+
+Explanation:
+
+- The first argument is the data to be converted.
+- The second argument is the replacer function. It is used to specify which properties of the object should be converted into JSON. You can learn more from [ MDN ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
+- The third argument is the indentation string or the number of spaces to be used for indentation.
+
+## Parse JSON data
+
+When receiving data from a web server, the data is always a string. We can convert a JSON string into a JavaScript object.
+
+```javascript
+const data =
+	' [ { "name": "John", "age": 30, "isMarried": false, "cars": [ "Ford", "BMW", "Fiat" ] }, { "name": "Mary", "age": 28, "isMarried": true, "cars": [ "Renault", "Peugeot" ] } ]'
+
+const parsedData = JSON.parse(data)
+console.log(parsedData)
+
+// output
+// [
+// 	{
+// 		name: 'John',
+// 		age: 30,
+// 		isMarried: false,
+// 		cars: ['Ford', 'BMW', 'Fiat'],
+// 	},
+// 	{
+// 		name: 'Mary',
+// 		age: 28,
+// 		isMarried: true,
+// 		cars: ['Renault', 'Peugeot'],
+// 	},
+// ]
+```
