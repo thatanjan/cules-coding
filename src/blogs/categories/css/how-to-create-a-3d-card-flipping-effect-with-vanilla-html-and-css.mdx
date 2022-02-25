@@ -1,0 +1,157 @@
+---
+title: How to create a 3d card flipping effect with vanilla HTML and CSS
+description:
+banner: /blogs/css/how-to-create-a-3d-card-flipping-effect-with-vanilla-html-and-css/banner.png
+altText: How to create a 3d card flipping effect with vanilla HTML and CSS in Cules Coding by @thatanjan
+customID: Xmc_41VPwWdnaOL6OLrlv
+---
+
+In this article, I will show you how to create a 3d card flipping effect with vanilla HTML and CSS.
+
+## Demo
+
+<Codepen id='wvPgozR' />
+
+<!-- ## Video Tutorial -->
+<!---->
+<!-- I have already made a video about it on my youtube channel. Check that out. -->
+<!---->
+<!-- {% youtube m60RGWfj5f0 %} -->
+<!---->
+<!-- Please like and subscribe to [Cules Coding](https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1). It motivates me to create more content like this. -->
+
+## HTML
+
+```html
+<div class="flip-box">
+	<div class="flip-box-inner">
+		<div class="flip-box-front">
+			<img src="1.webp" alt="Paris" />
+		</div>
+		<div class="flip-box-back">
+			<h1>Taylor Swift</h1>
+		</div>
+	</div>
+</div>
+```
+
+Explanation:
+
+- `flip-box` is the parent element. It will stay the same.
+- `flip-box-inner` is the child element. It will actually rotate.
+- `flip-box-front` is the front part and will be visible.
+- `flip-box-back` is the back part and will be hidden.
+
+## CSS
+
+```css
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
+	overflow: hidden;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+	font-size: 3rem;
+}
+
+.flip-box {
+	background-color: transparent;
+	width: 60vw;
+	perspective: 1000px;
+	cursor: pointer;
+}
+```
+
+Explanation:
+
+- Some basic styles to center the flip-box.
+- `perspective` property is for the 3d effect. I don't understand how it works but it works.
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zi3uhcp34u3uoq76gxpn.jpg)
+
+Learn more about perspective property [here](https://www.w3schools.com/cssref/css3_pr_perspective.asp).
+
+```css
+.flip-box-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding-top: 52.65%;
+	text-align: center;
+	transition: transform 0.8s;
+	transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+	transform: rotateY(180deg);
+}
+
+img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+```
+
+Explanation:
+
+- `flip-box-inner` is position relative. The front and the back element will be positioned relative to the parent element.
+- `padding-top` is 52.65% of the parent element. This is for maintaining the ratio so that our image stays responsive. If you want to learn more in depth, you can watch the following video.
+
+<Iframe videoID='YYxfwDWuPmc' />
+
+- `transform-style` is preserve-3d. This is for maintaining the 3d effect.
+
+```css
+.flip-box-front,
+.flip-box-back {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden; /* Safari */
+	backface-visibility: hidden;
+}
+
+.flip-box-front {
+	color: black;
+}
+
+.flip-box-back {
+	background-color: #ff6f00;
+	color: white;
+	transform: rotateY(180deg);
+	display: grid;
+	align-content: center;
+}
+
+@media screen and (max-width: 600px) {
+	.flip-box-inner {
+		padding-top: 100%;
+	}
+	.flip-box {
+		width: 90vw;
+	}
+}
+```
+
+Explanation:
+
+- `flip-box-front` and `flip-box-back` are aligned with the parent element.
+- `backface-visibility` is for hiding the backside of the element when we will rotate.
+- `transform: rotateY(180deg);` is for rotating the back element. Because we want the front element to be visible when the page loads
+- Finally some code for media queries.
+
+## Final Result
+
+<Codepen id='wvPgozR' />
