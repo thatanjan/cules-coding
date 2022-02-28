@@ -19,10 +19,11 @@ const SinglePost = ({
 	slug,
 	totalViews,
 	readingTime,
+	customID,
 }: Blog) => {
 	const slugLink = `/blog/${slug}`
 
-	const { data } = useSWR(`/api/views/${slug}`, fetcher)
+	const { data } = useSWR(`/api/views/${customID}`, fetcher)
 
 	return (
 		<>
