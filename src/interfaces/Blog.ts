@@ -8,4 +8,5 @@ export interface Blog {
 	slug: string
 	totalViews: number
 	readingTime: string
+	customID: string
 }

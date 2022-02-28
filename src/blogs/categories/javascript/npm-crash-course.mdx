@@ -319,7 +319,7 @@ You can add multiple scripts.
 
 You might have seen a package version like this `^2.21.1`. Let's see what this means.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z2u17z8l5258p11637b8.png)
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1q539c50hle40y51uwlx.png)
 
 - Patch release: In this release, some small bugs get fixed. It won't change the API. So, it will not break your code.
 - Minor release: In this release, some new features are added. Most probably it will not change the API. So, it will not break your code.

@@ -32,6 +32,7 @@ interface Props extends Blog {
 
 const BlogPage = ({
 	slug,
+	customID,
 	mdxSource,
 	title,
 	category,
@@ -56,14 +57,14 @@ const BlogPage = ({
 		components: { ...MDXComponents },
 	})
 
-	const { data, mutate } = useSWR(`/api/views/${slug}`, fetcher)
+	const { data, mutate } = useSWR(`/api/views/${customID}`, fetcher)
 
 	useEffect(() => {
 		const cancelTokenSource = mainAxios.CancelToken.source()
 
 		;(async () => {
 			try {
-				await axios.post(`/api/views/${slug}`, {
+				await axios.post(`/api/views/${customID}`, {
 					cancelToken: cancelTokenSource.token,
 				})
 
