@@ -1,0 +1,202 @@
+---
+title: Axios crash course
+description:
+banner: /blogs/javascript/axios-crash-course/banner.png
+altText: Axios crash course in Cules Coding by @thatanjan
+customID: 9EFhyiGA77l5Ea4sIBOoj
+---
+
+In this blog, you will learn how to use Axios to make HTTP requests in JavaScript.
+
+## What is Axios?
+
+Axios is a library that makes it easy to make HTTP requests in
+JavaScript. It is promise based. It is much more browser compatible
+than fetch API because it uses XMLHttpRequest behind the scenes.
+You can also use Axios in Node.js.
+
+https://github.com/axios/axios
+
+<!-- You can learn about fetch API from here. -->
+
+## How to use Axios?
+
+You can install Axios using npm or yarn.
+
+```bash
+npm install axios
+# or
+yarn add axios
+```
+
+or you can use CDN.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+```
+
+We will use [ReqRes API](https://reqres.in/) for testing. It gives you
+fake data to test your code.
+
+## How to make a GET request?
+
+We will fetch some users from ReqRes API.
+
+```javascript
+const url = 'https://reqres.in/api'
+const getUsers = async () => {
+	const result = await axios.get(`${url}/users/`)
+
+	console.log(result)
+}
+
+getUsers()
+```
+
+Explanation:
+
+- You will get a response object. The response is already parsed as JSON.
+- It has a data property. The data property is holding the data.
+
+## Pass query parameter
+
+```javascript
+const url = 'https://reqres.in/api'
+const getUsers = async () => {
+	const result = await axios.get(`${url}/users/`, {
+		params: {
+			per_page: 10,
+		},
+	})
+
+	// or
+	// const result = await axios.get(`${url}/users?per_page=10`)
+
+	console.log(result)
+}
+
+getUsers()
+```
+
+## How to make a POST request?
+
+We will send a POST request to ReqRes API to create a new user. It
+will not create a new user. It will only mimic the process and return
+us a response.
+
+```javascript
+const url = 'https://reqres.in/api'
+
+const createUser = async () => {
+	const result = await axios.post(`${url}/users`, {
+		name: 'Anjan',
+		job: 'Developer',
+	})
+	console.log(result)
+}
+```
+
+Explanation:
+
+- You can pass a request body as a second parameter which will contain data about the user.
+- You will get a response object. The response is already parsed as JSON.
+
+## Config object
+
+You can pass a config object to axios. Learn more from the [ docs ](https://github.com/axios/axios#request-config).
+
+## Request headers
+
+Let's see how we can pass a request header. We are passing an `Authorization` header which normally holds the user's token.
+
+```javascript
+const url = 'https://reqres.in/api'
+
+const createUser = async () => {
+	const config = {
+		headers: {
+			Authorization: 'token',
+		},
+	}
+
+	const result = await axios.post(
+		`${url}/users`,
+		{
+			name: 'Anjan',
+			job: 'Developer',
+		},
+		config
+	)
+
+	console.log(result)
+}
+
+createUser()
+```
+
+## Axios instance
+
+Our URL was always the same and we are passing it manually to every
+request. But we can create an instance of Axios which will have the
+URL from the start. and use it to make requests. You can also store
+other configs like request headers.
+
+```javascript
+const url = 'https://reqres.in/api'
+
+const instance = axios.create({
+	baseURL: url,
+	headers: {
+		Authorization: 'token',
+	},
+})
+
+const getUsers = async () => {
+	const result = await instance.get(`/users`, {
+		params: {
+			per_page: 10,
+		},
+	})
+	console.log(result)
+}
+```
+
+Now we can use the instance to make requests. We are just only passing the endpoints not the whole URL.
+
+## Axios transform the response
+
+You can transform the response data using the transformResponse property in config.
+
+```javascript
+const createUser = async () => {
+	const config = {
+		headers: {
+			Authorization: 'dfdkfj',
+		},
+
+		transformResponse: axios.defaults.transformResponse.concat(data => {
+			data.modified = 'modified'
+
+			return data
+		}),
+	}
+
+	const result = await axios.post(
+		`${url}/users`,
+		{
+			name: 'Anjan',
+			job: 'Developer',
+		},
+		config
+	)
+	console.log(result)
+}
+```
+
+Explanation:
+
+- `transformResponse` takes an array of functions that will be called on the response data one after another.
+- It will override the default transformResponse functions. I don't
+  recommend that. Instead, we can extend the default transformResponse
+  with our functions.
+- We are using the `concat` method of the array to add our functions.
