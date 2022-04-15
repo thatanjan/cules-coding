@@ -1,0 +1,75 @@
+---
+title: What is Static Site Generation?
+description:
+banner: /blogs/react/what-is-static-site-generation/banner.png
+altText: What is Static Site Generation? in Cules Coding by @thatanjan
+customID: K9PHExEuuqM9RCKkyCwVT
+---
+
+In this blog, I will explain what is static site generation and how it works.
+
+## Video Tutorial
+
+<Iframe videoID='x5ghzY13ySg' />
+
+## What does Static mean?
+
+Static means things that don't change. A static website's content doesn't change. For example, if you have a blog, you don't change the blog content much. So, the website's content doesn't change. That's why it will be a static site.
+If the content changes, it will be a dynamic site like a social media website.
+
+## How does our web work?
+
+We have to understand how our web works. Take a look at the following image.
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8vccf4zzhxue4zd4nlvi.png)
+
+- We have a client(normally a browser) and a server.
+- Client sends a request for an HTML page for example `blog.html`.
+- The server creates the blog.html file.
+- Now the `blog.html` file might need some external data like from a database or an API. So, the server fetches data from the sources and builds the HTML file with the fetched data.
+- Then the server sends that back to the client as a response.
+
+This is what we call Server-side rendering. If you want to learn more about server-side rendering, you can watch the following video.
+
+<Iframe videoID='LuG1KNowti4' />
+
+Also, you can learn about the client-side rendering from the following video.
+
+<Iframe videoID='o7FvNQ5RNYw' />
+
+## Problem with Server-side rendering
+
+Every time the client sends a request to the server, the whole process starts again. And it makes sense.
+But it can be slow in one scenario. Suppose, the data that needs to fetch on request time rarely changes.
+For example, if you write a blog, you don't change the blog content much. So, the website's content doesn't change.
+It will be unnecessary to fetch the same data from the database every time the client sends a request.
+
+## How does static site generation solve this problem?
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vsta8sl80gztxi8iryoe.png)
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nb95z8a4pf26f5j2vt0w.png)
+
+Instead of fetching data on request time, we can fetch the data on build time and put the data in the HTML file.
+So, now if the client sends a request, the server will immediately send the HTML file back to the client. Because the HTML file is already created with the required data.
+So, you don't need to do the extra process which makes the website super fast.
+
+## What is Static Site Generation?
+
+So, Static site generation is a process of generating static webpages at the build time. Static sites are getting more and more popular.
+
+## How to use static site generation?
+
+You can use some kind of front-end frameworks like Gatsby, Next.js, Jekyll, etc. You can check [the link](https://jamstack.org/generators/) for more details.
+
+## Pros of static site generation
+
+- It's fast.
+- No need of backend.
+- It's SEO friendly.
+- Easy to scale.
+- Free hosting with github page, netlify, vercel, etc.
+
+## When to use static site generation?
+
+Static sites are great when the content doesn't change. If your content changes often, then static site generation is not the best option.
