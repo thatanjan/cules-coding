@@ -1,0 +1,111 @@
+---
+title: How to send emails from Node.js with SendInBlue
+description:
+banner: /blogs/nodejs/how-to-send-emails-from-node.js-with-sendinblue/banner.png
+altText: How to send emails from Node.js with SendInBlue in Cules Coding by @thatanjan
+customID: wW5Vz7rcj6Z2LQPzRztZT
+---
+
+In this article, we will learn how to send emails from Node.js with SendInBlue.
+
+## Video Tutorial
+
+<Iframe VideoID='4mHsj0aHOEY' />
+
+## What is SendInBlue?
+
+SendInBlue is a mail service that allows you to send emails from your Node.js application.
+
+## Get Sendinblue email api key
+
+1. Go to [SendinBlue](https://www.sendinblue.com) and create an
+   account.
+2. Go to Dashboard and click on the top right-hand side dropdown.
+
+3. Click on the **SMTP & API** tab.
+4. Click on the `Create new API key` button.
+5. Now we need to store the api key in an environment variable.
+
+## Setup
+
+- Install packages:
+
+```bash
+npm init -y
+npm i dotenv sib-api-v3-sdk
+```
+
+- Create a file called `.env` and add the following lines:
+
+```
+API_KEY=<your_api_key>
+```
+
+- Create a file called `index.js` and add the following lines:
+
+```javascript
+const Sib = require('sib-api-v3-sdk')
+
+require('dotenv').config()
+
+const client = Sib.ApiClient.instance
+
+const apiKey = client.authentications['api-key']
+apiKey.apiKey = process.env.API_KEY
+```
+
+Explanation: - `require('dotenv').config()`: This is used to load the environment variables from the `.env` file. Then we have to add the api key to the Sendinblue client.
+
+```javascript
+const tranEmailApi = new Sib.TransactionalEmailsApi()
+
+const sender = {
+	email: 'thatanjan@gmail.com',
+	name: 'Anjan',
+}
+
+const receivers = [
+	{
+		email: '<email address>',
+	},
+]
+```
+
+Explanation: With `tranEmailApi` we can send emails. The sender email has to be the email account that you have used in the SendinBlue account.
+
+```javascript
+tranEmailApi
+	.sendTransacEmail({
+		sender,
+		to: receivers,
+		subject: 'Subscribe to Cules Coding to become a developer',
+		textContent: `
+        Cules Coding will teach you how to become {{params.role}} a developer.
+        `,
+		htmlContent: `
+        <h1>Cules Coding</h1>
+        <a href="https://cules-coding.vercel.app/">Visit</a>
+                `,
+		params: {
+			role: 'Frontend',
+		},
+	})
+	.then(console.log)
+	.catch(console.log)
+```
+
+Explanation:
+
+- You can send emails using the `sendTransacEmail` method.
+- Subject is required.
+- You have to pass either `textContent` or `htmlContent` to the method. `htmlContent` will override `textContent`.
+- You can pass parameters to the email content using the `params`
+  object.
+
+- Run the file and you will see the email was sent.
+
+```bash
+node index.js
+```
+
+Sendinblue has templates that you can use. If you want me to teach you how to create a newsletter, please let me know.
