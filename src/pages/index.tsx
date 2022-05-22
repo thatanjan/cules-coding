@@ -2,6 +2,7 @@ import { NextSeo } from 'next-seo'
 import { GetStaticProps } from 'next'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
+import path from 'path'
 
 import { Blog } from 'interfaces/Blog'
 import MatterData from 'interfaces/MatterData'
@@ -107,7 +108,7 @@ export const getStaticProps: GetStaticProps = async () => {
 			...(data as MatterData),
 			content,
 			readingTime: readingTime(content).text,
-			slug: allFiles[index].replace('.mdx', ''),
+			slug: path.parse(allFiles[index]).name,
 			category,
 		}))
 	}
