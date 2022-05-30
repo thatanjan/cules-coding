@@ -2,14 +2,13 @@
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
-[Cules Coding](https://www.culescoding.space/)
+[Cules Coding](https://cules-coding.vercel.app/)
 is a blogging site and a youtube channel which teaches about Full stack web
 development, data structure, alghorithms and many more.
 
 ## Website URL
 
-You can visit the website from [here](https://www.culescoding.space/)
-https://www.culescoding.space/
+You can visit the website from [here](https://cules-coding.vercel.app/)
 
 # Youtube channel
 
@@ -53,7 +52,7 @@ https://www.youtube.com/channel/UCBaGowNYTUsm3IDaHbLRMYw?sub_confirmation=1
 
 ## Authors
 
-- [@thatanjan](https://www.thatanjan.me/)
+- [@thatanjan](https://thatanjan.vercel.app/)
 
 ## Contributing
 
