@@ -20,6 +20,7 @@
 		"prism-react-renderer": "^1.2.0",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
+		"react-lazy-load-image-component": "^1.5.4",
 		"react-lazyload": "^3.2.0",
 		"react-masonry-css": "^1.0.16",
 		"reading-time": "^1.3.0",
@@ -28,6 +29,7 @@
 	"devDependencies": {
 		"@types/node": "^14.14.37",
 		"@types/react": "^17.0.3",
+		"@types/react-lazy-load-image-component": "^1.5.2",
 		"@typescript-eslint/eslint-plugin": "^4.22.0",
 		"@typescript-eslint/parser": "^4.22.0",
 		"eslint": "^7.25.0",
