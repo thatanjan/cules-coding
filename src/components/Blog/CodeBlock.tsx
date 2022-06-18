@@ -1,13 +1,20 @@
 /* eslint react/jsx-key: 0 */
 
-import React from 'react'
+import { useState } from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import vsDark from 'prism-react-renderer/themes/vsDark'
 
 const CodeBlock = ({ children, className }) => {
+	const [isCopied, setIsCopied] = useState(false)
+
 	const language = className ? className.replace(/language-/, '') : ''
 
-	const copyCode = () => navigator.clipboard.writeText(children)
+	const handleCopy = () => {
+		navigator.clipboard.writeText(children)
+		setIsCopied(true)
+
+		setTimeout(() => setIsCopied(false), 2000)
+	}
 
 	return (
 		<Highlight
@@ -18,8 +25,8 @@ const CodeBlock = ({ children, className }) => {
 		>
 			{({ className, style, tokens, getLineProps, getTokenProps }) => (
 				<pre className={className} style={{ ...style, padding: '20px' }}>
-					<button type='button' onClick={copyCode}>
-						copy
+					<button className='btn btn--copy' type='button' onClick={handleCopy}>
+						{isCopied ? 'Copied!' : 'Copy'}
 					</button>
 
 					{tokens.map((line, i) => (
