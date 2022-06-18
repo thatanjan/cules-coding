@@ -24,19 +24,24 @@ const CodeBlock = ({ children, className }) => {
 			language={language}
 		>
 			{({ className, style, tokens, getLineProps, getTokenProps }) => (
-				<pre className={className} style={{ ...style, padding: '20px' }}>
-					<button className='btn btn--copy' type='button' onClick={handleCopy}>
-						{isCopied ? 'Copied!' : 'Copy'}
-					</button>
+				<div className='code__container'>
+					<pre
+						className={className}
+						style={{ ...style, padding: '2rem', paddingTop: '8rem' }}
+					>
+						<button className='btn btn--copy' type='button' onClick={handleCopy}>
+							{isCopied ? 'Copied!' : 'Copy'}
+						</button>
 
-					{tokens.map((line, i) => (
-						<div key={i} {...getLineProps({ line, key: i })}>
-							{line.map((token, key) => (
-								<span key={key} {...getTokenProps({ token, key })} />
-							))}
-						</div>
-					))}
-				</pre>
+						{tokens.map((line, i) => (
+							<div key={i} {...getLineProps({ line, key: i })}>
+								{line.map((token, key) => (
+									<span key={key} {...getTokenProps({ token, key })} />
+								))}
+							</div>
+						))}
+					</pre>
+				</div>
 			)}
 		</Highlight>
 	)

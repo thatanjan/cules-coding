@@ -3653,4 +3653,13 @@ a.site-logo {
 	color: black;
 	border: none;
 	padding: 0 2rem;
+	position: absolute;
+	right: 2rem;
+	top: 2rem;
+}
+
+/* code container */
+
+.code__container {
+	position: relative;
 }
