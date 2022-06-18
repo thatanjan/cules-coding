@@ -38,11 +38,18 @@ const CodeBlock = ({ children, className }) => {
 							{isCopied ? 'Copied!' : 'Copy'}
 						</button>
 
-						{tokens.map(line => (
-							<div key={nanoid()} {...getLineProps({ line, key: nanoid() })}>
-								{line.map((token, key) => (
-									<span key={nanoid()} {...getTokenProps({ token, key })} />
-								))}
+						{tokens.map((line, i) => (
+							<div
+								className='code__line'
+								key={nanoid()}
+								{...getLineProps({ line, key: nanoid() })}
+							>
+								<span className='code__line__no'>{i + 1}</span>
+								<span className='code__line__content'>
+									{line.map((token, key) => (
+										<span key={nanoid()} {...getTokenProps({ token, key })} />
+									))}
+								</span>
 							</div>
 						))}
 					</pre>

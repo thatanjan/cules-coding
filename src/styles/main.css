@@ -3663,3 +3663,21 @@ a.site-logo {
 .code__container {
 	position: relative;
 }
+
+/* code lines */
+
+.code__line {
+	display: table-row;
+}
+
+.code__line__no {
+	display: table-cell;
+	text-align: right;
+	padding-right: 2rem;
+	user-select: none;
+	opacity: 0.5;
+}
+
+.code__line__content {
+	display: table-cell;
+}
