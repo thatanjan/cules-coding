@@ -7,6 +7,8 @@ import vsDark from 'prism-react-renderer/themes/vsDark'
 const CodeBlock = ({ children, className }) => {
 	const language = className ? className.replace(/language-/, '') : ''
 
+	const copyCode = () => navigator.clipboard.writeText(children)
+
 	return (
 		<Highlight
 			{...defaultProps}
@@ -16,6 +18,10 @@ const CodeBlock = ({ children, className }) => {
 		>
 			{({ className, style, tokens, getLineProps, getTokenProps }) => (
 				<pre className={className} style={{ ...style, padding: '20px' }}>
+					<button type='button' onClick={copyCode}>
+						copy
+					</button>
+
 					{tokens.map((line, i) => (
 						<div key={i} {...getLineProps({ line, key: i })}>
 							{line.map((token, key) => (
