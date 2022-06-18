@@ -5,6 +5,7 @@ import CodeBlock from 'components/Blog/CodeBlock'
 import BlogImage from 'components/Blog/BlogImage'
 import Iframe from 'components/Iframe'
 import Codepen from 'components/Codepen'
+import LazyImage from 'components/LazyImage'
 
 const mdxComponents: MdxRemote.Components = {
 	BlogImage,
@@ -12,6 +13,7 @@ const mdxComponents: MdxRemote.Components = {
 	a: Link,
 	Iframe,
 	Codepen: Codepen,
+	img: LazyImage,
 }
 
 export default mdxComponents
