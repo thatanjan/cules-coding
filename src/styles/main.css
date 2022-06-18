@@ -3640,3 +3640,17 @@ a.site-logo {
 	transform: rotate(45deg);
 	transition: all 0.5s;
 }
+
+/* Custom styles */
+
+/* Copy button */
+
+.btn--copy {
+	height: 4rem;
+	line-height: 0;
+	border-radius: 1rem;
+	background: white;
+	color: black;
+	border: none;
+	padding: 0 2rem;
+}
