@@ -6,6 +6,14 @@ altText: In this blog, you will learn how to setup a fullStack or more specifial
 customID: 8d3bc699-9717-45c3-83e1-7fe3fc24eed0
 ---
 
+## Video tutorial
+
+I have already created a video about it on my youtube channel. Check that out for more details.
+
+<Iframe videoID='ME3tMy5Q2qo' />
+
+If you like this video, please like share, and Subscribe to my channel.
+
 ## Setup server
 
 We are going to build a mono repo. This means the server and the client-side code will live inside a single repository.
