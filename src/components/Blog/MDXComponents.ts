@@ -1,18 +1,18 @@
-import { MdxRemote } from 'next-mdx-remote/types'
 import Link from 'next/link'
+import { ReactNode } from 'react'
 
-import CodeBlock from 'components/Blog/CodeBlock'
 import BlogImage from 'components/Blog/BlogImage'
-import Iframe from 'components/Iframe'
+import CodeBlock from 'components/Blog/CodeBlock'
 import Codepen from 'components/Codepen'
+import Iframe from 'components/Iframe'
 import LazyImage from 'components/LazyImage'
 
-const mdxComponents: MdxRemote.Components = {
+const mdxComponents: Record<string, ReactNode> = {
 	BlogImage,
 	code: CodeBlock,
 	a: Link,
 	Iframe,
-	Codepen: Codepen,
+	Codepen,
 	img: LazyImage,
 }
 

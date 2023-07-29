@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { serialize } from 'next-mdx-remote/serialize'
-import hydrate from 'next-mdx-remote/hydrate'
-import { MdxRemote } from 'next-mdx-remote/types'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import useSWR from 'swr'
 import mainAxios from 'axios'
 import { NextSeo } from 'next-seo'
@@ -22,10 +21,10 @@ import BlogModel from 'mongoose/Blog'
 import OutroModel from 'mongoose/Outro'
 
 interface Props extends Blog {
-	mdxSource: MdxRemote.Source
+	mdxSource: MDXRemoteSerializeResult
 	prevPost: string
 	nextPost: string
-	outroMdxSource: MdxRemote.Source
+	outroMdxSource: MDXRemoteSerializeResult
 	nextPostTitle: string
 	prevPostTitle: string
 }
@@ -48,15 +47,6 @@ const BlogPage = ({
 	nextPostTitle,
 	prevPostTitle,
 }: Props) => {
-	const content = hydrate(mdxSource, {
-		components: {
-			...MDXComponents,
-		},
-	})
-	const outroContent = hydrate(outroMdxSource, {
-		components: { ...MDXComponents },
-	})
-
 	const { data, mutate } = useSWR(`/api/views/${customID}`, fetcher)
 
 	useEffect(() => {
@@ -119,9 +109,8 @@ const BlogPage = ({
 
 					<p className='lead'>{description}</p>
 
-					{content}
-
-					{outroContent}
+					<MDXRemote {...mdxSource} components={MDXComponents} />
+					<MDXRemote {...outroMdxSource} components={MDXComponents} />
 
 					<BlogNavigation
 						{...{ prevPost, nextPost, nextPostTitle, prevPostTitle }}
