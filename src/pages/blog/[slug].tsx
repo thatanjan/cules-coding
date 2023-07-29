@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import renderToString from 'next-mdx-remote/render-to-string'
+import { serialize } from 'next-mdx-remote/serialize'
 import hydrate from 'next-mdx-remote/hydrate'
 import { MdxRemote } from 'next-mdx-remote/types'
 import useSWR from 'swr'
@@ -153,9 +153,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 	await connectDB()
 	const { content: outroContent } = await OutroModel.findOne({ title: 'outro' })
 
-	const outroMdxSource = await renderToString(outroContent, {
-		components: MDXComponents,
-	})
+	const outroMdxSource = await serialize(outroContent)
 
 	const blog = await BlogModel.findOne({ slug })
 
@@ -163,19 +161,17 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
 	const { _id: _, __v: __, content, createdAt, ...neededData } = blog.toObject()
 
-	const mdxSource = await renderToString(content, {
-		components: MDXComponents,
-	})
+	const mdxSource = await serialize(content)
 
 	const allPostOfCategory = await BlogModel.find(
 		{ category },
-		'title slug'
+		'title slug',
 	).sort({
 		createdAt: -1,
 	})
 
 	const currentBlogIndex = allPostOfCategory.findIndex(
-		post => post.slug === slug
+		post => post.slug === slug,
 	)
 
 	const nextPost = allPostOfCategory[currentBlogIndex + 1]?.slug || ''
