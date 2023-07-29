@@ -7,6 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"dev:watch": "next-remote-watch ./src/blogs/catagories/*",
+		"typecheck": "tsc -p tsconfig.json",
+		"typecheck:watch": "tsc -p tsconfig.json -w",
 		"createBlog": "tsx ./src/scripts/createBlog.ts"
 	},
 	"dependencies": {
