@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"dev:watch": "next-remote-watch ./src/blogs/catagories/*",
-		"createBlog": "ts-node --esm ./src/scripts/createBlog.ts"
+		"createBlog": "tsx ./src/scripts/createBlog.ts"
 	},
 	"dependencies": {
 		"axios": "^0.21.1",
@@ -41,7 +41,7 @@
 		"eslint-plugin-react-hooks": "^4.2.0",
 		"next-remote-watch": "^1.0.0",
 		"prettier": "^2.2.1",
-		"ts-node": "^10.9.1",
+		"tsx": "^3.12.7",
 		"typescript": "^4.2.4"
 	},
 	"type": "module"
