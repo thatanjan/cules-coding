@@ -11,6 +11,8 @@ const globalAny: any = global
 let cached = globalAny.mongoose as any
 
 if (!cached) {
+	// TODO: Need to check
+	// eslint-disable-next-line no-multi-assign
 	cached = globalAny.mongoose = { conn: null, promise: null }
 }
 
