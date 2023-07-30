@@ -69,6 +69,7 @@ const BlogPage = ({
 				})
 
 				mutate()
+				// eslint-disable-next-line no-empty
 			} catch (_) {}
 		})()
 		return () => {
@@ -169,13 +170,13 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
 
 	const allPostOfCategory = await BlogModel.find(
 		{ category },
-		'title slug'
+		'title slug',
 	).sort({
 		createdAt: -1,
 	})
 
 	const currentBlogIndex = allPostOfCategory.findIndex(
-		post => post.slug === slug
+		post => post.slug === slug,
 	)
 
 	const nextPost = allPostOfCategory[currentBlogIndex + 1]?.slug || ''

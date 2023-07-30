@@ -5,7 +5,7 @@ const Footer = () => {
 	const [showButton, setShowButton] = useState(false)
 
 	const handleScroll = () => {
-		const scrollY = window.scrollY
+		const { scrollY } = window
 
 		if (scrollY > 300) {
 			setShowButton(true)
@@ -48,8 +48,11 @@ const Footer = () => {
 				className={clsx('go-top', showButton && 'link-is-visible')}
 				onClick={scrollToTop}
 				style={{ cursor: 'pointer' }}
+				aria-hidden='true'
 			>
-				<a title='Back to Top'></a>
+				{/* TODO: Need to replace with button tag with styles */}
+				{/* eslint-disable-next-line jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid */}
+				<a title='Back to Top' />
 			</div>
 		</footer>
 	)

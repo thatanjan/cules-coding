@@ -88,21 +88,21 @@ export const getStaticProps: GetStaticProps = async ({
 
 	const categoryData = await CategoryModel.findOne(
 		{ slug: category },
-		'title description -_id'
+		'title description -_id',
 	)
 
 	const response = await BlogModel.find(
 		{ category },
-		{ _id: 0, __v: 0, content: 0 }
+		{ _id: 0, __v: 0, content: 0 },
 	).sort({
 		createdAt: -1,
 	})
 
 	const blogs: Blog[] = response.map(blog => {
-		blog = blog.toObject()
-		blog.createdAt = blog.createdAt.toDateString()
+		const blogObject = blog.toObject()
+		blogObject.createdAt = blogObject.createdAt.toDateString()
 
-		return blog
+		return blogObject
 	})
 
 	const props: Props = { blogs, categoryData: categoryData.toObject() }

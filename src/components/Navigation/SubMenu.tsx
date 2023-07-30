@@ -16,14 +16,18 @@ const SubMenu = ({ menuName, subMenuList, closeResponsiveNav }: Props) => {
 			{subMenuList.map(subMenu => (
 				<li key={nanoid()}>
 					<Link href={generatePath(subMenu)}>
-						<a onClick={closeResponsiveNav}>{subMenu}</a>
+						<a href={generatePath(subMenu)} onClick={closeResponsiveNav}>
+							{subMenu}
+						</a>
 					</Link>
 				</li>
 			))}
 
 			<li key={nanoid()}>
 				<Link href={`/${menuName}`}>
-					<a onClick={closeResponsiveNav}>Show all {menuName}</a>
+					<a href={`/${menuName}`} onClick={closeResponsiveNav}>
+						Show all {menuName}
+					</a>
 				</Link>
 			</li>
 		</ul>

@@ -59,8 +59,9 @@ const Navigation = ({ closeResponsiveNav }: Props) => {
 							className={clsx(focusedMenuIndex === index && 'current')}
 							key={nanoid()}
 						>
-							<Link href={generateHref(menuName)}>
+							<Link passHref href={generateHref(menuName)}>
 								<a
+									href={generateHref(menuName)}
 									onClick={() => {
 										setFocusedMenuIndex(index)
 										closeResponsiveNav()

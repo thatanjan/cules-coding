@@ -33,7 +33,7 @@ const Search = ({ blogs, searchedItem }: Props) => {
 			/>
 			<header className='listing-header'>
 				<h1 className='h2' style={{ textTransform: 'none' }}>
-					You have {blogs.length} search result based on "{searchedItem}"
+					You have {blogs.length} search result based on &quot;{searchedItem}&quot;
 				</h1>
 			</header>
 
@@ -61,17 +61,15 @@ export const getServerSideProps: GetServerSideProps = async ({
 				$search: search as string,
 			},
 		},
-		project
+		project,
 	).sort({ score: { $meta: 'textScore' } })
 
 	const blogs = result.map(blog => {
-		blog = blog.toObject()
-		blog.createdAt = blog.createdAt.toDateString()
+		const blogObject = blog.toObject()
+		blogObject.createdAt = blogObject.createdAt.toDateString()
 
-		return blog
+		return blogObject
 	})
-
-	console.log(blogs)
 
 	return {
 		props: { blogs, searchedItem: search },

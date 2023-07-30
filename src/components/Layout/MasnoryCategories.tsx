@@ -41,6 +41,7 @@ const MasnoryCategories = ({ categories }: Props) => {
 							>
 								<div className='entry__thumb'>
 									<Link href={redirectLink(slug)}>
+										{/*  eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 										<a className='entry__thumb-link'>
 											<NextImage
 												layout='responsive'

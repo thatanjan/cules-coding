@@ -1,3 +1,8 @@
+/* TODO: Need to take care of eslint */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React, { useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
@@ -7,9 +12,7 @@ import Navigation from 'components/Navigation/Navigation'
 
 const HeaderSearch = dynamic(() => import('./HeaderSearch'))
 
-interface Props {}
-
-const Header = (props: Props) => {
+const Header = () => {
 	const [showHeaderSearch, setShowHeaderSearch] = useState(false)
 	const [showResponsiveNav, setShowResponsiveNav] = useState(false)
 
@@ -36,7 +39,7 @@ const Header = (props: Props) => {
 					href='#'
 					className='header__search-trigger'
 					onClick={() => searchBoxHandler(true)}
-				></a>
+				/>
 				<a
 					href='#'
 					className={clsx('header__menu-toggle', showResponsiveNav && 'is-clicked')}

@@ -3,9 +3,10 @@ import React from 'react'
 interface Props {
 	id: string
 	tab?: 'html' | 'css' | 'js' | 'result'
+	title: string
 }
 
-const Iframe = ({ id, tab }: Props) => {
+const Iframe = ({ id, tab, title }: Props) => {
 	return (
 		<section className='video-container'>
 			<iframe
@@ -18,6 +19,7 @@ const Iframe = ({ id, tab }: Props) => {
 				loading='lazy'
 				allowTransparency
 				allowFullScreen
+				title={title}
 			/>
 		</section>
 	)

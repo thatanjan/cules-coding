@@ -12,7 +12,7 @@ const mdxComponents: MdxRemote.Components = {
 	code: CodeBlock,
 	a: Link,
 	Iframe,
-	Codepen: Codepen,
+	Codepen,
 	img: LazyImage,
 }
 

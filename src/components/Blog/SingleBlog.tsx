@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 import NextImage from 'next/image'
 import useSWR from 'swr'
@@ -33,6 +32,7 @@ const SinglePost = ({
 			>
 				<div className='entry__thumb'>
 					<Link href={slugLink}>
+						{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 						<a className='entry__thumb-link'>
 							<NextImage
 								layout='responsive'

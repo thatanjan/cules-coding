@@ -4,6 +4,7 @@ import Masonry from 'react-masonry-css'
 import SingleBlog from 'components/Blog/SingleBlog'
 
 import { Blog } from 'interfaces/Blog'
+import { nanoid } from 'nanoid'
 
 interface Props {
 	blogs: Array<Blog>
@@ -24,8 +25,8 @@ const MasonaryBlogs = ({ blogs }: Props) => {
 					className='my-masonry-grid'
 					columnClassName='my-masonry-grid_column'
 				>
-					{blogs.map((blog, index) => {
-						return <SingleBlog key={index} {...blog} />
+					{blogs.map(blog => {
+						return <SingleBlog key={nanoid()} {...blog} />
 					})}
 				</Masonry>
 			</div>

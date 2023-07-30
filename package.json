@@ -7,6 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"dev:watch": "next-remote-watch ./src/blogs/catagories/*",
+		"lint": "eslint .",
 		"createBlog": "tsx ./src/scripts/createBlog.ts"
 	},
 	"dependencies": {

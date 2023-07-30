@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import Link from 'next/link'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import clsx from 'clsx'
 
@@ -24,8 +23,11 @@ const MenuHasChildren = ({
 
 	return (
 		<li className={clsx('has-children', ...classes)}>
+			{/* TODO: Need to take care of eslint */}
+			{/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/interactive-supports-focus */}
 			<a
 				className={clsx(isSubMenuOpen && 'sub-menu-is-open')}
+				role='button'
 				onClick={() => {
 					setIsSubMenuOpen(!isSubMenuOpen)
 					focusClick()

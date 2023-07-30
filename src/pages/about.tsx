@@ -29,8 +29,8 @@ const About = () => {
 					</p>
 
 					<p>
-						Cules coding has started it's journey on 2021. Since then it is providing
-						value to all kind of programmers{' '}
+						Cules coding has started it&apos;s journey on 2021. Since then it is
+						providing value to all kind of programmers{' '}
 					</p>
 
 					<h3>Goals of Cules Coding</h3>

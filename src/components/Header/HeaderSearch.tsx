@@ -1,10 +1,4 @@
-import React, {
-	RefObject,
-	FormEvent,
-	useState,
-	createRef,
-	useEffect,
-} from 'react'
+import { RefObject, FormEvent, useState, createRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 interface Props {
@@ -33,6 +27,7 @@ const HeaderSearch = ({ searchBoxHandler }: Props) => {
 		<div>
 			<div className='header__search'>
 				<form className='header__search-form' onSubmit={handleSubmit}>
+					{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
 					<label>
 						<span className='hide-content'>Search for:</span>
 						<input

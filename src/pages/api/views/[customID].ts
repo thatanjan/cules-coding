@@ -5,7 +5,7 @@ import connectDB from 'mongoose/connectDB'
 
 const handler = async (
 	{ method, query: { customID } }: NextApiRequest,
-	res: NextApiResponse
+	res: NextApiResponse,
 ) => {
 	try {
 		await connectDB()
@@ -23,7 +23,7 @@ const handler = async (
 					$inc: {
 						totalViews: 1 as never,
 					},
-				}
+				},
 			)
 
 			if (update.nModified > 0) {
@@ -32,8 +32,10 @@ const handler = async (
 
 			return res.status(400).json({ message: true })
 		}
+
+		return res.status(405).json({ message: `${method} not allowed` })
 	} catch (_) {
-		res.end('error happended')
+		return res.end('error happended')
 	}
 }
 
