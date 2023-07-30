@@ -8,6 +8,8 @@
 		"start": "next start",
 		"dev:watch": "next-remote-watch ./src/blogs/catagories/*",
 		"lint": "eslint .",
+		"typecheck": "tsc -p tsconfig.json",
+		"typecheck:watch": "tsc -p tsconfig.json -w",
 		"createBlog": "tsx ./src/scripts/createBlog.ts"
 	},
 	"dependencies": {
@@ -17,7 +19,7 @@
 		"mongoose": "^5.12.5",
 		"nanoid": "^3.1.22",
 		"next": "^11.1.4",
-		"next-mdx-remote": "^2.1.4",
+		"next-mdx-remote": "^3.0.0",
 		"next-seo": "^4.24.0",
 		"prism-react-renderer": "^1.2.0",
 		"react": "17.0.2",
