@@ -1,7 +1,7 @@
 ---
 title: Build better forms with React hook form | Everything you need to know
 description:
-banner: /blogs//build-better-forms-with-react-hook-from-|-everything-you-need-to-know/banner.png
+banner: /blogs/react/build-better-forms-with-react-hook-from-|-everything-you-need-to-know/banner.png
 altText:
 customID: MTnshMgjZCUpi-Rl1gtJS
 ---
