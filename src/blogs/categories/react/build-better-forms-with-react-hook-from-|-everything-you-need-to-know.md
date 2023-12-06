@@ -69,17 +69,11 @@ But, with uncontrolled inputs, we can avoid this issue because ref doesn't cause
 3. Easy to integrate with UI libraries like Material UI, Chakra UI, etc.
 4. Validation out of the box or integration with Yup, Joi, etc.
 
-## Starter code
-
-Use the repo to follow along. [repo](https://github.com/thatanjan/react-hook-form-yt)
-Or you can install the `react-hook-form` package in your project.
-Also, I am going to use Chakra UI for styling. You can use any UI library or your custom styles.
-
 ## Basic usage
 
-Go to the `Myform` component file and you should see a basic form.
+You can install the `react-hook-form` package in your project. I am going to use Chakra UI for styling. You can use any UI library or your custom styles.
 
-<!-- NOTE: Need to add an image of the form -->
+<!-- ![image](https://github.com/thatanjan/cules-coding/assets/71136371/bab360a9-e6b9-421c-97d7-30379aba318e) -->
 
 ### Registering inputs
 
