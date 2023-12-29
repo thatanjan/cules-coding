@@ -45,8 +45,8 @@ const CategoryPage = ({
 					description,
 					images: [
 						{
-							url: blogs[maxIndex].banner,
-							alt: blogs[maxIndex].description,
+							url: blogs?.[maxIndex]?.banner,
+							alt: blogs?.[maxIndex]?.description,
 							height: 1080,
 							width: 1920,
 						},
