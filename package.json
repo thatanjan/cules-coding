@@ -10,7 +10,8 @@
 		"lint": "eslint .",
 		"typecheck": "tsc -p tsconfig.json",
 		"typecheck:watch": "tsc -p tsconfig.json -w",
-		"createBlog": "tsx ./src/scripts/createBlog.ts"
+		"createBlog": "tsx ./src/scripts/createBlog.ts",
+		"createCategory": "tsx ./src/scripts/createCategory.ts"
 	},
 	"dependencies": {
 		"axios": "^0.21.1",
