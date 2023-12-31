@@ -21,13 +21,13 @@ const Navigation = ({ closeResponsiveNav }: Props) => {
 	const generateHref = (menuName: string) => {
 		switch (menuName) {
 			case 'portfolio':
-				return 'https://anjan.vercel.app/'
+				return 'https://thatanjan.vercel.app/'
 
 			case 'home':
 				return '/'
 
 			case 'contact':
-				return 'https://anjan.vercel.app/contact'
+				return 'https://thatanjan.vercel.app/contact'
 
 			default:
 				return `/${menuName}`
@@ -54,18 +54,22 @@ const Navigation = ({ closeResponsiveNav }: Props) => {
 							/>
 						)
 
+					const href = generateHref(menuName)
+
 					return (
 						<li
 							className={clsx(focusedMenuIndex === index && 'current')}
 							key={nanoid()}
 						>
-							<Link passHref href={generateHref(menuName)}>
+							<Link passHref href={href}>
 								<a
-									href={generateHref(menuName)}
+									target={href.startsWith('http') ? '_blank' : '_self'}
+									href={href}
 									onClick={() => {
 										setFocusedMenuIndex(index)
 										closeResponsiveNav()
 									}}
+									rel='noreferrer'
 								>
 									{menuName}
 								</a>
