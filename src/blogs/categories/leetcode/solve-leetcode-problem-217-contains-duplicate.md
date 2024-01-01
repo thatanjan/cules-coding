@@ -33,16 +33,14 @@ Output: true
 
 You can also check the video solution.
 
- <!-- TODO: Need to add video id here -->
+<Iframe videoID="qckl9rr1Yuc" />
 
-<Iframe videoID="" />
-
-To know if all the characters are same we have to loop over the entire strings. We can use a hash map to store the count of each character in the string.
+To know if all the characters are the same we have to loop over the entire strings. We can use a hash map to store the count of each character in the string.
 
 The algorithm is as follows:
 
 - Loop over the array
-  - Check if the current number exist in cache
+  - Check if the current number exists in the cache
     - If yes then return true
     - If not then add it to the cache
 
