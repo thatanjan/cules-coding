@@ -34,7 +34,7 @@ For instance:
 
 You can also check the video solution.
 
-<Iframe videoID="qckl9rr1Yuc" />
+<Iframe videoID="sHvm5sX3ndo" />
 
 The idea of stocks are that you buy them on low price and sell that on high price.
 Basically we just need to find the lowest price and the highest price after that day.
